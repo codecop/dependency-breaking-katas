@@ -13,9 +13,10 @@ public class DiscountTest {
     public void discountFor() {
         final Discount discount = new Discount();
 
-        final Money money = discount.discountFor(new Money(new BigDecimal(1002)));
+        final Money netPrice = new Money(1002);
+        final Money totalPrice = discount.discountFor(netPrice);
 
-        Assert.assertEquals(new Money(new BigDecimal(901)), money);
+        Assert.assertEquals(new Money(new BigDecimal("901")), totalPrice);
     }
 
 
