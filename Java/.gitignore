@@ -17,6 +17,6 @@ local.properties
 *.orig
 
 # Maven
-**/target/*
+/target/
 
 hs_err_pid*
