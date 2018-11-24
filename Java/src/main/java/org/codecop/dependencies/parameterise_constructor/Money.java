@@ -26,7 +26,6 @@ public class Money {
         return this.value.compareTo(other.value) > 0;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
