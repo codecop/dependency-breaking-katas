@@ -174,5 +174,9 @@ public class DiscountTest {
         full line coverage, aber fehlt uns noch etwas?
         conditions!
    7.2. full coverage yeah!
-
+   7.3. cleanup duplication
+        . make factory methods for campaign with two boolean arguments
+        . move mockito to field and use Rule
+        . sort tests
+        . rename tests/check names in the end
  */
