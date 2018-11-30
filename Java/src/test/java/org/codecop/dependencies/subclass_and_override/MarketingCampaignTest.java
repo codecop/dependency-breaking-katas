@@ -1,5 +1,6 @@
 package org.codecop.dependencies.subclass_and_override;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.time.DayOfWeek;
@@ -9,27 +10,32 @@ import static org.junit.Assert.*;
 public class MarketingCampaignTest {
 
     @Test
-    public void test2() {
-        MarketingCampaign campaign = new MarketingCampaign();
+    public void FRIDAY_is_crazySalesDay() {
+        MarketingCampaign campaign = createCampaignAndTodayIs(DayOfWeek.FRIDAY);
 
         boolean isCrazySalesDay = campaign.isCrazySalesDay();
 
-        assertTrue(isCrazySalesDay);
+        assertThat("crazySalesDay", isCrazySalesDay, CoreMatchers.is(true));
     }
 
     @Test
     public void not_a_crazySalesDay() {
-        MarketingCampaign campaign = new MarketingCampaign(){
-            @Override
-            protected DayOfWeek dayOfWeek() {
-                return DayOfWeek.MONDAY;
-            }
-        };
+        MarketingCampaign campaign = createCampaignAndTodayIs(DayOfWeek.MONDAY);
 
         boolean isCrazySalesDay = campaign.isCrazySalesDay();
 
-        assertFalse(isCrazySalesDay);
-    }}
+        assertEquals("crazySalesDay", false, isCrazySalesDay);
+    }
+
+    private MarketingCampaign createCampaignAndTodayIs(DayOfWeek friday) {
+        return new MarketingCampaign() {
+            @Override
+            protected DayOfWeek dayOfWeek() {
+                return friday;
+            }
+        };
+    }
+}
 
 /*
 
@@ -58,6 +64,9 @@ public class MarketingCampaignTest {
    same test, make protected, anonymous subclass. fertig.
    widen access ist immer technisch OK.
 
-7. add more test cases
+7. cleanup test cases
+   factory method
+   names
+   assertions
 
  */
