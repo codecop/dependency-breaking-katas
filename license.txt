@@ -1,7 +1,7 @@
                     BSD LICENSE
  http://www.opensource.org/licenses/bsd-license.php
 
-Copyright (c) 2018, Peter Kofler
+Copyright (c) 2018, Peter Kofler, Roland Germ
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
