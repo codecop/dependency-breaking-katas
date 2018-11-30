@@ -12,7 +12,12 @@ public class DiscountTest {
 
     @Test
     public void higher_discount_for_CrazySalesDay() {
-        final Discount discount = new Discount();
+        final Discount discount = new Discount(new MarketingCampaign() {
+            @Override
+            public boolean isCrazySalesDay() {
+                return true;
+            }
+        });
 
         final Money net = new Money(1002);
         final Money total = discount.discountFor(net);
@@ -102,5 +107,14 @@ public class DiscountTest {
          schreibe 2 Zeilen
          Vorteil: kann den stub für alle Tests benutzen
          Nachteil: magic, API, Learning Curve
+   6.3. use same strategy for first existing tests. (MANDATORY)
+        because it will fail tomorrow. Remember, it did fail when we started because of Friday.
+        (Facilitator Hint. Change test so it fails on day of workshop first)
+        because of we have a constructor for test, now use it in test (maybe) - other is not "stable"
+        because of symmetry
+        because of first test was not unit test, but integrated (need to get rid of dependency)
+
+
+7. add more test cases
 
  */
