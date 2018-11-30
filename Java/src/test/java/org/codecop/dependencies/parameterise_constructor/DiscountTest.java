@@ -61,6 +61,26 @@ public class DiscountTest {
     }
 
     @Test
+    public void no_discount_for_small_purchase_when_campaign_not_active() {
+        final Discount discount = new Discount(new MarketingCampaign() {
+            @Override
+            public boolean isCrazySalesDay() {
+                return false;
+            }
+
+            @Override
+            public boolean isActive() {
+                return false;
+            }
+        });
+
+        final Money net = new Money(102);
+        final Money total = discount.discountFor(net);
+
+        Assert.assertEquals(new Money(new BigDecimal("102")).describe(), total.describe());
+    }
+
+    @Test
     public void no_discount_for_usual_day() {
         final Discount discount = new Discount(new MarketingCampaign() {
             @Override
@@ -150,8 +170,9 @@ public class DiscountTest {
         because of first test was not unit test, but integrated (need to get rid of dependency)
 
 7. add more test cases
-   7.1 add test for branch, run, take result as is (because of Legacy code)
-       full line coverage, aber fehlt uns noch etwas?
-       conditions!
+   7.1. add test for branch, run, take result as is (because of Legacy code)
+        full line coverage, aber fehlt uns noch etwas?
+        conditions!
+   7.2. full coverage yeah!
 
  */
