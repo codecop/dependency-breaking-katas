@@ -1,12 +1,12 @@
 package org.codecop.dependencies.parameterise_constructor;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class DiscountTest {
 
@@ -28,6 +28,18 @@ public class DiscountTest {
                 return false;
             }
         });
+
+        final Money net = new Money(10);
+        final Money total = discount.discountFor(net);
+
+        Assert.assertEquals(new Money(new BigDecimal("10")).describe(), total.describe());
+    }
+
+    @Test
+    public void no_discount_for_usual_day_mockito() {
+        MarketingCampaign campaign = mock(MarketingCampaign.class);
+        when(campaign.isCrazySalesDay()).thenReturn(false);
+        final Discount discount = new Discount(campaign);
 
         final Money net = new Money(10);
         final Money total = discount.discountFor(net);
@@ -77,9 +89,18 @@ public class DiscountTest {
    5.5. power mock (stub Campaign)
    5.6. nach Instanzierung mit Refection tauschen (stub Campaign)
 
-6. modify code, only automatic?, minimal code change in production?
+6. modify code via 5.1, only automatic?, minimal code change in production?
    6.1.a generate constructior with selected field, chain constructors (manually)
    6.1.b. introduce parameter and keep old method as delegate
       one existing test protects the no-args constructor
+   6.2.a stub campaign via subclass
+         Vorteil: sehr schnell gemacht, direkt, klar zu verstehen, nur Struktur
+         Nachteil: wir executieren constructor von Campaign, das könnte schief gehen
+         TODO überlegen...
+   6.2.b stub with Mockito
+         get dependency into Maven
+         schreibe 2 Zeilen
+         Vorteil: kann den stub für alle Tests benutzen
+         Nachteil: magic, API, Learning Curve
 
  */
