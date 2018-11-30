@@ -13,7 +13,8 @@ public class MarketingCampaign {
         return dayOfWeek().compareTo(DayOfWeek.FRIDAY) == 0;
     }
 
-    private DayOfWeek dayOfWeek() {
+    /* for test */
+    protected DayOfWeek dayOfWeek() {
         return LocalDateTime.now().getDayOfWeek();
     }
 }

@@ -2,6 +2,8 @@ package org.codecop.dependencies.subclass_and_override;
 
 import org.junit.Test;
 
+import java.time.DayOfWeek;
+
 import static org.junit.Assert.*;
 
 public class MarketingCampaignTest {
@@ -14,7 +16,20 @@ public class MarketingCampaignTest {
 
         assertTrue(isCrazySalesDay);
     }
-}
+
+    @Test
+    public void not_a_crazySalesDay() {
+        MarketingCampaign campaign = new MarketingCampaign(){
+            @Override
+            protected DayOfWeek dayOfWeek() {
+                return DayOfWeek.MONDAY;
+            }
+        };
+
+        boolean isCrazySalesDay = campaign.isCrazySalesDay();
+
+        assertFalse(isCrazySalesDay);
+    }}
 
 /*
 
@@ -40,6 +55,9 @@ public class MarketingCampaignTest {
    5.3. power mock (stub LocalDate)
 
 6. modify code via 5.1, only automatic?, minimal code change in production?
+   same test, make protected, anonymous subclass. fertig.
+   widen access ist immer technisch OK.
 
 7. add more test cases
+
  */
