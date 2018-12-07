@@ -1,10 +1,10 @@
 package org.codecop.dependencies.parameterise_constructor;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.math.BigDecimal;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,10 +19,10 @@ public class DiscountTest {
             }
         });
 
-        final Money net = new Money(1002);
-        final Money total = discount.discountFor(net);
+        Money net = new Money(1002);
+        Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("851.7")).describe(), total.describe());
+        assertEquals(new Money(new BigDecimal("851.7")).describe(), total.describe());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class DiscountTest {
         final Money net = new Money(1002);
         final Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("901.8")).describe(), total.describe());
+        assertEquals(new Money(new BigDecimal("901.8")).describe(), total.describe());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class DiscountTest {
         final Money net = new Money(102);
         final Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("96.9")).describe(), total.describe());
+        assertEquals(new Money(new BigDecimal("96.9")).describe(), total.describe());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class DiscountTest {
         final Money net = new Money(102);
         final Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("102")).describe(), total.describe());
+        assertEquals(new Money(new BigDecimal("102")).describe(), total.describe());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class DiscountTest {
         final Money net = new Money(10);
         final Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("10")).describe(), total.describe());
+        assertEquals(new Money(new BigDecimal("10")).describe(), total.describe());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class DiscountTest {
         final Money net = new Money(10);
         final Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("10")).describe(), total.describe());
+        assertEquals(new Money(new BigDecimal("10")).describe(), total.describe());
     }
 }
 
