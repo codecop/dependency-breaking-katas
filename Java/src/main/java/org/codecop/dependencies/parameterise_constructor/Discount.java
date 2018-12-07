@@ -8,6 +8,7 @@ public class Discount {
         this(new MarketingCampaign());
     }
 
+    /* for test */
     public Discount(MarketingCampaign marketingCampaign) {
         this.marketingCampaign = marketingCampaign;
     }

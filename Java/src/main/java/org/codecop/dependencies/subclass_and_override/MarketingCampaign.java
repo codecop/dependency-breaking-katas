@@ -16,6 +16,7 @@ public class MarketingCampaign {
         return milliSeconds() % 2 == 0;
     }
 
+    /* for test */
     protected long milliSeconds() {
         return systemTimeMillis.getAsLong();
     }
