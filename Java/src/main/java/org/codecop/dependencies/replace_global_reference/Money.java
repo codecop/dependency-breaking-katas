@@ -1,6 +1,7 @@
 package org.codecop.dependencies.replace_global_reference;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Money {
 
@@ -21,4 +22,11 @@ public class Money {
     public String format() {
         return String.format("%.2f", value);
     }
+
+    public boolean equals(Object other) {
+        if (other == null || getClass() != other.getClass()) return false;
+        Money money = (Money) other;
+        return Objects.equals(value, money.value);
+    }
+
 }
