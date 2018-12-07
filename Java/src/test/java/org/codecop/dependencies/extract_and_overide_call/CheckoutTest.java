@@ -1,10 +1,8 @@
 package org.codecop.dependencies.extract_and_overide_call;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -14,7 +12,7 @@ public class CheckoutTest {
     public void receiptContainsPriceTaxAndTotal() {
         Checkout checkout = new Checkout() {
             @Override
-            protected void store(Receipt receipt) {
+            protected void store(@SuppressWarnings("unused") Receipt receipt) {
             }
         };
 
@@ -27,11 +25,15 @@ public class CheckoutTest {
 
     @Test
     public void receiptIsStored() {
-        boolean[] wasCalled = {false};
+        boolean[] wasCalled = { false };
         Checkout checkout = new Checkout() {
             @Override
             protected void store(Receipt receipt) {
                 wasCalled[0] = true;
+
+                assertThat(receipt.fomat(), hasItem("Item 1 ... 147,00"));
+                assertThat(receipt.fomat(), hasItem("Tax    ... 29,40"));
+                assertThat(receipt.fomat(), hasItem("Total  ... 176,40"));
             }
         };
 
