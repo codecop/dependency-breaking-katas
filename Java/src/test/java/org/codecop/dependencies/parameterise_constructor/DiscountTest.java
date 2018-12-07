@@ -1,22 +1,20 @@
 package org.codecop.dependencies.parameterise_constructor;
 
-import org.junit.Assert;
+import java.math.BigDecimal;
 import org.junit.Test;
 
-import java.math.BigDecimal;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class DiscountTest {
 
     @Test
     public void test1() {
-        final Discount discount = new Discount();
+        Discount discount = new Discount();
 
-        final Money net = new Money(1002);
-        final Money total = discount.discountFor(net);
+        Money net = new Money(1002);
+        Money total = discount.discountFor(net);
 
-        Assert.assertEquals(new Money(new BigDecimal("901.8")), total);
+        assertEquals(new Money(new BigDecimal("901.8")), total);
     }
 
 }

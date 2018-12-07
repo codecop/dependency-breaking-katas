@@ -26,10 +26,18 @@ public class Money {
         return this.value.compareTo(other.value) > 0;
     }
 
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Money money = (Money) o;
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        Money money = (Money) other;
         return Objects.equals(value, money.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 
 }

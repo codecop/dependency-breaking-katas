@@ -1,7 +1,7 @@
 package org.codecop.dependencies.replace_global_reference;
 
 /**
- * Calls the Google Maps API. Pay attention not to call this
+ * Calls the Google Maps API. Pay attention not to call this 
  * too often in tests as we have to pay per usage.
  */
 public class GoogleMapsAPI {
@@ -13,7 +13,7 @@ public class GoogleMapsAPI {
     }
 
     public boolean isInCommonMarket(Country country) {
-        // TODO HTTP call
+        // TODO implement basic HTTP call
         slowHttp();
         return false;
     }
@@ -31,7 +31,7 @@ public class GoogleMapsAPI {
     private void slowHttp() {
         try {
             Thread.sleep(5000);
-        } catch (InterruptedException e) {
+        } catch (@SuppressWarnings("unused") InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }

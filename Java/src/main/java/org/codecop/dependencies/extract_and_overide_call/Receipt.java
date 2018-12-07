@@ -22,13 +22,13 @@ public class Receipt {
     }
 
     public List<String> fomat() {
-        return Arrays.asList(
-                "Receipt",
-                "=======",
-                "Item 1 ... " + amount.format(),
-                "Tax    ... " + tax.format(),
-                "----------------",
-                "Total  ... " + total.format()
+        return Arrays.asList( //
+                "Receipt", //
+                "=======", //
+                "Item 1 ... " + amount.format(), //
+                "Tax    ... " + tax.format(), //
+                "----------------", //
+                "Total  ... " + total.format() //
         );
     }
 
