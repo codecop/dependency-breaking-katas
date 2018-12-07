@@ -16,13 +16,13 @@ public class ShippingCostTest {
         assertEquals(new Money(5), cost);
     }
 
-    private GoogleMapsAPI createGoogleMapAPIInEurope(final boolean europe) {
+    private GoogleMapsAPI createGoogleMapAPIInEurope(boolean isCommonMarket) {
         return new GoogleMapsAPI() {
-                @Override
-                public boolean isInCommonMarket(Country country) {
-                    return europe;
-                }
-            };
+            @Override
+            public boolean isInCommonMarket(Country country) {
+                return isCommonMarket;
+            }
+        };
     }
 
     private ShippingCost createShippingCostForTest(GoogleMapsAPI googleMapsAPIStub) {
