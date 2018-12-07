@@ -15,7 +15,7 @@ public class GoogleMapsAPI {
     public boolean isInCommonMarket(Country country) {
         // TODO HTTP call
         slowHttp();
-        return false;
+        return true;
     }
 
     public boolean isInAmericas(Country country) {
@@ -30,7 +30,7 @@ public class GoogleMapsAPI {
 
     private void slowHttp() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
