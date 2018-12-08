@@ -1,5 +1,4 @@
 ﻿using Org.Codecop.Dependencies;
-using System;
 using Xunit;
 
 namespace Org.Codecop.Dependencies.Tests
@@ -15,4 +14,5 @@ namespace Org.Codecop.Dependencies.Tests
 
             Assert.Equal("Hello World", greeting);
         }
+    }
 }

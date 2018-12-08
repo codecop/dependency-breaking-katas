@@ -1,5 +1,3 @@
-using System;
-
 namespace Org.Codecop.Dependencies
 {
     public class Hello
