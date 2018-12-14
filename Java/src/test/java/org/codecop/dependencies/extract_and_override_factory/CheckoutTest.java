@@ -6,6 +6,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import static org.mockito.Mockito.when;
+
 public class CheckoutTest {
 
     @Rule
@@ -18,8 +20,8 @@ public class CheckoutTest {
     private UserConfirmation acceptTermsMock;
 
     @Test(expected = OrderCancelledException.class)
-    public void test5() {
-        System.out.println("(note for tester) Do not Accept Terms");
+    public void termsNotAccepted() {
+        when(acceptTermsMock.isAccepted()).thenReturn(false);
 
         Product polkaDotSocks = new Product("Polka-dot Socks");
         Checkout checkout = new Checkout(polkaDotSocks, emailServiceMock) {
