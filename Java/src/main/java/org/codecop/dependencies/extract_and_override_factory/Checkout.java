@@ -10,9 +10,13 @@ public class Checkout {
     public Checkout(Product product, EmailService emailService) {
         this.product = product;
         this.emailService = emailService;
-        this.newsLetterSubscribed = new UserConfirmation("Subscribe to our product " + product.name() + " newsletter?");
-        this.termsAndConditionsAccepted = new UserConfirmation("Accept our terms and conditions?\n" +
+        this.newsLetterSubscribed = createUserConfirmation("Subscribe to our product " + product.name() + " newsletter?");
+        this.termsAndConditionsAccepted = createUserConfirmation("Accept our terms and conditions?\n" +
                 "(Mandatory to place order for " + product.name() + ")");
+    }
+
+    protected UserConfirmation createUserConfirmation(String message) {
+        return new UserConfirmation(message);
     }
 
     public void confirmOrder() {
