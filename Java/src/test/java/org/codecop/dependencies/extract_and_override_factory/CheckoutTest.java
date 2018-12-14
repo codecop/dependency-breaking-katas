@@ -6,6 +6,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class CheckoutTest {
@@ -16,6 +18,8 @@ public class CheckoutTest {
     @Mock
     private EmailService emailServiceMock;
 
+    @Mock
+    private UserConfirmation subscribeEmailMock;
     @Mock
     private UserConfirmation acceptTermsMock;
 
@@ -34,6 +38,51 @@ public class CheckoutTest {
         checkout.confirmOrder();
     }
 
+    @Test
+    public void termsAcceptedNoEmails() {
+        when(subscribeEmailMock.isAccepted()).thenReturn(false);
+        when(acceptTermsMock.isAccepted()).thenReturn(true);
+
+        Product polkaDotSocks = new Product("Polka-dot Socks");
+        Checkout checkout = new Checkout(polkaDotSocks, emailServiceMock) {
+
+            @Override
+            protected UserConfirmation createUserConfirmation(String message) {
+                if (message.contains("Subscribe")) {
+                    return subscribeEmailMock;
+                } else {
+                    return acceptTermsMock;
+                }
+            }
+
+        };
+
+        checkout.confirmOrder();
+    }
+
+    @Test
+    public void termsAcceptedEmailSubscribed() {
+        when(subscribeEmailMock.isAccepted()).thenReturn(true);
+        when(acceptTermsMock.isAccepted()).thenReturn(true);
+
+        Product polkaDotSocks = new Product("Polka-dot Socks");
+        Checkout checkout = new Checkout(polkaDotSocks, emailServiceMock) {
+
+            @Override
+            protected UserConfirmation createUserConfirmation(String message) {
+                if (message.contains("Subscribe")) {
+                    return subscribeEmailMock;
+                } else {
+                    return acceptTermsMock;
+                }
+            }
+
+        };
+
+        checkout.confirmOrder();
+
+        verify(emailServiceMock, times(1)).subscribeUserFor(polkaDotSocks);
+    }
 }
 
 /*
@@ -51,5 +100,7 @@ public class CheckoutTest {
    * extract method, replace all
    * inline message
    * make protected
-   *
+   * use in test
+4. add more test
+
  */
