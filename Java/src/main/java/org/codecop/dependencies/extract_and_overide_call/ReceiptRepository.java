@@ -23,8 +23,7 @@ public class ReceiptRepository {
                 + "values(?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASS);
-             PreparedStatement statement = connection.prepareStatement(sqlInsert);
-        ) {
+             PreparedStatement statement = connection.prepareStatement(sqlInsert)) {
             statement.setBigDecimal(1, receipt.getAmount().asBigDecimal());
             statement.setBigDecimal(2, receipt.getTax().asBigDecimal());
             statement.setBigDecimal(3, receipt.getTotal().asBigDecimal());
