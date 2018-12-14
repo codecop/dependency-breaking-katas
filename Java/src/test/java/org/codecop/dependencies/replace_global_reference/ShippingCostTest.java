@@ -8,7 +8,7 @@ public class ShippingCostTest {
 
     @Test
     public void europeShipsAtCostOf5() {
-        GoogleMapsAPI googleMapsAPIStub = createGoogleMapAPIInEurope(true);
+        GoogleMapsAPI googleMapsAPIStub = createGoogleMapAPIInEurope();
         ShippingCost shippingCost = createShippingCostForTest(googleMapsAPIStub);
 
         Money cost = shippingCost.calculate(new Country("DE"), DeliveryOptions.STANDARD);
@@ -16,13 +16,76 @@ public class ShippingCostTest {
         assertEquals(new Money(5), cost);
     }
 
-    private GoogleMapsAPI createGoogleMapAPIInEurope(final boolean europe) {
+    @Test
+    public void americasShipsAtCostOf15() {
+        GoogleMapsAPI googleMapsAPIStub = createGoogleMapAPIInAmericas();
+        ShippingCost shippingCost = createShippingCostForTest(googleMapsAPIStub);
+
+        Money cost = shippingCost.calculate(new Country("CA"), DeliveryOptions.STANDARD);
+
+        assertEquals(new Money(15), cost);
+    }
+
+    @Test
+    public void americasExpressShipsAtCostOf25() {
+        GoogleMapsAPI googleMapsAPIStub = createGoogleMapAPIInAmericas();
+        ShippingCost shippingCost = createShippingCostForTest(googleMapsAPIStub);
+
+        Money cost = shippingCost.calculate(new Country("CA"), DeliveryOptions.EXPRESS);
+
+        assertEquals(new Money(40), cost);
+    }
+
+    @Test
+    public void otherShipsAtCostWithDistance() {
+        GoogleMapsAPI googleMapsAPIStub = createGoogleMapAPIInOtherWithDistance(2380);
+        ShippingCost shippingCost = createShippingCostForTest(googleMapsAPIStub);
+
+        Money cost = shippingCost.calculate(new Country("EG"), DeliveryOptions.EXPRESS);
+
+        assertEquals(new Money(238), cost);
+    }
+
+    private GoogleMapsAPI createGoogleMapAPIInEurope() {
         return new GoogleMapsAPI() {
-                @Override
-                public boolean isInCommonMarket(Country country) {
-                    return europe;
-                }
-            };
+            @Override
+            public boolean isInCommonMarket(Country country) {
+                return true;
+            }
+        };
+    }
+
+    private GoogleMapsAPI createGoogleMapAPIInAmericas() {
+        return new GoogleMapsAPI() {
+            @Override
+            public boolean isInCommonMarket(Country country) {
+                return false;
+            }
+
+            @Override
+            public boolean isInAmericas(Country country) {
+                return true;
+            }
+        };
+    }
+
+    private GoogleMapsAPI createGoogleMapAPIInOtherWithDistance(int distance) {
+        return new GoogleMapsAPI() {
+            @Override
+            public boolean isInCommonMarket(Country country) {
+                return false;
+            }
+
+            @Override
+            public boolean isInAmericas(Country country) {
+                return false;
+            }
+
+            @Override
+            public int distanceTo(Country country) {
+                return distance;
+            }
+        };
     }
 
     private ShippingCost createShippingCostForTest(GoogleMapsAPI googleMapsAPIStub) {
