@@ -59,8 +59,10 @@ public class CheckoutTest {
             protected UserConfirmation createUserConfirmation(String message) {
                 if (message.contains("Subscribe")) {
                     return subscribeEmail;
-                } else {
+                } else if (message.contains("terms and conditions")) {
                     return acceptTerms;
+                } else {
+                    throw new AssertionError("unknown message: " + message);
                 }
             }
 
@@ -86,4 +88,5 @@ public class CheckoutTest {
    * use in test
 4. add more test
    * variant of one or two factory methods make test easier
+   * quite some work figuring out which mock to return for multiple calls of factory
  */
