@@ -1,5 +1,5 @@
-Parameterise Constructor
-========================
+Subclass and Override Method
+============================
 
 Goal
 ----
@@ -16,15 +16,14 @@ Changing code without test is risky, so we want to
 
 Problem Category
 ----------------
-The system under test depends on a collaborator with 
-nondeterministic behaviour. The collaborator is 
-initialised in the constructor.
+The system under test contains nondeterministic behaviour, 
+which is located in a few methods. The system under test can
+be sub-classed.
 
 Task
 ----
-The given code calculates the discount for a purchase in 
-our online shop. The main logic is in `Discount`. 
+The given `MarketingCampaign` controls the marketing actions which
+run on our online shop. During campaigns we e.g. offer discounts. 
  
-* Bring `Discount` under test.
-* There is an existing `DiscountTest` with a first test case which might or might not work. 
-* You cannot change `MarketingCampaign` because it is used by other teams as well.
+* Bring `MarketingCampaign` under test.
+* There is an existing `MarketingCampaignTest` with a first test case which might or might not work. 

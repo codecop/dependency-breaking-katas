@@ -5,7 +5,7 @@ What is the problem?
 --------------------
 
 All calls to `MarketingCampaign` are nondeterministic.
-We cannot create relyable tests.
+We cannot create reliable tests.
 
 Which option did you use?
 -------------------------
