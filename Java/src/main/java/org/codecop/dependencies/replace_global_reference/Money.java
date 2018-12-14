@@ -23,10 +23,18 @@ public class Money {
         return String.format("%.2f", value);
     }
 
+    @Override
     public boolean equals(Object other) {
-        if (other == null || getClass() != other.getClass()) return false;
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
         Money money = (Money) other;
         return Objects.equals(value, money.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 
 }

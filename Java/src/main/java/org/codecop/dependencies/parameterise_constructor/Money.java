@@ -1,7 +1,6 @@
 package org.codecop.dependencies.parameterise_constructor;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Money {
@@ -27,13 +26,21 @@ public class Money {
         return this.value.compareTo(other.value) > 0;
     }
 
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Money money = (Money) o;
+    public String describe() {
+        return "EUR " + value.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        Money money = (Money) other;
         return Objects.equals(value, money.value);
     }
 
-    public String describe() {
-        return "EUR " + value.toString();
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }

@@ -25,4 +25,8 @@ public class Money {
     public String format() {
         return String.format("%.2f", value);
     }
+
+    public BigDecimal asBigDecimal() {
+        return value;
+    }
 }
