@@ -15,6 +15,7 @@ public class Checkout {
         return receipt;
     }
 
+    /* for test */
     protected void store(Receipt receipt) {
         ReceiptRepository.store(receipt);
     }

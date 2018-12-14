@@ -26,6 +26,7 @@ public class ShippingCost {
         return cost;
     }
 
+    /* for test */
     protected GoogleMapsAPI getGoogleMapsAPI() {
         return GoogleMapsAPI.getInstance();
     }

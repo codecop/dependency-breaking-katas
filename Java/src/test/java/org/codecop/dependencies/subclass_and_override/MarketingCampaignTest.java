@@ -42,13 +42,13 @@ public class MarketingCampaignTest {
         assertEquals("active", false, campaign.isActive());
     }
 
-    private MarketingCampaign createCampainAndMillisIs(final int millis) {
+    private MarketingCampaign createCampainAndMillisIs(int millis) {
         return new MarketingCampaign() {
-                @Override
-                protected long milliSeconds() {
-                    return millis;
-                }
-            };
+            @Override
+            protected long milliSeconds() {
+                return millis;
+            }
+        };
     }
 
     private MarketingCampaign createCampaignAndTodayIs(DayOfWeek dayOfWeek) {
