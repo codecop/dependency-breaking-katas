@@ -15,6 +15,7 @@ Which option did you use?
     * design improvement: move design towards DI
     * design improvement: makes dependencies visible
     * no subclass of `Discount` needed in test
+    * might want to change all call sites
      
 * extract factory method for `new MarketingCampaign()`, override `Discount` and stub in tests.
     * need to subclass and stub `Discount` in addition to `MarketingCampaign` 

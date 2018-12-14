@@ -1,5 +1,5 @@
-Parameterise Constructor
-========================
+Extract and Override Call
+=========================
 
 Goal
 ----
@@ -17,14 +17,14 @@ Changing code without test is risky, so we want to
 Problem Category
 ----------------
 The system under test depends on a collaborator with 
-nondeterministic behaviour. The collaborator is 
-initialised in the constructor.
+database access. The database is not available in our 
+test environment. The collaborator is a static call.
 
 Task
 ----
-The given code calculates the discount for a purchase in 
-our online shop. The main logic is in `Discount`. 
+The given code creates the receipt with a calculated tax 
+for a purchase in our online shop. The main logic is in `Checkout`. 
  
-* Bring `Discount` under test. Make sure to cover all paths in the core logic.
-* There is an existing `DiscountTest` with a first test case which might or might not work. 
-* You cannot change `MarketingCampaign` because it is used by other teams as well.
+* Bring `Checkout` under test. Make sure to cover all paths in the core logic. 
+* There is an existing `CheckoutTest` with a first test case which might or might not work. 
+* You cannot change `ReceiptRepository` because it is used by other teams as well.
