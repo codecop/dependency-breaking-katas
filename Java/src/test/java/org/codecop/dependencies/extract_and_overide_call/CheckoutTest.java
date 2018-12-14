@@ -9,6 +9,7 @@ public class CheckoutTest {
     @Test
     public void test3() {
         Checkout checkout = new Checkout();
+        checkout.createReceipt(new Money(12));
         assertNotNull(checkout);
     }
 }
