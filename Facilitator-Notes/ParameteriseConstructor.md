@@ -1,6 +1,11 @@
 Parameterise Constructor
 ========================
 
+Preparation
+-----------
+
+Change value in `DiscountTest` so it will fail on day of workshop.
+
 What is the problem?
 --------------------
 
