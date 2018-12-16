@@ -1,4 +1,4 @@
-package org.codecop.dependencies.extract_and_overide_call;
+package org.codecop.dependencies.extract_and_override_call;
 
 import java.util.Arrays;
 import java.util.List;
