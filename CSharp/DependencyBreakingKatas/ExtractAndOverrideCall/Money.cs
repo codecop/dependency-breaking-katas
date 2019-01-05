@@ -26,7 +26,7 @@
 
         public string Format()
         {
-            return string.Format("%.2f", value);
+            return string.Format("{0:0.00}", value);
         }
 
         public decimal AsBigDecimal()
