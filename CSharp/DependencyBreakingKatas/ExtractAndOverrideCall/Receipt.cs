@@ -9,7 +9,7 @@ namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
         public Money Tax { get; set; }
         public Money Total { get; set; }
 
-        public IEnumerable<string> format()
+        public IEnumerable<string> Format()
         {
             return new List<string>() { //
                     "Receipt", //
