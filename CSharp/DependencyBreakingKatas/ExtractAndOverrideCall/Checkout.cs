@@ -1,11 +1,19 @@
 namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
 {
-    public class Hello
+    public class Checkout
     {
-        public virtual string greetings()
+        public Receipt createReceipt(Money amount)
         {
-            return "Hello World";
-        }
+            var receipt = new Receipt();
+            var vat = amount.Percentage(20);
 
+            receipt.Amount = amount;
+            receipt.Tax = vat;
+            receipt.Total = amount.Add(vat);
+
+            ReceiptRepository.Store(receipt);
+
+            return receipt;
+        }
     }
 }
