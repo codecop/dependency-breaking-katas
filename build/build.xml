@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Package" basedir=".." default="zip">
+
+    <target name="zip" description="Create package for participants">
+        <delete file="../dependency-breaking-katas-new.zip" />
+
+        <zip destfile="../dependency-breaking-katas-new.zip">
+            <zipfileset dir="." prefix="dependency-breaking-katas">
+                <exclude name="build/**" />
+                <exclude name="Facilitator-Notes/**" />
+                <!-- ignore git -->
+                <exclude name=".*" />
+                <exclude name="**/.*" />
+                <!-- ignore IDEs -->
+                <exclude name="**/.settings/**" />
+                <exclude name="**/.idea/**" />
+                <exclude name="**/*.iml" />
+                <exclude name="**/.vscode/**" />
+            </zipfileset>
+
+         </zip>
+    </target>
+
+</project>
