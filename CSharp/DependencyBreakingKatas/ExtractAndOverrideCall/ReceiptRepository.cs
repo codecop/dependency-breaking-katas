@@ -1,7 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 
-
 namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
 {
     public class ReceiptRepository
@@ -20,9 +19,9 @@ namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
                 connection.Open();
                 var command = new MySqlCommand("insert into RECEIPT (AMOUNT, TAX, TOTAL)"
                         + "values(@amount, @tax, @total);", connection);
-                command.Parameters.AddWithValue("@amount", receipt.Amount.AsBigDecimal());
-                command.Parameters.AddWithValue("@tax", receipt.Tax.AsBigDecimal());
-                command.Parameters.AddWithValue("@total", receipt.Total.AsBigDecimal());
+                command.Parameters.AddWithValue("@amount", receipt.Amount.AsDecimal());
+                command.Parameters.AddWithValue("@tax", receipt.Tax.AsDecimal());
+                command.Parameters.AddWithValue("@total", receipt.Total.AsDecimal());
                 command.Prepare();
                 command.ExecuteNonQuery();
             }

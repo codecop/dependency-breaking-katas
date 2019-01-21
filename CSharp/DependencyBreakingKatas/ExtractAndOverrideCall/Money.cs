@@ -16,7 +16,7 @@
 
         public Money Add(Money other)
         {
-            return new Money(value + other.AsBigDecimal());
+            return new Money(value + other.value);
         }
 
         public Money Percentage(int p)
@@ -29,7 +29,7 @@
             return string.Format("{0:0.00}", value);
         }
 
-        public decimal AsBigDecimal()
+        internal decimal AsDecimal()
         {
             return value;
         }
