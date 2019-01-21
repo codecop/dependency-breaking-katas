@@ -17,10 +17,13 @@ Assignments for specific techniques (in recommended order)
 * Parameterise Constructor
 * Subclass And Override Method
 * Extract And Override Call
+
+WIP
+
 * Replace Global Reference With Getter
 * Extract And Override Factory Method
 
-WIP
+NEXT
 
 * Extract Interface
 * Adapt Parameter
