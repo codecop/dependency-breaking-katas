@@ -3,16 +3,16 @@ using Xunit;
 
 namespace Org.Codecop.Dependencies.SubclassAndOverride.Tests
 {
-    public class HelloTest
+    public class MarketingCampaignTest
     {
         [Fact]
-        public void ShouldGreet()
+        public void Test2()
         {
-            var hello = new Hello();
+            var campaign = new MarketingCampaign();
 
-            var greeting = hello.greetings();
+            var isCrazySalesDay = campaign.IsCrazySalesDay();
 
-            Assert.Equal("Hello World", greeting);
+            Assert.False(isCrazySalesDay);
         }
     }
 }

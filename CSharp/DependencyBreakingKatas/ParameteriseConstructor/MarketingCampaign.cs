@@ -6,7 +6,7 @@ namespace Org.Codecop.Dependencies.ParameteriseConstructor
     {
         public virtual bool IsActive()
         {
-            return DateTime.Now.TimeOfDay.TotalMilliseconds % 2 == 0;
+            return (long) DateTime.Now.TimeOfDay.TotalMilliseconds % 2 == 0;
         }
 
         public virtual bool IsCrazySalesDay()
