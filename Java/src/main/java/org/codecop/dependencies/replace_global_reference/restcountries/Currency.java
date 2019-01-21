@@ -2,6 +2,7 @@ package org.codecop.dependencies.replace_global_reference.restcountries;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "code",
-        "name",
-        "symbol"
+    "code",
+    "name",
+    "symbol"
 })
 public class Currency {
 
@@ -24,7 +25,7 @@ public class Currency {
     @JsonProperty("symbol")
     private String symbol;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("code")
     public String getCode() {

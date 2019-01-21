@@ -1,54 +1,59 @@
 package org.codecop.dependencies.replace_global_reference.restcountries;
 
-import com.fasterxml.jackson.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "name",
-        "topLevelDomain",
-        "alpha2Code",
-        "alpha3Code",
-        "callingCodes",
-        "capital",
-        "altSpellings",
-        "region",
-        "subregion",
-        "population",
-        "latlng",
-        "demonym",
-        "area",
-        "gini",
-        "timezones",
-        "borders",
-        "nativeName",
-        "numericCode",
-        "currencies",
-        "languages",
-        "translations",
-        "flag",
-        "regionalBlocs",
-        "cioc"
+    "name",
+    "topLevelDomain",
+    "alpha2Code",
+    "alpha3Code",
+    "callingCodes",
+    "capital",
+    "altSpellings",
+    "region",
+    "subregion",
+    "population",
+    "latlng",
+    "demonym",
+    "area",
+    "gini",
+    "timezones",
+    "borders",
+    "nativeName",
+    "numericCode",
+    "currencies",
+    "languages",
+    "translations",
+    "flag",
+    "regionalBlocs",
+    "cioc"
 })
 public class CountryDescription {
 
     @JsonProperty("name")
     private String name;
     @JsonProperty("topLevelDomain")
-    private List<String> topLevelDomain = null;
+    private List<String> topLevelDomain;
     @JsonProperty("alpha2Code")
     private String alpha2Code;
     @JsonProperty("alpha3Code")
     private String alpha3Code;
     @JsonProperty("callingCodes")
-    private List<String> callingCodes = null;
+    private List<String> callingCodes;
     @JsonProperty("capital")
     private String capital;
     @JsonProperty("altSpellings")
-    private List<String> altSpellings = null;
+    private List<String> altSpellings;
     @JsonProperty("region")
     private String region;
     @JsonProperty("subregion")
@@ -56,7 +61,7 @@ public class CountryDescription {
     @JsonProperty("population")
     private Integer population;
     @JsonProperty("latlng")
-    private List<Double> latlng = null;
+    private List<Double> latlng;
     @JsonProperty("demonym")
     private String demonym;
     @JsonProperty("area")
@@ -64,27 +69,27 @@ public class CountryDescription {
     @JsonProperty("gini")
     private Object gini;
     @JsonProperty("timezones")
-    private List<String> timezones = null;
+    private List<String> timezones;
     @JsonProperty("borders")
-    private List<Object> borders = null;
+    private List<Object> borders;
     @JsonProperty("nativeName")
     private String nativeName;
     @JsonProperty("numericCode")
     private String numericCode;
     @JsonProperty("currencies")
-    private List<Currency> currencies = null;
+    private List<Currency> currencies;
     @JsonProperty("languages")
-    private List<Language> languages = null;
+    private List<Language> languages;
     @JsonProperty("translations")
     private Translations translations;
     @JsonProperty("flag")
     private String flag;
     @JsonProperty("regionalBlocs")
-    private List<Object> regionalBlocs = null;
+    private List<Object> regionalBlocs;
     @JsonProperty("cioc")
     private String cioc;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("name")
     public String getName() {
@@ -337,5 +342,3 @@ public class CountryDescription {
     }
 
 }
-
-

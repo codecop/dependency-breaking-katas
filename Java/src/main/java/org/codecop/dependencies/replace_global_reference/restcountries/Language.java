@@ -2,6 +2,7 @@ package org.codecop.dependencies.replace_global_reference.restcountries;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "iso639_1",
-        "iso639_2",
-        "name",
-        "nativeName"
+    "iso639_1",
+    "iso639_2",
+    "name",
+    "nativeName"
 })
 public class Language {
 
@@ -27,7 +28,7 @@ public class Language {
     @JsonProperty("nativeName")
     private String nativeName;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("iso639_1")
     public String getIso6391() {

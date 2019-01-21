@@ -21,23 +21,12 @@ public class RestCountriesAPI {
 
     private final ObjectMapper objectMapper;
 
-    public RestCountriesAPI() {
+    private RestCountriesAPI() {
         this.objectMapper = new ObjectMapper();
     }
 
     public static RestCountriesAPI getInstance() {
         return instance;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Country("US"));
-        System.out.println(getInstance().isInAmericas(new Country("US")));
-        System.out.println(getInstance().isInCommonMarket(new Country("US")));
-        System.out.println(getInstance().distanceTo(new Country("US")));
-        System.out.println(new Country("AT"));
-        System.out.println(getInstance().isInAmericas(new Country("AT")));
-        System.out.println(getInstance().isInCommonMarket(new Country("AT")));
-        System.out.println(getInstance().distanceTo(new Country("AT")));
     }
 
     public boolean isInCommonMarket(Country country) {
@@ -58,7 +47,6 @@ public class RestCountriesAPI {
 
     public boolean isInAmericas(Country country) {
         final Optional<CountryDescription> countryDescription = getCountryDescriptionViaRestCall(country);
-
         return countryDescription.map(description -> description.getRegion().equals("Americas")).orElse(false);
     }
 
@@ -77,23 +65,21 @@ public class RestCountriesAPI {
         return distBetween(fromCoordinates.get(0), fromCoordinates.get(1), toCoordinates.get(0), toCoordinates.get(1));
     }
 
-    private int distBetween(Double fromLatitude, Double fromLongitude, Double toLatitude, Double toLongitude) {
-        double earthRadius = 6371000; //meters
-        double dLat = Math.toRadians(toLatitude - fromLatitude);
-        double dLng = Math.toRadians(toLongitude - fromLongitude);
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(Math.toRadians(fromLatitude)) * Math.cos(Math.toRadians(toLatitude)) *
-                        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    private int distBetween(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude) {
+        double earthRadius = 6371000; // meters
+        double fLat = Math.toRadians(fromLatitude);
+        double toLat = Math.toRadians(toLatitude);
+        double diffLat = Math.toRadians(toLatitude - fromLatitude);
+        double diffLng = Math.toRadians(toLongitude - fromLongitude);
+        double a = Math.sin(diffLat / 2) * Math.sin(diffLat / 2)
+                + Math.cos(fLat) * Math.cos(toLat) * Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         float dist = (float) (earthRadius * c);
-
         return (int) dist;
     }
 
     private Optional<CountryDescription> getCountryDescriptionViaRestCall(Country country) {
-        return slowHttpCall().stream()
-                .filter(c -> c.getAlpha2Code().equals(country.toString()))
-                .findFirst();
+        return slowHttpCall().stream().filter(c -> c.getAlpha2Code().equals(country.toString())).findFirst();
     }
 
     public List<CountryDescription> slowHttpCall() {
@@ -101,19 +87,31 @@ public class RestCountriesAPI {
 
         try {
             Thread.sleep(1000);
-            HttpResponse<JsonNode> jsonResponse = Unirest.get(COUNTRY_INFORMATION_SERVICE_URL)
-                    .header("accept", "application/json")
-                    .asJson();
+            HttpResponse<JsonNode> jsonResponse = Unirest. //
+                    get(COUNTRY_INFORMATION_SERVICE_URL). //
+                    header("accept", "application/json"). //
+                    asJson();
 
-            countryDescriptions.addAll(objectMapper.readValue(jsonResponse.getBody().toString(),
-                    new TypeReference<List<CountryDescription>>() {
-                    }));
+            String body = jsonResponse.getBody().toString();
+            TypeReference<List<CountryDescription>> typeRef = new TypeReference<List<CountryDescription>>() { };
+            countryDescriptions.addAll(objectMapper.readValue(body, typeRef));
 
         } catch (Exception e) {
             throw new RestCountriesAPIException("Could not read country information from " + COUNTRY_INFORMATION_SERVICE_URL, e);
         }
 
         return countryDescriptions;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Country("US"));
+        System.out.println(getInstance().isInAmericas(new Country("US")));
+        System.out.println(getInstance().isInCommonMarket(new Country("US")));
+        System.out.println(getInstance().distanceTo(new Country("US")));
+        System.out.println(new Country("AT"));
+        System.out.println(getInstance().isInAmericas(new Country("AT")));
+        System.out.println(getInstance().isInCommonMarket(new Country("AT")));
+        System.out.println(getInstance().distanceTo(new Country("AT")));
     }
 
 }

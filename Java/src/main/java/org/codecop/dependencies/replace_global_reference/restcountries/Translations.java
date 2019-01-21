@@ -2,6 +2,7 @@ package org.codecop.dependencies.replace_global_reference.restcountries;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,16 +12,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "de",
-        "es",
-        "fr",
-        "ja",
-        "it",
-        "br",
-        "pt",
-        "nl",
-        "hr",
-        "fa"
+    "de",
+    "es",
+    "fr",
+    "ja",
+    "it",
+    "br",
+    "pt",
+    "nl",
+    "hr",
+    "fa"
 })
 public class Translations {
 
@@ -45,7 +46,7 @@ public class Translations {
     @JsonProperty("fa")
     private String fa;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("de")
     public String getDe() {
