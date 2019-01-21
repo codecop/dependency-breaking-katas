@@ -3,16 +3,17 @@ using Xunit;
 
 namespace Org.Codecop.Dependencies.ParameteriseConstructor.Tests
 {
-    public class HelloTest
+    public class DiscountTest
     {
         [Fact]
-        public void ShouldGreet()
+        public void Test1()
         {
-            var hello = new Hello();
+            var discount = new Discount();
 
-            var greeting = hello.greetings();
+            var net = new Money(1002);
+            var total = discount.DiscountFor(net);
 
-            Assert.Equal("Hello World", greeting);
+            Assert.Equal(new Money(901.8m), total);
         }
     }
 }
