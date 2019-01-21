@@ -12,28 +12,20 @@ namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
 
         public static void Store(Receipt receipt)
         {
-            try
+            using (var connection = new MySqlConnection
             {
-                using (var connection = new MySqlConnection
-                {
-                    ConnectionString = $"Database={databaseName};Data Source=localhost;User Id={user};Password={pass}"
-                })
-                {
-                    connection.Open();
-                    var command = new MySqlCommand("insert into RECEIPT (AMOUNT, TAX, TOTAL)"
-                            + "values(@amount, @tax, @total);", connection);
-                    command.Parameters.AddWithValue("@amount", receipt.Amount.AsBigDecimal());
-                    command.Parameters.AddWithValue("@tax", receipt.Tax.AsBigDecimal());
-                    command.Parameters.AddWithValue("@total", receipt.Total.AsBigDecimal());
-                    command.Prepare();
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception exc)
+                ConnectionString = $"Database={databaseName};Data Source=localhost;User Id={user};Password={pass}"
+            })
             {
-                throw new SqlRuntimeException("Database error " + receipt, exc);
+                connection.Open();
+                var command = new MySqlCommand("insert into RECEIPT (AMOUNT, TAX, TOTAL)"
+                        + "values(@amount, @tax, @total);", connection);
+                command.Parameters.AddWithValue("@amount", receipt.Amount.AsBigDecimal());
+                command.Parameters.AddWithValue("@tax", receipt.Tax.AsBigDecimal());
+                command.Parameters.AddWithValue("@total", receipt.Total.AsBigDecimal());
+                command.Prepare();
+                command.ExecuteNonQuery();
             }
-           
         }
     }
 }
