@@ -19,7 +19,7 @@ Problem Category
 ----------------
 
 The system under test depends on a collaborator with
-slow behaviour via a http call. It is not guaranteed
+slow behaviour due to a HTTP call. It is not guaranteed
 that the REST server is available. The collaborator is
 a Singleton and called multiple times.
 
