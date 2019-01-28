@@ -9,7 +9,7 @@ namespace Org.Codecop.Dependencies.ParameteriseConstructor
             this.marketingCampaign = new MarketingCampaign();
         }
 
-        public virtual Money DiscountFor(Money netPrice)
+        public Money DiscountFor(Money netPrice)
         {
             if (marketingCampaign.IsCrazySalesDay())
             {

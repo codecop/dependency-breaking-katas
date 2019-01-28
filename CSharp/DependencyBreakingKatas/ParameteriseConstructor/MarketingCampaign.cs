@@ -4,12 +4,12 @@ namespace Org.Codecop.Dependencies.ParameteriseConstructor
 {
     public class MarketingCampaign
     {
-        public virtual bool IsActive()
+        public bool IsActive()
         {
             return (long) DateTime.Now.TimeOfDay.TotalMilliseconds % 2 == 0;
         }
 
-        public virtual bool IsCrazySalesDay()
+        public bool IsCrazySalesDay()
         {
             return DateTime.Now.DayOfWeek.Equals(DayOfWeek.Friday);
         }

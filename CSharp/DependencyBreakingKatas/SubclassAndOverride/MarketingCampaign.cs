@@ -14,7 +14,7 @@ namespace Org.Codecop.Dependencies.SubclassAndOverride
             this.SystemTimeMillis = () => (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
         }
 
-        public virtual bool IsActive()
+        public bool IsActive()
         {
             return MilliSeconds() % 2 == 0;
         }
@@ -24,7 +24,7 @@ namespace Org.Codecop.Dependencies.SubclassAndOverride
             return this.SystemTimeMillis();
         }
 
-        public virtual bool IsCrazySalesDay()
+        public bool IsCrazySalesDay()
         {
             return DayOfTheWeek().Equals(DayOfWeek.Friday); ;
         }
