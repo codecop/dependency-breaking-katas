@@ -29,7 +29,7 @@ WIP
 * Replace Global Reference With Getter
 * Extract And Override Factory Method
 
-NEXT
+PLANNED
 
 * Extract Interface
 * Adapt Parameter
