@@ -3,16 +3,16 @@ Facilitator Notes
 
 SPOILER ALERT! Do not read these notes after you finished the assignments.
 
-* [ParameteriseConstructor](ParameteriseConstructor.md)
-* [SubclassAndOverride](SubclassAndOverride.md)
-* [ExtractAndOverrideCall](ExtractAndOverrideCall.md)
+* A) [ParameteriseConstructor](A_ParameteriseConstructor.md)
+* B) [SubclassAndOverride](B_SubclassAndOverride.md)
+* C) [ExtractAndOverrideCall](C_ExtractAndOverrideCall.md)
 
 WIP
 
-* [ReplaceGlobalReference](ReplaceGlobalReference.md)
-* [ExtractAndOverrideFactory](ExtractAndOverrideFactory.md)
+* D) [ReplaceGlobalReference](D_ReplaceGlobalReference.md)
+* E) [ExtractAndOverrideFactory](E_ExtractAndOverrideFactory.md)
 
 NEXT
 
-* [ExtractInterface](ExtractInterface.md)
-* [AdaptParameter](AdaptParameter.md)
+* F) [ExtractInterface](F_ExtractInterface.md)
+* G) [AdaptParameter](G_AdaptParameter.md)
