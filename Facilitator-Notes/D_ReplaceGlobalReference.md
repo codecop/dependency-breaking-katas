@@ -1,3 +1,0 @@
-D Replace Global Reference
-==========================
-
