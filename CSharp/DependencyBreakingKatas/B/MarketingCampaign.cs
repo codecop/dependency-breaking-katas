@@ -5,15 +5,6 @@ namespace Org.Codecop.Dependencies.B
     public class MarketingCampaign
     {
 
-        private delegate long TimeSupplier();
-
-        private readonly TimeSupplier SystemTimeMillis;
-
-        public MarketingCampaign()
-        {
-            this.SystemTimeMillis = () => (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
-        }
-
         public bool IsActive()
         {
             return MilliSeconds() % 2 == 0;
@@ -21,7 +12,7 @@ namespace Org.Codecop.Dependencies.B
 
         private long MilliSeconds()
         {
-            return this.SystemTimeMillis();
+            return (long) DateTime.Now.TimeOfDay.TotalMilliseconds;
         }
 
         public bool IsCrazySalesDay()
