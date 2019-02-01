@@ -9,7 +9,9 @@ namespace Org.Codecop.Dependencies.C.Tests
         public void Test3()
         {
             var checkout = new Checkout();
+
             checkout.CreateReceipt(new Money(12));
+
             Assert.NotNull(checkout);
         }
     }
