@@ -12,7 +12,7 @@ WIP
 * D) [ReplaceGlobalReference](D_ReplaceGlobalReference.md)
 * E) [ExtractAndOverrideFactory](E_ExtractAndOverrideFactory.md)
 
-NEXT
+PLANNED
 
 * F) [ExtractInterface](F_ExtractInterface.md)
 * G) [AdaptParameter](G_AdaptParameter.md)

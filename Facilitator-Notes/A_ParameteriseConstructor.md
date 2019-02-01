@@ -21,15 +21,15 @@ Which option did you use?
     * design improvement: makes dependencies visible
     * no subclass of `Discount` needed in test
     * might want to change all call sites
-     
+
 * extract factory method for `new MarketingCampaign()`, override `Discount` and stub in tests.
-    * need to subclass and stub `Discount` in addition to `MarketingCampaign` 
+    * need to subclass and stub `Discount` in addition to `MarketingCampaign`
 
 * extract calls to both `MarketingCampaign` methods, override `Discount` and stub in tests.
     * needs two Seams
-      
-* encapsulate field of `MarketingCampaign` with getter, override `Discount` and stub in tests.  
-    * no guarantee the getter is used for all field access 
+
+* encapsulate field of `MarketingCampaign` with getter, override `Discount` and stub in tests.
+    * no guarantee the getter is used for all field access
 
 * use PowerMock/JMockit/TypeMock Isolator to stub `MarketingCampaign`'s methods in tests.
     * "tool of last resort"
@@ -38,11 +38,22 @@ Which option did you use?
     * no pressure to improve code
 
 * use Reflection to replace `MarketingCampaign` instance in `Discount` for tests.
-    * magic 
+    * magic
     * fragile, verbose
 
-Solution
---------
+* introduce a global debug class or System Property `unit-test` or similar in `MarketingCampaign`
+    * pollute production code with test code
+    * increase complexity (another if, in potentially many places)
+    * implicit dependency/surprise in code (violate POLS)
+
+Typical Mistakes
+----------------
+
+* first test not renamed
+* first test not mocked
+
+Solution: Parameterise Constructor
+----------------------------------
 
 Generate new constructor with selected field and manually chain constructors.
 

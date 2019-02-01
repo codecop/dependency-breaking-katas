@@ -10,7 +10,7 @@ We cannot create reliable tests.
 Which option did you use?
 -------------------------
 
-* override `dayOfWeek()` and `millis()` in tests 
+* override `dayOfWeek()` and `millis()` in tests
     * almost no code change, fully automated refactoring
     * breaks encapsulation
 
@@ -26,10 +26,15 @@ Which option did you use?
     * tests run slow, fragile, verbose
     * no pressure to improve code
 
-Solution
---------
+Typical Mistakes
+----------------
 
-Make two methods `protected` or package visible. 
+* tbd
+
+Solution: Subclass and Override Method
+--------------------------------------
+
+Make two methods `protected` or package visible.
 Comment or annotate as `visible for test`.
 
 Further Steps
