@@ -12,7 +12,7 @@ We need to introduce so-called Seams (see [Michael
 Feathers' Working Effectively with Legacy
 Code](https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code)).
 
-Assignments for specific techniques (in recommended order)
+Assignments for techniques:
 
 * Parameterise Constructor
 * Subclass And Override Method
