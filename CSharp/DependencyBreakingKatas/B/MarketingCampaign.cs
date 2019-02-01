@@ -1,6 +1,6 @@
 using System;
 
-namespace Org.Codecop.Dependencies.SubclassAndOverride
+namespace Org.Codecop.Dependencies.B
 {
     public class MarketingCampaign
     {

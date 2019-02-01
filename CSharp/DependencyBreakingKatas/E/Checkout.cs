@@ -1,4 +1,4 @@
-namespace Org.Codecop.Dependencies.ExtractAndOverrideFactory
+namespace Org.Codecop.Dependencies.E
 {
     public class Hello
     {

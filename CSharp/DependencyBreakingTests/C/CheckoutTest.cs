@@ -1,7 +1,7 @@
-﻿using Org.Codecop.Dependencies.ExtractAndOverrideCall;
+﻿using Org.Codecop.Dependencies.C;
 using Xunit;
 
-namespace Org.Codecop.Dependencies.ExtractAndOverrideCall.Tests
+namespace Org.Codecop.Dependencies.C.Tests
 {
     public class CheckoutTest
     {

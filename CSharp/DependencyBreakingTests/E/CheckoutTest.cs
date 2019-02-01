@@ -1,7 +1,7 @@
-﻿using Org.Codecop.Dependencies.ReplaceGlobalReference;
+﻿using Org.Codecop.Dependencies.E;
 using Xunit;
 
-namespace Org.Codecop.Dependencies.ReplaceGlobalReference.Tests
+namespace Org.Codecop.Dependencies.E.Tests
 {
     public class HelloTest
     {

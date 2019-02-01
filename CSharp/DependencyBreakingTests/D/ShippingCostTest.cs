@@ -1,7 +1,7 @@
-﻿using Org.Codecop.Dependencies.ExtractAndOverrideFactory;
+﻿using Org.Codecop.Dependencies.D;
 using Xunit;
 
-namespace Org.Codecop.Dependencies.ExtractAndOverrideFactory.Tests
+namespace Org.Codecop.Dependencies.D.Tests
 {
     public class HelloTest
     {

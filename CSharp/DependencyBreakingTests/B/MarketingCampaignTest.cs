@@ -1,7 +1,7 @@
-﻿using Org.Codecop.Dependencies.SubclassAndOverride;
+﻿using Org.Codecop.Dependencies.B;
 using Xunit;
 
-namespace Org.Codecop.Dependencies.SubclassAndOverride.Tests
+namespace Org.Codecop.Dependencies.B.Tests
 {
     public class MarketingCampaignTest
     {

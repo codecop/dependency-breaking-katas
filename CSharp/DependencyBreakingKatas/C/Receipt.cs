@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
+namespace Org.Codecop.Dependencies.C
 {
     public class Receipt
     {

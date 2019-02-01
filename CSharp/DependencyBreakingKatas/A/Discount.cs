@@ -1,4 +1,4 @@
-namespace Org.Codecop.Dependencies.ParameteriseConstructor
+namespace Org.Codecop.Dependencies.A
 {
     public class Discount
     {

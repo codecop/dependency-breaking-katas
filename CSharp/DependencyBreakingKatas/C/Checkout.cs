@@ -1,4 +1,4 @@
-namespace Org.Codecop.Dependencies.ExtractAndOverrideCall
+namespace Org.Codecop.Dependencies.C
 {
     public class Checkout
     {

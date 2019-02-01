@@ -1,4 +1,4 @@
-namespace Org.Codecop.Dependencies.ReplaceGlobalReference
+namespace Org.Codecop.Dependencies.D
 {
     public class Hello
     {

@@ -1,7 +1,7 @@
-﻿using Org.Codecop.Dependencies.ParameteriseConstructor;
+﻿using Org.Codecop.Dependencies.A;
 using Xunit;
 
-namespace Org.Codecop.Dependencies.ParameteriseConstructor.Tests
+namespace Org.Codecop.Dependencies.A.Tests
 {
     public class DiscountTest
     {
