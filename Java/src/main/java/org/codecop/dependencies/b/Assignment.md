@@ -1,5 +1,5 @@
-Subclass and Override Method
-============================
+Assignment B
+============
 
 Goal
 ----
