@@ -16,7 +16,9 @@ public class CheckoutTest {
 
     @Test(expected = OrderCancelledException.class)
     public void test5() {
-        System.out.println("(note for tester) Do not Accept Terms");
+        System.out.println("note for tester:");
+        System.out.println("* Accept Newsletter");
+        System.out.println("* Do not Accept Terms");
 
         Product polkaDotSocks = new Product("Polka-dot Socks");
         Checkout checkout = new Checkout(polkaDotSocks, emailServiceMock);
