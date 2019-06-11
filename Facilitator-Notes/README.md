@@ -10,7 +10,11 @@ SPOILER ALERT! Do not read these notes after you finished the assignments.
 WIP
 
 * D) [ReplaceGlobalReference](D_ReplaceGlobalReference.md)
+  * TODO C# port
 * E) [ExtractAndOverrideFactory](E_ExtractAndOverrideFactory.md)
+  * TODO assignment
+  * TODO C# port
+  * TODO facilitator notes
 
 PLANNED
 
