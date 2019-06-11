@@ -4,15 +4,9 @@
     {
         private readonly decimal value;
 
-        public Money(int value)
-        {
-            this.value = value;
-        }
+        public Money(int value) => this.value = value;
 
-        public Money(decimal value)
-        {
-            this.value = value;
-        }
+        public Money(decimal value) => this.value = value;
 
         public Money Add(Money other)
         {
