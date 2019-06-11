@@ -14,6 +14,18 @@ Which option did you use?
   * minimal code change, fully automated refactoring, no magic
   * subclass of `Discount` needed in test
 
+* wrap the `ReceiptRepository` singleton in a class and inject into `Checkout`.
+  * more work, higher risk
+  * might want to change all call sites
+  * design improvement: move design towards DI
+  * design improvement: makes dependencies visible
+
+* set up HSQLDB with same schema
+  * much work, unless in Spring application
+  * we have no schema file
+  * slow, fragile, no detailed feedback
+  * full integration test, more confidence that database code works as well
+
 * introduce global debug class with global flag `debug`
   * pollute production code with test code
   * introduce coupling to debug class
@@ -33,18 +45,6 @@ Which option did you use?
   * tests run slow, fragile, verbose
   * no pressure to improve code
 
-* wrap the `ReceiptRepository` singleton in a class and inject into `Checkout`.
-  * more work, higher risk
-  * might want to change all call sites
-  * design improvement: move design towards DI
-  * design improvement: makes dependencies visible
-
-* set up HSQLDB
-  * much work, unless in Spring application
-  * we have no schema file
-  * slow, fragile, no detailed feedback
-  * full integration test, more confidence that database code works as well
-
 Typical Mistakes
 ----------------
 
@@ -53,9 +53,10 @@ Typical Mistakes
 Solution: Extract and Override Call
 -----------------------------------
 
-Extract method and widen access to `protected` or package visibility.
+Extract method for `ReceiptRepository.store()` and widen access to `protected`
+or package visibility. Override the call in the test.
 
 Further Steps
 -------------
 
-* Extract `ReceiptRepository` wrapper and inject into `Checkout` while leaning on tests.
+* Extract a `ReceiptRepository` wrapper and inject into `Checkout` while leaning on tests.
