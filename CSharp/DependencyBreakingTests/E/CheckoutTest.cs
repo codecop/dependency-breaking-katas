@@ -1,18 +1,29 @@
-﻿using Org.Codecop.Dependencies.E;
+using System;
+using Org.Codecop.Dependencies.E;
+using Moq;
 using Xunit;
 
 namespace Org.Codecop.Dependencies.E.Tests
 {
-    public class HelloTest
+    public class CheckoutTest
     {
-        [Fact]
-        public void ShouldGreet()
+        private readonly Mock<IEmailService> emailServiceMock;
+
+        public CheckoutTest()
         {
-            var hello = new Hello();
+            emailServiceMock = new Mock<IEmailService>();
+        }
 
-            var greeting = hello.greetings();
+        [Fact]
+        public void Test5()
+        {
+            Console.WriteLine("note for tester:");
+            Console.WriteLine("* Accept Newsletter");
+            Console.WriteLine("* Do not Accept Terms");
+            var polkaDotSocks = new Product("Polka-dot Socks");
 
-            Assert.Equal("Hello World", greeting);
+            var checkout = new Checkout(polkaDotSocks, emailServiceMock.Object);
+            checkout.ConfirmOrder();
         }
     }
 }
