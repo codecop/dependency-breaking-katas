@@ -1,18 +1,15 @@
-﻿using Org.Codecop.Dependencies.D;
+using Org.Codecop.Dependencies.D;
 using Xunit;
 
 namespace Org.Codecop.Dependencies.D.Tests
 {
-    public class HelloTest
+    public class ShippingCostTest
     {
         [Fact]
-        public void ShouldGreet()
+        public void Test4()
         {
-            var hello = new Hello();
-
-            var greeting = hello.greetings();
-
-            Assert.Equal("Hello World", greeting);
+            var shippingCost = new ShippingCost();
+            Assert.NotNull(shippingCost);
         }
     }
 }
