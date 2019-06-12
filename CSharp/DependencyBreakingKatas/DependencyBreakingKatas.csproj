@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.13" />
+    <PackageReference Include="Unirest-API" Version="1.0.7.6" />
   </ItemGroup>
 
 </Project>
