@@ -1,29 +1,33 @@
-using System;
 using Org.Codecop.Dependencies.E;
 using Moq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Org.Codecop.Dependencies.E.Tests
 {
     public class CheckoutTest
     {
+        // see https://xunit.net/docs/capturing-output
+        private readonly ITestOutputHelper output;
         private readonly Mock<IEmailService> emailServiceMock;
 
-        public CheckoutTest()
+        public CheckoutTest(ITestOutputHelper output)
         {
-            emailServiceMock = new Mock<IEmailService>();
+            this.output = output;
+            this.emailServiceMock = new Mock<IEmailService>();
         }
 
         [Fact]
         public void Test5()
         {
-            Console.WriteLine("note for tester:");
-            Console.WriteLine("* Accept Newsletter");
-            Console.WriteLine("* Do not Accept Terms");
-            var polkaDotSocks = new Product("Polka-dot Socks");
+            output.WriteLine("note for tester:");
+            output.WriteLine("* Accept Newsletter");
+            output.WriteLine("* Do not Accept Terms");
 
+            var polkaDotSocks = new Product("Polka-dot Socks");
             var checkout = new Checkout(polkaDotSocks, emailServiceMock.Object);
-            checkout.ConfirmOrder();
+
+            Assert.Throws<OrderCancelledException>(() => checkout.ConfirmOrder());
         }
     }
 }

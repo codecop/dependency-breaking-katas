@@ -10,10 +10,11 @@ namespace Org.Codecop.Dependencies.E
         {
             var result = MessageBox.Show(
                 message,
-                "Confirm",
-                MessageBoxButtons.OK,
+                "Choose Option",
+                MessageBoxButtons.YesNoCancel,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1);
+
             this.Accepted = result == DialogResult.Yes;
         }
     }
