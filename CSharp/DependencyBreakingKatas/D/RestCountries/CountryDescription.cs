@@ -4,53 +4,53 @@ namespace Org.Codecop.Dependencies.D.Restcountries
 {
     public class CountryDescription
     {
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public IList<string> TopLevelDomain { get; set; }
+        public IList<string> topLevelDomain { get; set; }
 
-        public string Alpha2Code { get; set; }
+        public string alpha2Code { get; set; }
 
-        public string Alpha3Code { get; set; }
+        public string alpha3Code { get; set; }
 
-        public IList<string> CallingCodes { get; set; }
+        public IList<string> callingCodes { get; set; }
 
-        public string Capital { get; set; }
+        public string capital { get; set; }
 
-        public IList<string> AltSpellings { get; set; }
+        public IList<string> altSpellings { get; set; }
 
-        public string Region { get; set; }
+        public string region { get; set; }
 
-        public string Subregion { get; set; }
+        public string subregion { get; set; }
 
-        public int Population { get; set; }
+        public int population { get; set; }
 
-        public IList<double> Latlng { get; set; }
+        public IList<double> latlng { get; set; }
 
-        public string Demonym { get; set; }
+        public string demonym { get; set; }
 
-        public int Area { get; set; }
+        public int area { get; set; }
 
         public object Gini { get; set; }
 
-        public IList<string> Timezones { get; set; }
+        public IList<string> timezones { get; set; }
 
-        public IList<object> Borders { get; set; }
+        public IList<object> borders { get; set; }
 
-        public string NativeName { get; set; }
+        public string nativeName { get; set; }
 
-        public string NumericCode { get; set; }
+        public string numericCode { get; set; }
 
-        public IList<Currency> Currencies { get; set; }
+        public IList<Currency> currencies { get; set; }
 
-        public IList<Language> Languages { get; set; }
+        public IList<Language> languages { get; set; }
 
-        public Translations Translations { get; set; }
+        public Translations translations { get; set; }
 
-        public string Flag { get; set; }
+        public string flag { get; set; }
 
-        public IList<object> RegionalBlocs { get; set; }
+        public IList<object> regionalBlocs { get; set; }
 
-        public string Cioc { get; set; }
+        public string cioc { get; set; }
 
         // [JsonIgnore]
         // private IDictionary<string, object> additionalProperties = new Dictionary<string, object>();

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Org.Codecop.Dependencies.D.Restcountries;
 using unirest_net.http;
+using Newtonsoft.Json;
 
 namespace Org.Codecop.Dependencies.D
 {
@@ -30,7 +31,7 @@ namespace Org.Codecop.Dependencies.D
             {
                 return false;
             }
-            IList<object> regionalBlocs = countryDescription.RegionalBlocs;
+            IList<object> regionalBlocs = countryDescription.regionalBlocs;
             if (regionalBlocs.Count == 0)
             {
                 return false;
@@ -42,7 +43,7 @@ namespace Org.Codecop.Dependencies.D
         public bool IsInAmericas(Country country)
         {
             CountryDescription countryDescription = GetCountryDescriptionViaRestCall(country);
-            return countryDescription.Region.Equals("Americas");
+            return countryDescription?.region.Equals("Americas") ?? false;
         }
 
         public int DistanceTo(Country country)
@@ -53,7 +54,7 @@ namespace Org.Codecop.Dependencies.D
             {
                 throw new RestCountriesAPIException("Could not find country " + HomeBase + " or " + country);
             }
-            return DistBetween(austria.Latlng, other.Latlng);
+            return DistBetween(austria.latlng, other.latlng);
         }
 
         private int DistBetween(IList<double> fromCoordinates, IList<double> toCoordinates)
@@ -68,7 +69,8 @@ namespace Org.Codecop.Dependencies.D
             double toLat = ConvertToRadians(toLatitude);
             double diffLat = ConvertToRadians(toLatitude - fromLatitude);
             double diffLng = ConvertToRadians(toLongitude - fromLongitude);
-            double a = Math.Sin(diffLat / 2) * Math.Sin(diffLat / 2) + Math.Cos(fLat) * Math.Cos(toLat) * Math.Sin(diffLng / 2) * Math.Sin(diffLng / 2);
+            double a = Math.Sin(diffLat / 2) * Math.Sin(diffLat / 2)
+                + Math.Cos(fLat) * Math.Cos(toLat) * Math.Sin(diffLng / 2) * Math.Sin(diffLng / 2);
             double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             float dist = (float)(earthRadius * c);
             return (int)dist;
@@ -81,20 +83,20 @@ namespace Org.Codecop.Dependencies.D
 
         private CountryDescription GetCountryDescriptionViaRestCall(Country country)
         {
-            return SlowHttpCall().
-                Where(c => c.Alpha2Code.Equals(country.ToString())).
-                FirstOrDefault(null);
+            return SlowHttpCall().Where(c => c.alpha2Code.Equals(country.ToString())).FirstOrDefault(null);
         }
 
         public IList<CountryDescription> SlowHttpCall()
         {
             try
             {
-                System.Threading.Thread.Sleep(1000);
-                HttpResponse<IList<CountryDescription>> jsonResponse = Unirest.get(CountryInformationServiceUrl)
+                // TODO System.Threading.Thread.Sleep(1000);
+                var jsonResponse = Unirest //
+                    .get(CountryInformationServiceUrl)
                     .header("accept", "application/json")
-                    .asJson<IList<CountryDescription>>();
-                return jsonResponse.Body;
+                    .asString();
+                var body = jsonResponse.Body;
+                return JsonConvert.DeserializeObject<CountryDescription[]>(body);
             }
             catch (Exception e)
             {
