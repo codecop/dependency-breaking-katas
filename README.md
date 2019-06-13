@@ -23,10 +23,10 @@ Changing code without test is risky, so we want to
 * Parameterise Constructor
 * Subclass And Override Method
 * Extract And Override Call
+* Replace Global Reference With Getter
 
 WIP
 
-* Replace Global Reference With Getter
 * Extract And Override Factory Method
 
 PLANNED
