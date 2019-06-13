@@ -1,4 +1,4 @@
-Assignment C
+Assignment E
 ============
 
 Goal
@@ -19,17 +19,16 @@ Problem Category
 ----------------
 
 The system under test depends on a collaborator with
-database access. The database is not available in our
-test environment. The collaborator is a static call.
+user interaction. The manual step is not suitable for our
+test environment. The collaborator is created inside the class.
 
 Task
 ----
 
-The given code creates the receipt with the calculated tax
-for a purchase in our online shop. The main logic is in `Checkout`.
+The given code collects the necessary user confirmations
+during a purchase in our online shop. The main logic is in `Checkout`.
 
 * Bring `Checkout` under test. Make sure to cover all paths in the core logic.
 * There is an existing `CheckoutTest` with a first test case which might or might not work.
-* You cannot change `ReceiptRepository` because it is used by other teams as well.
 
 (This is a copied document - do not edit!)

@@ -1,4 +1,4 @@
-Assignment C
+Assignment D
 ============
 
 Goal
@@ -19,17 +19,19 @@ Problem Category
 ----------------
 
 The system under test depends on a collaborator with
-database access. The database is not available in our
-test environment. The collaborator is a static call.
+slow behaviour due to a HTTP call. It is not guaranteed
+that the REST server is available. The collaborator is
+a Singleton and called multiple times.
 
 Task
 ----
 
-The given code creates the receipt with the calculated tax
-for a purchase in our online shop. The main logic is in `Checkout`.
+The given code calculates the shipping cost for a purchase
+depending on the destination in our online shop. The main
+logic is in `ShippingCost`.
 
-* Bring `Checkout` under test. Make sure to cover all paths in the core logic.
-* There is an existing `CheckoutTest` with a first test case which might or might not work.
-* You cannot change `ReceiptRepository` because it is used by other teams as well.
+* Bring `ShippingCost` under test. Make sure to cover all paths in the core logic.
+* There is an existing `ShippingCostTest` with a first test case which might or might not work.
+* You cannot change `RestCountriesAPI` because it is used by other teams as well.
 
 (This is a copied document - do not edit!)

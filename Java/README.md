@@ -1,9 +1,9 @@
-# Dependency Breaking Katas #
+# Dependency Breaking Katas
 
 Exercises to practice breaking dependencies in legacy
 code to create tests for it.
 
-## Goal ##
+## Goal
 
 We have some legacy code. We need to make changes.
 To make changes we need to introduce tests first.
@@ -18,15 +18,15 @@ Changing code without test is risky, so we want to
 * Rely on automated Refactoring tools as much as possible.
 * You must not change the public API of the class.
 
-### Assignments for Techniques ###
+### Assignments for Techniques
 
 * Parameterise Constructor
 * Subclass And Override Method
 * Extract And Override Call
+* Replace Global Reference With Getter
 
 WIP
 
-* Replace Global Reference With Getter
 * Extract And Override Factory Method
 
 PLANNED
@@ -34,7 +34,7 @@ PLANNED
 * Extract Interface
 * Adapt Parameter
 
-### Task ###
+### Task
 
 Each task presents you with a class and some collaborators.
 
@@ -42,7 +42,7 @@ Each task presents you with a class and some collaborators.
 * There is an existing test class with a first test case which might or might not work.
 * You cannot change collaborators because they are used by other teams as well.
 
-### License ###
+### License
 
 [New BSD License](http://opensource.org/licenses/bsd-license.php), see `license.txt` in repository.
 
