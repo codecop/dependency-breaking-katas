@@ -55,7 +55,6 @@ SPOILER ALERT! Do not read these notes at least after you tried to solve the ass
 WIP
 
 * E) [ExtractAndOverrideFactory](E_ExtractAndOverrideFactory.md)
-  * TODO assignment
   * TODO facilitator notes
 
 PLANNED
