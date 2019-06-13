@@ -31,13 +31,13 @@ namespace Org.Codecop.Dependencies.D
             {
                 return false;
             }
-            IList<object> regionalBlocs = countryDescription.regionalBlocs;
+            IList<RegionalBlocs> regionalBlocs = countryDescription.regionalBlocs;
             if (regionalBlocs.Count == 0)
             {
                 return false;
             }
-            IDictionary<string, string> bloc = (IDictionary<string, string>)regionalBlocs[0];
-            return bloc["acronym"] != null && bloc["acronym"].Equals("EU");
+            RegionalBlocs bloc = regionalBlocs[0];
+            return bloc.acronym != null && bloc.acronym.Equals("EU");
         }
 
         public bool IsInAmericas(Country country)
@@ -83,14 +83,14 @@ namespace Org.Codecop.Dependencies.D
 
         private CountryDescription GetCountryDescriptionViaRestCall(Country country)
         {
-            return SlowHttpCall().Where(c => c.alpha2Code.Equals(country.ToString())).FirstOrDefault(null);
+            return SlowHttpCall().Where(c => c.alpha2Code.Equals(country.ToString())).SingleOrDefault();
         }
 
         public IList<CountryDescription> SlowHttpCall()
         {
             try
             {
-                // TODO System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(1000);
                 var jsonResponse = Unirest //
                     .get(CountryInformationServiceUrl)
                     .header("accept", "application/json")

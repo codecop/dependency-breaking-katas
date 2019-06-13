@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Org.Codecop.Dependencies.D.Restcountries
 {
@@ -28,9 +29,9 @@ namespace Org.Codecop.Dependencies.D.Restcountries
 
         public string demonym { get; set; }
 
-        public int area { get; set; }
+        public decimal? area { get; set; }
 
-        public object Gini { get; set; }
+        public object gini { get; set; }
 
         public IList<string> timezones { get; set; }
 
@@ -48,23 +49,12 @@ namespace Org.Codecop.Dependencies.D.Restcountries
 
         public string flag { get; set; }
 
-        public IList<object> regionalBlocs { get; set; }
+        public IList<RegionalBlocs> regionalBlocs { get; set; }
 
         public string cioc { get; set; }
 
-        // [JsonIgnore]
-        // private IDictionary<string, object> additionalProperties = new Dictionary<string, object>();
+        [JsonExtensionData]
+        private IDictionary<string, object> additionalProperties = new Dictionary<string, object>();
 
-        // [JsonAnyGetter]
-        // public virtual IDictionary<string, object> GetAdditionalProperties()
-        // {
-        //     return this.additionalProperties;
-        // }
-
-        // [JsonAnySetter]
-        // public virtual void SetAdditionalProperty(string name, object value)
-        // {
-        //     this.additionalProperties.Put(name, value);
-        // }
     }
 }
