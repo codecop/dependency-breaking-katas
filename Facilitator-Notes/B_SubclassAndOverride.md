@@ -4,7 +4,7 @@ B Subclass and Override Method
 What is the problem?
 --------------------
 
-Some logic in `MarketingCampaign` is nondeterministic.
+Some logic in `MarketingCampaign` is non deterministic.
 We cannot create reliable tests.
 
 Which option did you use?

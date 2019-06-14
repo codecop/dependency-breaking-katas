@@ -17,8 +17,8 @@ Each Exercise (around 1 hour)
     * domain and source code
     * Maybe show critical pieces of code.
 1. What needs to be done and what are we allowed to change?
-    * Class `xy` needs to be unit tested.
-    * Class `z` must not be changed.
+    * Class `X` needs to be unit tested.
+    * Class `Y` must not be changed.
     * No breaking changes on any public API.
     * See *Task* of each assignment.
     * Hide the name of the technique used. Do not tell how the change should be made.
@@ -47,17 +47,13 @@ Available Exercises
 
 SPOILER ALERT! Do not read these notes at least after you tried to solve the assignments.
 
-* A) [ParameteriseConstructor](A_ParameteriseConstructor.md)
+* A) [ParametriseConstructor](A_ParameteriseConstructor.md)
 * B) [SubclassAndOverride](B_SubclassAndOverride.md)
 * C) [ExtractAndOverrideCall](C_ExtractAndOverrideCall.md)
 * D) [ReplaceGlobalReference](D_ReplaceGlobalReference.md)
-
-WIP
-
 * E) [ExtractAndOverrideFactory](E_ExtractAndOverrideFactory.md)
-  * TODO facilitator notes
 
-PLANNED
+Planned
 
 * F) [ExtractInterface](F_ExtractInterface.md)
 * G) [AdaptParameter](G_AdaptParameter.md)

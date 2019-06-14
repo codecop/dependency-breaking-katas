@@ -37,7 +37,7 @@ Which option did you use?
   * pollute production code with test code
   * increase complexity (another if, in potentially many places)
   * implicit dependency/surprise in code (violate POLS)
-  * extra setup for environment variable needed
+  * extra set up for environment variable needed
 
 * use PowerMock/JMockit/TypeMock Isolator to stub `ReceiptRepository`'s method in tests.
   * "tool of last resort"

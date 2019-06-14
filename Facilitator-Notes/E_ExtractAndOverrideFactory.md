@@ -14,7 +14,7 @@ Which option did you use?
   * minimal code change, fully automated refactoring, no magic
   * subclass of `Checkout` needed in test
 
-* Use lightweight UI testing tool like `java.awt.Robow` or Windows Input Simulator to operate the UI
+* use lightweight UI testing tool like `java.awt.Robot` or Windows Input Simulator to operate the UI
   * fragile, depends on mouse position
 
 * use PowerMock/JMockit/TypeMock Isolator to stub `JOptionPane`/`MessageBox`'s methods in tests.
@@ -49,5 +49,5 @@ The concrete type of `UserConfirmation` violates DIP.
 Further Steps
 -------------
 
-* Extract a `Confirmation` interface which is independant of the user interface.
+* Extract a `Confirmation` interface which is independent of the user interface.
 * Extract a `ConfirmationFactory` and inject into `Checkout` while leaning on tests.

@@ -18,7 +18,7 @@ Changing code without test is risky, so we want to
 Problem Category
 ----------------
 
-The system under test contains nondeterministic behaviour,
+The system under test contains non deterministic behaviour,
 which is located in a few methods. The system under test can
 be sub-classed.
 

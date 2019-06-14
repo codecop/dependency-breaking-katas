@@ -1,7 +1,7 @@
 Timetable
 =========
 
-* 1800 Welcome to Dojo, Mindset, Setup
+* 1800 Welcome to the Dojo, Mindset, set up
 * 1820 Analyse assignment in pairs
 * 1830 Discuss findings, forces, possible solutions
 * 1835 Write tests
@@ -16,5 +16,5 @@ Timetable
 
 ---
 
-* Setup ... 20'
+* Set up ... 20'
 * Assignment (+ short break) ... 45'

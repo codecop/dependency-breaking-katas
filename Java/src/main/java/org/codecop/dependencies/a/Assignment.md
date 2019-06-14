@@ -19,7 +19,7 @@ Problem Category
 ----------------
 
 The system under test depends on a collaborator with
-nondeterministic behaviour. The collaborator is
+non deterministic behaviour. The collaborator is
 initialised in the constructor.
 
 Task

@@ -1,5 +1,5 @@
-A Parameterise Constructor
-==========================
+A Parametrise Constructor
+=========================
 
 Preparation
 -----------
@@ -10,7 +10,7 @@ Currently the test fails each Friday.
 What is the problem?
 --------------------
 
-All calls to `MarketingCampaign` are nondeterministic.
+All calls to `MarketingCampaign` are non deterministic.
 We cannot create reliable tests.
 
 Which option did you use?
@@ -53,8 +53,8 @@ Typical Mistakes
 * first test not renamed
 * first test not mocked
 
-Solution: Parameterise Constructor
-----------------------------------
+Solution: Parametrise Constructor
+---------------------------------
 
 Generate new constructor with selected field and manually chain constructors.
 
