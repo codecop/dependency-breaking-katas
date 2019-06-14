@@ -1,6 +1,12 @@
 B Subclass and Override Method
 ==============================
 
+Preparation
+-----------
+
+Change value in `MarketingCampaignTest` so it will fail on day of workshop.
+Currently the test fails each Friday.
+
 What is the problem?
 --------------------
 
@@ -29,7 +35,8 @@ Which option did you use?
 Typical Mistakes
 ----------------
 
-* tbd
+* first test not renamed
+* first test not mocked
 
 Solution: Subclass and Override Method
 --------------------------------------

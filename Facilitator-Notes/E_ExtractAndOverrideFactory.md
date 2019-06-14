@@ -26,6 +26,7 @@ Which option did you use?
 Typical Mistakes
 ----------------
 
+* first test not renamed
 * passing dependency into constructor is not working
   * confirmation must not start earlier
 
