@@ -6,7 +6,7 @@ namespace Org.Codecop.Dependencies.A
     {
         public static readonly Money OneThousand = new Money(1000);
 
-        public static readonly Money OneHoundred = new Money(100);
+        public static readonly Money OneHundred = new Money(100);
 
         private readonly decimal value;
 

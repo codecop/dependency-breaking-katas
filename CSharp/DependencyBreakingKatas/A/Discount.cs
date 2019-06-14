@@ -19,7 +19,7 @@ namespace Org.Codecop.Dependencies.A
             {
                 return netPrice.ReduceBy(10);
             }
-            if (netPrice.MoreThan(Money.OneHoundred) && marketingCampaign.IsActive())
+            if (netPrice.MoreThan(Money.OneHundred) && marketingCampaign.IsActive())
             {
                 return netPrice.ReduceBy(5);
             }
