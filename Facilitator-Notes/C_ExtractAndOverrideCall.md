@@ -53,8 +53,16 @@ Typical Mistakes
 Solution: Extract and Override Call
 -----------------------------------
 
-Extract method for `ReceiptRepository.store()` and widen access to `protected`
-or package visibility. Override the call in the test.
+Extract method for `ReceiptRepository.store()` and widen its access to `protected`
+or package visibility. Comment or annotate as `visible for test`.
+Override the method in the test.
+
+IDE support: Extract method.
+
+Design Hint
+-----------
+
+The `ReceiptRepository` Singleton violates DIP (and also OCP).
 
 Further Steps
 -------------

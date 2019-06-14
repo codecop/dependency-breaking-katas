@@ -34,8 +34,15 @@ Typical Mistakes
 Solution: Subclass and Override Method
 --------------------------------------
 
-Make two methods `protected` or package visible.
+Make the two methods `protected` or package visible.
 Comment or annotate as `visible for test`.
+Use a test specific subclass to stub both methods.
+
+Design Hint
+-----------
+
+`MarketingCampaign` violates SRP as it works with time and
+contains the business rules for marketing campaigns.
 
 Further Steps
 -------------

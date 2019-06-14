@@ -50,7 +50,15 @@ Solution: Replace Global Reference with Getter
 ----------------------------------------------
 
 Extract a getter method for `RestCountriesAPI.getInstance()` and widen access to `protected`
-or package visibility. Override the call in the test.
+or package visibility. Comment or annotate as `visible for test`.
+Override the getter in the test.
+
+IDE support: Extract method, include all duplicates.
+
+Design Hint
+-----------
+
+The `RestCountriesAPI` Singleton violates DIP (and also OCP).
 
 Further Steps
 -------------

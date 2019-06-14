@@ -5,6 +5,7 @@ Preparation
 -----------
 
 Change value in `DiscountTest` so it will fail on day of workshop.
+Currently the test fails each Friday.
 
 What is the problem?
 --------------------
@@ -57,4 +58,9 @@ Solution: Parameterise Constructor
 
 Generate new constructor with selected field and manually chain constructors.
 
-Introduce parameter on old constructor and keep old as delegate.
+IDE support: Introduce parameter on old constructor and keep old as delegate.
+
+Design Hint
+-----------
+
+The `new` operator in the constructor violates OCP and DIP.
