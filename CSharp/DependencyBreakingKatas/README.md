@@ -20,16 +20,13 @@ Changing code without test is risky, so we want to
 
 ### Assignments for Techniques
 
-* Parameterise Constructor
+* Parametrise Constructor
 * Subclass And Override Method
 * Extract And Override Call
 * Replace Global Reference With Getter
-
-WIP
-
 * Extract And Override Factory Method
 
-PLANNED
+Planned
 
 * Extract Interface
 * Adapt Parameter
