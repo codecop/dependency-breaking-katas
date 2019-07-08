@@ -1,5 +1,5 @@
-Extract and Override Call
-=========================
+Assignment C
+============
 
 Goal
 ----
@@ -25,7 +25,7 @@ test environment. The collaborator is a static call.
 Task
 ----
 
-The given code creates the receipt with a calculated tax
+The given code creates the receipt with the calculated tax
 for a purchase in our online shop. The main logic is in `Checkout`.
 
 * Bring `Checkout` under test. Make sure to cover all paths in the core logic.

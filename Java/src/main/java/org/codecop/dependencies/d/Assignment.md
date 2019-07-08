@@ -1,5 +1,5 @@
-Replace Global Reference with Getter
-====================================
+Assignment D
+============
 
 Goal
 ----

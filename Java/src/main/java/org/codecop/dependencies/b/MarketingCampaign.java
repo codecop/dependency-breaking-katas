@@ -2,15 +2,8 @@ package org.codecop.dependencies.b;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.function.LongSupplier;
 
 public class MarketingCampaign {
-
-    private final LongSupplier systemTimeMillis;
-
-    public MarketingCampaign() {
-        systemTimeMillis = System::currentTimeMillis;
-    }
 
     public boolean isActive() {
         return milliSeconds() % 2 == 0;
@@ -18,7 +11,7 @@ public class MarketingCampaign {
 
     /* for test */
     protected long milliSeconds() {
-        return systemTimeMillis.getAsLong();
+        return System.currentTimeMillis();
     }
 
     public boolean isCrazySalesDay() {

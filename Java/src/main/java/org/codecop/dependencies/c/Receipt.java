@@ -32,7 +32,7 @@ public class Receipt {
         this.total = total;
     }
 
-    public List<String> fomat() {
+    public List<String> format() {
         return Arrays.asList( //
                 "Receipt", //
                 "=======", //

@@ -1,4 +1,7 @@
 @if exist %~n0%~x0 @cd ..
+@if exist pom.xml @cd ..
+@if exist *.csproj @cd ..
+@if exist *.sln @cd ..
 
 
 

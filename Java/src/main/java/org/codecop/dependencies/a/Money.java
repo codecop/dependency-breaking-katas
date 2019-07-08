@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Money {
 
     public static final Money ONE_THOUSAND = new Money(1000);
-    public static final Money ONE_HOUNDRED = new Money(100);
+    public static final Money ONE_HUNDRED = new Money(100);
 
     private final BigDecimal value;
 

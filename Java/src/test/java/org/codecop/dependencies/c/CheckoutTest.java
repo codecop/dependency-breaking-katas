@@ -18,9 +18,9 @@ public class CheckoutTest {
 
         Receipt receipt = checkout.createReceipt(new Money(147));
 
-        assertThat(receipt.fomat(), hasItem("Item 1 ... 147,00"));
-        assertThat(receipt.fomat(), hasItem("Tax    ... 29,40"));
-        assertThat(receipt.fomat(), hasItem("Total  ... 176,40"));
+        assertThat(receipt.format(), hasItem("Item 1 ... 147,00"));
+        assertThat(receipt.format(), hasItem("Tax    ... 29,40"));
+        assertThat(receipt.format(), hasItem("Total  ... 176,40"));
     }
 
     @Test
@@ -31,9 +31,9 @@ public class CheckoutTest {
             protected void store(Receipt receipt) {
                 wasCalled[0] = true;
 
-                assertThat(receipt.fomat(), hasItem("Item 1 ... 147,00"));
-                assertThat(receipt.fomat(), hasItem("Tax    ... 29,40"));
-                assertThat(receipt.fomat(), hasItem("Total  ... 176,40"));
+                assertThat(receipt.format(), hasItem("Item 1 ... 147,00"));
+                assertThat(receipt.format(), hasItem("Tax    ... 29,40"));
+                assertThat(receipt.format(), hasItem("Total  ... 176,40"));
             }
         };
 
