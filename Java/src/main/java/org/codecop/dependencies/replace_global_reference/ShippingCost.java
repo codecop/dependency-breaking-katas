@@ -5,11 +5,11 @@ public class ShippingCost {
     public Money calculate(Country country, DeliveryOptions options) {
         final Money cost;
 
-        if (getGoogleMapsAPI().isInCommonMarket(country)) {
+        if (getRestCountriesAPI().isInCommonMarket(country)) {
             // flat rate in EU
             cost = new Money(5);
 
-        } else if (getGoogleMapsAPI().isInAmericas(country)) {
+        } else if (getRestCountriesAPI().isInAmericas(country)) {
             // US & Canada & South American
             if (options == DeliveryOptions.EXPRESS) {
                 cost = new Money(40);
@@ -19,7 +19,7 @@ public class ShippingCost {
 
         } else {
             // other countries, e.g. Asia
-            int km = getGoogleMapsAPI().distanceTo(country);
+            int km = getRestCountriesAPI().distanceTo(country);
             cost = new Money(km).percentage(10);
         }
 
@@ -27,8 +27,8 @@ public class ShippingCost {
     }
 
     /* for test */
-    protected GoogleMapsAPI getGoogleMapsAPI() {
-        return GoogleMapsAPI.getInstance();
+    protected RestCountriesAPI getRestCountriesAPI() {
+        return RestCountriesAPI.getInstance();
     }
 
 }

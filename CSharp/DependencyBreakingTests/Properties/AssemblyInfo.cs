@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Code-Cop")]
-[assembly: AssemblyProduct("DependencyBreakingTests")]
+[assembly: AssemblyProduct("Org.Codecop.Dependencies.Tests")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
