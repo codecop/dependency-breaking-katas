@@ -12,7 +12,7 @@ Which option did you use?
 
 * extract and override (static) call
   * minimal code change, fully automated refactoring, no magic
-  * subclass of `Discount` needed in test
+  * subclass of `Checkout` needed in test
 
 * wrap the `ReceiptRepository` singleton in a class and inject into `Checkout`.
   * more work, higher risk
