@@ -18,8 +18,8 @@ public class Money {
         this.value = value;
     }
 
-    public Money reduceBy(int p) {
-        return new Money(value.multiply(new BigDecimal(100 - p)).divide(new BigDecimal(100)));
+    public Money reduceBy(int percentage) {
+        return new Money(value.multiply(new BigDecimal(100 - percentage)).divide(new BigDecimal(100)));
     }
 
     public boolean moreThan(Money other) {
