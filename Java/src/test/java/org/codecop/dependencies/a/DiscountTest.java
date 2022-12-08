@@ -45,14 +45,19 @@ public class DiscountTest {
 
     @Test
     public void noDiscount() {
-        MarketingCampaign marketingCampaign = mock(MarketingCampaign.class);
-        when(marketingCampaign.isActive()).thenReturn(false);
-        when(marketingCampaign.isCrazySalesDay()).thenReturn(false);
+        MarketingCampaign marketingCampaign = GivenNotMarketingCampaignAndNotCrazySaleDay();
 
         Discount discount = new Discount(marketingCampaign);
         Money money = discount.discountFor(Money.ONE_HUNDRED);
 
         assertEquals(new Money(new BigDecimal("100")), money);
+    }
+
+    private static MarketingCampaign GivenNotMarketingCampaignAndNotCrazySaleDay() {
+        MarketingCampaign marketingCampaign = mock(MarketingCampaign.class);
+        when(marketingCampaign.isActive()).thenReturn(false);
+        when(marketingCampaign.isCrazySalesDay()).thenReturn(false);
+        return marketingCampaign;
     }
 
 }
