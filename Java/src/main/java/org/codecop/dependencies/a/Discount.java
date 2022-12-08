@@ -4,8 +4,8 @@ public class Discount {
 
     private final MarketingCampaign marketingCampaign;
 
-    public Discount() {
-        this.marketingCampaign = new MarketingCampaign();
+    public Discount(MarketingCampaign marketingCampaign1) {
+        this.marketingCampaign = marketingCampaign1;
     }
 
     public Money discountFor(Money netPrice) {
