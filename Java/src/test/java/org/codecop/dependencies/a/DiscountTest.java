@@ -43,4 +43,16 @@ public class DiscountTest {
         assertEquals(new Money(new BigDecimal("950")), money);
     }
 
+    @Test
+    public void noDiscount() {
+        MarketingCampaign marketingCampaign = mock(MarketingCampaign.class);
+        when(marketingCampaign.isActive()).thenReturn(false);
+        when(marketingCampaign.isCrazySalesDay()).thenReturn(false);
+
+        Discount discount = new Discount(marketingCampaign);
+        Money money = discount.discountFor(Money.ONE_HUNDRED);
+
+        assertEquals(new Money(new BigDecimal("100")), money);
+    }
+
 }
