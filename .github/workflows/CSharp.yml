@@ -13,29 +13,32 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+# https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
 
     env:
       DB_USER: root
-      DB_OLD_PASSWORD: root
+      DB_OLD_PASSWORD:
       DB_PASSWORD: mysql
 
     steps:
     - name: Check out the repo
       uses: actions/checkout@v3
 
-    - name: Start MYSQL and import DB
+    - name: Start MYSQL
+      uses: shogo82148/actions-setup-mysql@v1.23.0
+      with:
+        mysql-version: "8.0"
+
+    - name: Configure MYSQL and import DB
       run: |
-        mysqld --initialize-insecure --console
-        start "MySQL" "mysqld --standalone"
-        timeout /t 5
         mysqladmin --user=${{ env.DB_USER }} --password=${{ env.DB_OLD_PASSWORD }} password ${{ env.DB_PASSWORD }}
         mysql --version
-        echo ${GITHUB_WORKSPACE}/build/Database/initDatabase.sql | mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+        type .\build\Database\initDatabase.sql | mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 
     - name: Set up CSharp
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 4.7.2
+        dotnet-version: '3.1.x'
     - name: use nuget cache
       uses: actions/cache@v2
       with:
@@ -53,7 +56,4 @@ jobs:
 
     - name: run unit tests
       working-directory: CSharp
-      run: dotnet test"
-
-    - name: Stop MYSQL
-      run: mysqladmin mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} shutdown
+      run: dotnet test
