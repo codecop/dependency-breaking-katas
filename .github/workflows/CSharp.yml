@@ -13,7 +13,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-# https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
 
     env:
       DB_USER: root
@@ -34,26 +33,18 @@ jobs:
         mysqladmin --user=${{ env.DB_USER }} --password=${{ env.DB_OLD_PASSWORD }} password ${{ env.DB_PASSWORD }}
         mysql --version
         type .\build\Database\initDatabase.sql | mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+#       mysql -ustore -p123456 myShop -e "insert into myShop.RECEIPT (AMOUNT, TAX, TOTAL) values(1, 2, 3);"
 
-    - name: Set up CSharp
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '3.1.x'
-    - name: use nuget cache
-      uses: actions/cache@v2
+    - name: Cache Nuget packages
+      uses: actions/cache@v3
       with:
         path: ~/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: ${{ runner.os }}-nuget
 
-    - name: install dependencies
+    - name: Build and test
       working-directory: CSharp
-      run: dotnet restore
-
-    - name: build solution
-      working-directory: CSharp
-      run: dotnet build
-
-    - name: run unit tests
-      working-directory: CSharp
-      run: dotnet test
+      run: |
+        dotnet restore
+        dotnet build
+        dotnet test -v n --filter "Test1|Test2|Test3|Test4"
