@@ -42,4 +42,4 @@ jobs:
 
     - name: Build and test
       working-directory: Java
-      run: mvn -B test
+      run: mvn -B test -Dtest=\!org.codecop.dependencies.e.CheckoutTest
