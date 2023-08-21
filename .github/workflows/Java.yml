@@ -27,7 +27,10 @@ jobs:
       run: |
         sudo systemctl start mysql
         mysqladmin --user=${{ env.DB_USER }} --password=${{ env.DB_OLD_PASSWORD }} password ${{ env.DB_PASSWORD }}
+        mysql --version
         mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} < ${GITHUB_WORKSPACE}/build/Database/initDatabase.sql
+        mysql -ustore -p123456 -e "SELECT VERSION();"
+        mysql -ustore -p123456 myShop -e "insert into myShop.receipt (AMOUNT, TAX, TOTAL) values(1, 2, 3);"
 
     - name: Set up Java
       uses: actions/setup-java@v1
