@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Check out the repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Start MYSQL and import DB
       run: |
@@ -35,7 +35,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Cache Maven packages
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('Java/pom.xml') }}
