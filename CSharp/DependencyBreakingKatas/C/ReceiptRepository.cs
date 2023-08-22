@@ -17,13 +17,14 @@ namespace Org.Codecop.Dependencies.C
             })
             {
                 connection.Open();
-                var command = new MySqlCommand("insert into RECEIPT (AMOUNT, TAX, TOTAL)"
-                        + "values(@amount, @tax, @total);", connection);
-                command.Parameters.AddWithValue("@amount", receipt.Amount.AsDecimal());
-                command.Parameters.AddWithValue("@tax", receipt.Tax.AsDecimal());
-                command.Parameters.AddWithValue("@total", receipt.Total.AsDecimal());
-                command.Prepare();
-                command.ExecuteNonQuery();
+                using (var command = new MySqlCommand("insert into RECEIPT (AMOUNT, TAX, TOTAL)"
+                        + "values (@amount, @tax, @total)", connection))
+                {
+                    command.Parameters.AddWithValue("@amount", receipt.Amount.AsDecimal());
+                    command.Parameters.AddWithValue("@tax", receipt.Tax.AsDecimal());
+                    command.Parameters.AddWithValue("@total", receipt.Total.AsDecimal());
+                    command.ExecuteNonQuery();
+                }
             }
         }
     }
