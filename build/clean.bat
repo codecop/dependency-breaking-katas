@@ -3,6 +3,7 @@
 @if exist *.csproj @cd ..
 @if exist *.sln @cd ..
 @if exist composer.json @cd ..
+@if exist makefile @cd ..
 
 
 
@@ -24,6 +25,12 @@ cd ..
 
 cd PHP
 rmdir /S /Q vendor
+cd ..
+
+
+
+cd C
+call make clean
 cd ..
 
 
