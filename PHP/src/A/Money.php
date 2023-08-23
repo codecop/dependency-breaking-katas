@@ -6,8 +6,8 @@ use Brick\Math\BigDecimal;
 
 class Money {
 
-    public static ONE_THOUSAND = new Money(1000);
-    public static ONE_HUNDRED = new Money(100);
+    public static $ONE_THOUSAND = new Money(1000);
+    public static $ONE_HUNDRED = new Money(100);
 
     private $value;
 
