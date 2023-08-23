@@ -2,6 +2,7 @@
 @if exist pom.xml @cd ..
 @if exist *.csproj @cd ..
 @if exist *.sln @cd ..
+@if exist composer.json @cd ..
 
 
 
@@ -17,6 +18,12 @@ rmdir /S /Q DependencyBreakingKatas\bin
 rmdir /S /Q DependencyBreakingKatas\obj
 rmdir /S /Q DependencyBreakingTests\bin
 rmdir /S /Q DependencyBreakingTests\obj
+cd ..
+
+
+
+cd PHP
+rmdir /S /Q vendor
 cd ..
 
 
