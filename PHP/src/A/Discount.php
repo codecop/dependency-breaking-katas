@@ -14,10 +14,10 @@ class Discount {
         if ($this->marketingCampaign->isCrazySalesDay()) {
             return $netPrice->reduceBy(15);
         }
-        if ($netPrice->moreThan(Money::$ONE_THOUSAND)) {
+        if ($netPrice->moreThan(Money::ONE_THOUSAND())) {
             return $netPrice->reduceBy(10);
         }
-        if ($netPrice->moreThan(Money::$ONE_HUNDRED) && $this->marketingCampaign->isActive()) {
+        if ($netPrice->moreThan(Money::ONE_HUNDRED()) && $this->marketingCampaign->isActive()) {
             return $netPrice->reduceBy(5);
         }
         return $netPrice;
