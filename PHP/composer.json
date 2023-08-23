@@ -4,6 +4,7 @@
     "require": {
         "php": ">=7.3.0",
         "ext-pdo": "*",
+        "brick/math": "0.9.*",
         "mashape/unirest-php": "3.*"
     },
     "require-dev": {
