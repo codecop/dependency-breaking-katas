@@ -15,6 +15,6 @@ class DiscountTest extends TestCase {
         $net = new Money(1002);
         $total = $discount->discountFor($net);
 
-        $this->assertEquals(new Money(new BigDecimal("901.8")), $total);
+        $this->assertEquals(new Money(BigDecimal::of("901.8")), $total);
     }
 }

@@ -3,6 +3,8 @@
 namespace Org\Codecop\Dependencies\A;
 
 use Brick\Math\BigDecimal;
+use Brick\Math\RoundingMode;
+// see https://github.com/brick/math
 
 class Money {
 
@@ -25,7 +27,7 @@ class Money {
 
     public function reduceBy(int $p): Money {
         $percentage = BigDecimal::of(100)->minus($p);
-        return new Money($this->value->multipliedBy($percentage)->dividedBy(100));
+        return new Money($this->value->multipliedBy($percentage)->exactlyDividedBy(100));
     }
 
     public function moreThan(Money $other): bool {
