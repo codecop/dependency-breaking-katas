@@ -28,9 +28,9 @@ const A_Money* A_Money_createFromLongDouble(long double value)
     return money;
 }
 
-void A_Money_destroy(const A_Money* money)
+void A_Money_destroy(const A_Money* self)
 {
-    free((void*)money);
+    free((void*)self);
 }
 
 const A_Money* A_Money_reduceBy(const A_Money* self, int p)
