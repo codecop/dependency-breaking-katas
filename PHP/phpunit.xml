@@ -10,17 +10,10 @@
 	beStrictAboutTestsThatDoNotTestAnything="false"
 	beStrictAboutTodoAnnotatedTests="true"
 	beStrictAboutCoversAnnotation="true"
-	beStrictAboutTestSize="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
 	verbose="true">
-
-	<filter>
-	  <whitelist processUncoveredFilesFromWhitelist="true">
-	    <directory suffix=".php">src</directory>
-	  </whitelist>
-	</filter>
 
 	<testsuites>
 		<testsuite name="All Tests">
@@ -28,8 +21,4 @@
 			<directory suffix="Test.php">test</directory>
 		</testsuite>
 	</testsuites>
-
-	<logging>
-		<log type="coverage-html" target="./coverage" />
-	</logging>
 </phpunit>
