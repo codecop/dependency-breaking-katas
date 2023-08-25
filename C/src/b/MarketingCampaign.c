@@ -4,26 +4,27 @@
 
 #include "MarketingCampaign.h"
 
-static int64_t milliSeconds(void)
+static struct timeval timeval_now(void)
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);
-    return (int64_t)tv.tv_sec * 1000 + tv.tv_usec / 1000;
+    return tv;
 }
 
 bool B_MarketingCampaign_isActive(void)
 {
-    return milliSeconds() % 2 == 0;
+    struct timeval tv = timeval_now();
+    return (tv.tv_usec / 1000) % 2 == 0;
 }
 
-static int dayOfWeek(void)
+static struct tm* tm_at_localtime(void)
 {
     time_t t = time(NULL);
-    struct tm* tm_info = localtime(&t);
-    return tm_info->tm_wday;
+    return localtime(&t);
 }
 
 bool B_MarketingCampaign_isCrazySalesDay(void)
 {
-    return dayOfWeek() == 5; // Friday
+    struct tm* tm_info = tm_at_localtime();
+    return tm_info->tm_wday == 5; // Friday
 }
