@@ -3,6 +3,6 @@
 
 #include "Product.h"
 
-void E_EmailService_subscribeUserFor(E_Product* product);
+void E_EmailService_subscribeUserFor(const E_Product* product);
 
 #endif // E_EMAIL_H

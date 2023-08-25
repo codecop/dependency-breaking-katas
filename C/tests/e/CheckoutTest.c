@@ -8,10 +8,6 @@
 #include "../../src/e/Checkout.h"
 #include "../../src/e/Product.h"
 
-void E_EmailService_subscribeUserFor(E_Product* product) {
-    // mocked method
-}
-
 static void test5(void** state)
 {
     (void)state; /* unused */
@@ -20,12 +16,12 @@ static void test5(void** state)
     printf("* Accept Newsletter\n");
     printf("* Do not Accept Terms\n");
 
-    E_Product* polkaDotSocks = E_Product_create("Polka-dot Socks");
+    const E_Product* polkaDotSocks = E_Product_create("Polka-dot Socks");
 
     E_Checkout* checkout = E_Checkout_create(polkaDotSocks);
 
-    E_Checkout_confirmOrder(checkout);
-    // TODO result and must be cancelled
+    enum E_OrderConfirmation result = E_Checkout_confirmOrder(checkout);
+    assert_int_equal(OrderCancelled, result);
 
     E_Checkout_destroy(checkout);
     E_Product_destroy(polkaDotSocks);

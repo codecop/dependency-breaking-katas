@@ -1,4 +1,5 @@
-#include <stdlib.h>
+#include <stdio.h>  /* sprintf */
+#include <stdlib.h> /* malloc */
 
 #include "Checkout.h"
 #include "EmailService.h"
@@ -6,24 +7,25 @@
 #include "UserConfirmation.h"
 
 struct E_Checkout {
-    E_Product* product;
+    const E_Product* product;
     E_UserConfirmation* newsLetterSubscribed;
     E_UserConfirmation* termsAndConditionsAccepted;
 };
 
-E_Checkout* E_Checkout_create(E_Product* product)
+E_Checkout* E_Checkout_create(const E_Product* product)
 {
     E_Checkout* checkout = malloc(sizeof(E_Checkout));
     if (checkout != NULL) {
         checkout->product = product;
-        checkout->newsLetterSubscribed =
-            E_UserConfirmation_create("Subscribe to our product newsletter?");
-        //   new UserConfirmation("Subscribe to our product " + product.name() + " newsletter?");
-        checkout->termsAndConditionsAccepted = E_UserConfirmation_create(
-            "Accept our terms and conditions?\n" //
-            "(Mandatory to place order for the product)");
-        // new UserConfirmation("Accept our terms and conditions?\n" +
-        // "(Mandatory to place order for " + product.name() + ")");
+        char message[256];
+        sprintf(message, "%s%s%s", //
+                 "Subscribe to our product ", E_Product_name(product),
+                " newsletter?");
+        checkout->newsLetterSubscribed = E_UserConfirmation_create(message);
+        sprintf(message, "%s%s%s", //
+                "Accept our terms and conditions?\n(Mandatory to place order for ",
+                E_Product_name(product), ")");
+        checkout->termsAndConditionsAccepted = E_UserConfirmation_create(message);
     }
     return checkout;
 }
@@ -37,12 +39,11 @@ void E_Checkout_destroy(E_Checkout* self)
     }
 }
 
-void E_Checkout_confirmOrder(E_Checkout* self)
+enum E_OrderConfirmation E_Checkout_confirmOrder(E_Checkout* self)
 {
     E_UserConfirmation_display(self->termsAndConditionsAccepted);
     if (!E_UserConfirmation_isAccepted(self->termsAndConditionsAccepted)) {
-        // TODO Throw OrderCancelledException (not implemented here)
-        return;
+        return OrderCancelled;
     }
 
     E_UserConfirmation_display(self->newsLetterSubscribed);
@@ -50,6 +51,5 @@ void E_Checkout_confirmOrder(E_Checkout* self)
         E_EmailService_subscribeUserFor(self->product);
     }
 
-    // TODO enum with two values OrderConfirmed, OrderCancelled
-    return;
+    return OrderConfirmed;
 }
