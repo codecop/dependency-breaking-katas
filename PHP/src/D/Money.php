@@ -1,6 +1,6 @@
 <?php
 
-namespace Org\Codecop\Dependencies\C;
+namespace Org\Codecop\Dependencies\D;
 
 use Brick\Math\BigDecimal;
 // see https://github.com/brick/math
@@ -15,10 +15,6 @@ class Money {
         } elseif ($value instanceof BigDecimal) {
             $this->value = $value;
         }
-    }
-
-    public function add(Money $other): Money {
-        return new Money($this->value->plus($other->value));
     }
 
     public function percentage(int $p): Money {
