@@ -3,7 +3,6 @@
 namespace Org\Codecop\Dependencies\C;
 
 use Brick\Math\BigDecimal;
-use Brick\Math\RoundingMode;
 // see https://github.com/brick/math
 
 class Money {
