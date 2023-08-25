@@ -13,12 +13,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "name",
+    // "name",
     "topLevelDomain",
-    "alpha2Code",
+    "cca2",
     "alpha3Code",
     "callingCodes",
-    "capital",
+    // "capital",
     "altSpellings",
     "region",
     "subregion",
@@ -31,8 +31,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "borders",
     "nativeName",
     "numericCode",
-    "currencies",
-    "languages",
+    // "currencies",
+    // "languages",
     "translations",
     "flag",
     "regionalBlocs",
@@ -40,18 +40,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class CountryDescription {
 
-    @JsonProperty("name")
-    private String name;
+//    @JsonProperty("name")
+//    private String name;
     @JsonProperty("topLevelDomain")
     private List<String> topLevelDomain;
-    @JsonProperty("alpha2Code")
-    private String alpha2Code;
+    @JsonProperty("cca2")
+    private String cca2;
     @JsonProperty("alpha3Code")
     private String alpha3Code;
     @JsonProperty("callingCodes")
     private List<String> callingCodes;
-    @JsonProperty("capital")
-    private String capital;
+//    @JsonProperty("capital")
+//    private String capital;
     @JsonProperty("altSpellings")
     private List<String> altSpellings;
     @JsonProperty("region")
@@ -76,10 +76,10 @@ public class CountryDescription {
     private String nativeName;
     @JsonProperty("numericCode")
     private String numericCode;
-    @JsonProperty("currencies")
-    private List<Currency> currencies;
-    @JsonProperty("languages")
-    private List<Language> languages;
+//    @JsonProperty("currencies")
+//    private List<Currency> currencies;
+//    @JsonProperty("languages")
+//    private List<Language> languages;
     @JsonProperty("translations")
     private Translations translations;
     @JsonProperty("flag")
@@ -91,15 +91,15 @@ public class CountryDescription {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<>();
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
-
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
+//    @JsonProperty("name")
+//    public String getName() {
+//        return name;
+//    }
+//
+//    @JsonProperty("name")
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     @JsonProperty("topLevelDomain")
     public List<String> getTopLevelDomain() {
@@ -111,14 +111,14 @@ public class CountryDescription {
         this.topLevelDomain = topLevelDomain;
     }
 
-    @JsonProperty("alpha2Code")
-    public String getAlpha2Code() {
-        return alpha2Code;
+    @JsonProperty("cca2")
+    public String getCca2() {
+        return cca2;
     }
 
-    @JsonProperty("alpha2Code")
-    public void setAlpha2Code(String alpha2Code) {
-        this.alpha2Code = alpha2Code;
+    @JsonProperty("cca2")
+    public void setCca2(String alpha2Code) {
+        this.cca2 = alpha2Code;
     }
 
     @JsonProperty("alpha3Code")
@@ -141,15 +141,15 @@ public class CountryDescription {
         this.callingCodes = callingCodes;
     }
 
-    @JsonProperty("capital")
-    public String getCapital() {
-        return capital;
-    }
-
-    @JsonProperty("capital")
-    public void setCapital(String capital) {
-        this.capital = capital;
-    }
+//    @JsonProperty("capital")
+//    public String getCapital() {
+//        return capital;
+//    }
+//
+//    @JsonProperty("capital")
+//    public void setCapital(String capital) {
+//        this.capital = capital;
+//    }
 
     @JsonProperty("altSpellings")
     public List<String> getAltSpellings() {
@@ -271,25 +271,25 @@ public class CountryDescription {
         this.numericCode = numericCode;
     }
 
-    @JsonProperty("currencies")
-    public List<Currency> getCurrencies() {
-        return currencies;
-    }
+//    @JsonProperty("currencies")
+//    public List<Currency> getCurrencies() {
+//        return currencies;
+//    }
+//
+//    @JsonProperty("currencies")
+//    public void setCurrencies(List<Currency> currencies) {
+//        this.currencies = currencies;
+//    }
 
-    @JsonProperty("currencies")
-    public void setCurrencies(List<Currency> currencies) {
-        this.currencies = currencies;
-    }
-
-    @JsonProperty("languages")
-    public List<Language> getLanguages() {
-        return languages;
-    }
-
-    @JsonProperty("languages")
-    public void setLanguages(List<Language> languages) {
-        this.languages = languages;
-    }
+//    @JsonProperty("languages")
+//    public List<Language> getLanguages() {
+//        return languages;
+//    }
+//
+//    @JsonProperty("languages")
+//    public void setLanguages(List<Language> languages) {
+//        this.languages = languages;
+//    }
 
     @JsonProperty("translations")
     public Translations getTranslations() {

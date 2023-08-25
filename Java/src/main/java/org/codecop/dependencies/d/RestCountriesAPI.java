@@ -9,13 +9,12 @@ import org.codecop.dependencies.d.restcountries.CountryDescription;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class RestCountriesAPI {
 
     private static final Country HOME_BASE = new Country("AT");
-    private static final String COUNTRY_INFORMATION_SERVICE_URL = "https://restcountries.eu/rest/v2/all";
+    private static final String COUNTRY_INFORMATION_SERVICE_URL = "https://restcountries.com/v3.1/all";
 
     private static final RestCountriesAPI instance = new RestCountriesAPI();
 
@@ -31,18 +30,7 @@ public class RestCountriesAPI {
 
     public boolean isInCommonMarket(Country country) {
         final Optional<CountryDescription> countryDescription = getCountryDescriptionViaRestCall(country);
-
-        if (!countryDescription.isPresent()) {
-            return false;
-        }
-
-        final List<Object> regionalBlocs = countryDescription.get().getRegionalBlocs();
-        if (regionalBlocs.isEmpty()) {
-            return false;
-        }
-
-        final Map<String, String> bloc = (Map<String, String>) regionalBlocs.get(0);
-        return bloc.get("acronym") != null && bloc.get("acronym").equals("EU");
+        return countryDescription.map(description -> description.getRegion().equals("Europe")).orElse(false);
     }
 
     public boolean isInAmericas(Country country) {
@@ -79,7 +67,7 @@ public class RestCountriesAPI {
     }
 
     private Optional<CountryDescription> getCountryDescriptionViaRestCall(Country country) {
-        return slowHttpCall().stream().filter(c -> c.getAlpha2Code().equals(country.toString())).findFirst();
+        return slowHttpCall().stream().filter(c -> c.getCca2().equals(country.toString())).findFirst();
     }
 
     public List<CountryDescription> slowHttpCall() {
@@ -104,14 +92,14 @@ public class RestCountriesAPI {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Country("US"));
-        System.out.println(getInstance().isInAmericas(new Country("US")));
-        System.out.println(getInstance().isInCommonMarket(new Country("US")));
-        System.out.println(getInstance().distanceTo(new Country("US")));
-        System.out.println(new Country("AT"));
-        System.out.println(getInstance().isInAmericas(new Country("AT")));
-        System.out.println(getInstance().isInCommonMarket(new Country("AT")));
-        System.out.println(getInstance().distanceTo(new Country("AT")));
+        System.out.println("US: " + new Country("US"));
+        System.out.println("true: " + getInstance().isInAmericas(new Country("US")));
+        System.out.println("false: " + getInstance().isInCommonMarket(new Country("US")));
+        System.out.println("8284768: " + getInstance().distanceTo(new Country("US")));
+        System.out.println("AT: " + new Country("AT"));
+        System.out.println("false: " + getInstance().isInAmericas(new Country("AT")));
+        System.out.println("true: " + getInstance().isInCommonMarket(new Country("AT")));
+        System.out.println("0:" + getInstance().distanceTo(new Country("AT")));
     }
 
 }

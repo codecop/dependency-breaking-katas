@@ -11,7 +11,7 @@ namespace Org.Codecop.Dependencies.D
     {
         private static readonly Country HomeBase = new Country("AT");
 
-        private const string CountryInformationServiceUrl = "https://restcountries.eu/rest/v2/all";
+        private const string CountryInformationServiceUrl = "https://restcountries.com/v3.1/all";
 
         private static readonly RestCountriesAPI instance = new RestCountriesAPI();
 
@@ -27,17 +27,7 @@ namespace Org.Codecop.Dependencies.D
         public bool IsInCommonMarket(Country country)
         {
             CountryDescription countryDescription = GetCountryDescriptionViaRestCall(country);
-            if (countryDescription == null)
-            {
-                return false;
-            }
-            IList<RegionalBlocs> regionalBlocs = countryDescription.regionalBlocs;
-            if (regionalBlocs.Count == 0)
-            {
-                return false;
-            }
-            RegionalBlocs bloc = regionalBlocs[0];
-            return bloc.acronym != null && bloc.acronym.Equals("EU");
+            return countryDescription?.region.Equals("Europe") ?? false;
         }
 
         public bool IsInAmericas(Country country)
@@ -83,7 +73,7 @@ namespace Org.Codecop.Dependencies.D
 
         private CountryDescription GetCountryDescriptionViaRestCall(Country country)
         {
-            return SlowHttpCall().Where(c => c.alpha2Code.Equals(country.ToString())).SingleOrDefault();
+            return SlowHttpCall().Where(c => c.cca2.Equals(country.ToString())).SingleOrDefault();
         }
 
         public IList<CountryDescription> SlowHttpCall()
@@ -106,14 +96,14 @@ namespace Org.Codecop.Dependencies.D
 
         public static void Main(string[] args)
         {
-            Console.WriteLine(new Country("US"));
-            Console.WriteLine(GetInstance().IsInAmericas(new Country("US")));
-            Console.WriteLine(GetInstance().IsInCommonMarket(new Country("US")));
-            Console.WriteLine(GetInstance().DistanceTo(new Country("US")));
-            Console.WriteLine(new Country("AT"));
-            Console.WriteLine(GetInstance().IsInAmericas(new Country("AT")));
-            Console.WriteLine(GetInstance().IsInCommonMarket(new Country("AT")));
-            Console.WriteLine(GetInstance().DistanceTo(new Country("AT")));
+            Console.WriteLine("US: " + new Country("US"));
+            Console.WriteLine("true: " + GetInstance().IsInAmericas(new Country("US")));
+            Console.WriteLine("false: " + GetInstance().IsInCommonMarket(new Country("US")));
+            Console.WriteLine("8284768: " + GetInstance().DistanceTo(new Country("US")));
+            Console.WriteLine("AT: " + new Country("AT"));
+            Console.WriteLine("false: " + GetInstance().IsInAmericas(new Country("AT")));
+            Console.WriteLine("true: " + GetInstance().IsInCommonMarket(new Country("AT")));
+            Console.WriteLine("0:" + GetInstance().DistanceTo(new Country("AT")));
         }
     }
 }

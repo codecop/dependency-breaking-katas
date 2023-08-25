@@ -5,17 +5,17 @@ namespace Org.Codecop.Dependencies.D.Restcountries
 {
     public class CountryDescription
     {
-        public string name { get; set; }
+        // public string name { get; set; }
 
         public IList<string> topLevelDomain { get; set; }
 
-        public string alpha2Code { get; set; }
+        public string cca2 { get; set; }
 
         public string alpha3Code { get; set; }
 
         public IList<string> callingCodes { get; set; }
 
-        public string capital { get; set; }
+        // public string capital { get; set; }
 
         public IList<string> altSpellings { get; set; }
 
@@ -41,9 +41,9 @@ namespace Org.Codecop.Dependencies.D.Restcountries
 
         public string numericCode { get; set; }
 
-        public IList<Currency> currencies { get; set; }
+        // public IList<Currency> currencies { get; set; }
 
-        public IList<Language> languages { get; set; }
+        // public IList<Language> languages { get; set; }
 
         public Translations translations { get; set; }
 
