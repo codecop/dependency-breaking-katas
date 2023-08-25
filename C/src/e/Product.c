@@ -1,7 +1,7 @@
 #include <stdlib.h> /* alloc */
 #include <string.h> /* dup */
 
-#include "product.h"
+#include "Product.h"
 
 struct E_Product {
     char* name;
