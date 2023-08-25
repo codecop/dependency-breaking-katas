@@ -3,9 +3,9 @@
 namespace Org\Codecop\Dependencies\C;
 
 class Receipt {
-    private Money $amount;
-    private Money $tax;
-    private Money $total;
+    private $amount;
+    private $tax;
+    private $total;
 
     public function getAmount(): Money {
         return $this->amount;
