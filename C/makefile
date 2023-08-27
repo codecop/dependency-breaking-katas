@@ -55,8 +55,14 @@ endif
 ##### clean targets
 
 .PHONY: clean
+ifeq ($(OS),Windows_NT)
+clean:
+	del /s *.o
+	del /s *$(exec_extension)
+else
 clean:
 	rm -f $(src_dir)/*.o
 	rm -f $(src_dir)/**/*.o
 	rm -f $(test_dir)/*$(exec_extension)
 	rm -f $(test_dir)/**/*$(exec_extension)
+endif
