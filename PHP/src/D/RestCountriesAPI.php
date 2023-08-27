@@ -37,13 +37,13 @@ class RestCountriesAPI {
             throw new RestCountriesAPIException('Could not find country ' . self::HOME_BASE . ' or ' . $country);
         }
 
-        return $this->distBetween(
+        return $this->distBetweenLatLong(
             $austria->latlng,
             $other->latlng
         );
     }
 
-    private function distBetween(array $fromCoordinates, array $toCoordinates): int {
+    private function distBetweenLatLong(array $fromCoordinates, array $toCoordinates): int {
         return $this->distBetween(
             $fromCoordinates[0],
             $fromCoordinates[1],
