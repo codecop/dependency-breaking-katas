@@ -3,14 +3,6 @@
   <PropertyGroup>
     <!--<TargetFramework>netcoreapp2.0</TargetFramework>-->
     <TargetFramework>net472</TargetFramework>
-    <DebugType>portable</DebugType>
-    <AssemblyName>DependencyBreakingKatas</AssemblyName>
-    <PackageId>DependencyBreakingKatas</PackageId>
-    <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <OutputType>Lib</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

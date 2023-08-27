@@ -34,13 +34,6 @@ jobs:
         mysql --version
         type .\build\Database\initDatabase.sql | mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 
-    - name: Cache Nuget packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: ${{ runner.os }}-nuget
-
     - name: Build and test
       working-directory: CSharp
       run: |
