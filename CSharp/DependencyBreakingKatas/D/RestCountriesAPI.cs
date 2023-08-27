@@ -94,5 +94,16 @@ namespace Org.Codecop.Dependencies.D
             }
         }
         
+        public static void Main(string[] args)
+        {
+            Console.WriteLine(new Country("US"));
+            Console.WriteLine(GetInstance().IsInAmericas(new Country("US")));
+            Console.WriteLine(GetInstance().IsInCommonMarket(new Country("US")));
+            Console.WriteLine(GetInstance().DistanceTo(new Country("US")));
+            Console.WriteLine(new Country("AT"));
+            Console.WriteLine(GetInstance().IsInAmericas(new Country("AT")));
+            Console.WriteLine(GetInstance().IsInCommonMarket(new Country("AT")));
+            Console.WriteLine(GetInstance().DistanceTo(new Country("AT")));
+        }
     }
 }
