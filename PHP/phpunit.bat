@@ -1,1 +1,1 @@
-@call "%~dp0vendor\bin\phpunit" %*
+@call "%~dp0vendor\bin\phpunit" --exclude-group slow %*

@@ -2,8 +2,7 @@
 
 namespace Org\Codecop\Dependencies\D;
 
-use com\mashape\unirest\http\Unirest;
-use com\mashape\unirest\http\JsonNode;
+use Unirest\Request;
 
 class RestCountriesAPI {
 
@@ -68,7 +67,7 @@ class RestCountriesAPI {
     private function getCountryDescriptionViaRestCall(Country $country) {
         $countryDescriptions = $this->slowHttpCall();
         foreach ($countryDescriptions as $c) {
-            if ($c->cca2 === $country->toString()) {
+            if ($c->cca2 === $country->__toString()) {
                 return $c;
             }
         }
@@ -80,7 +79,7 @@ class RestCountriesAPI {
 
         try {
             usleep(1000000); // Sleep for 1 second (in microseconds)
-            $response = Unirest::get(self::COUNTRY_INFORMATION_SERVICE_URL, [], null)->asJson();
+            $response = Request::get(self::COUNTRY_INFORMATION_SERVICE_URL, []);
 
             $countryDescriptions = json_decode($response->raw_body);
 

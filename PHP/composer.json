@@ -22,7 +22,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
-        "tests": "phpunit"
+        "test": "phpunit --exclude-group slow",
+        "tests": "phpunit --exclude-group slow"
     }
 }

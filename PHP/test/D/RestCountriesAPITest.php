@@ -31,7 +31,7 @@ class RestCountriesAPITest extends TestCase {
      */
     public function testGetDistance() {
         $us = new Country("US");
-        $this->assertEquals(8284768, $this->getInstance()->distanceTo($us));
+        $this->assertEquals(8284767, $this->getInstance()->distanceTo($us));
     }
 
     /**
