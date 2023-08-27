@@ -1,9 +1,9 @@
 ##### folders
-src_dir 	:= ./src
-test_dir 	:= ./tests
+src_dir 	:= src
+test_dir 	:= tests
 
 ##### files
-src_files 	:= $(wildcard $(src_dir)/*.c wildcard $(src_dir)/**/*.c)
+src_files 	:= $(wildcard $(src_dir)/./*.c wildcard $(src_dir)/**/*.c)
 obj_files 	:= $(src_files:.c=.o)
 
 ifeq ($(OS),Windows_NT)
@@ -12,7 +12,7 @@ else
 exec_extension := .
 endif
 
-test_src_files := $(wildcard $(test_dir)/*Test.c wildcard $(test_dir)/**/*Test.c)
+test_src_files := $(wildcard $(test_dir)/./*Test.c wildcard $(test_dir)/**/*Test.c)
 test_run_files := $(test_src_files:.c=$(exec_extension))
 
 ##### variables
@@ -41,7 +41,7 @@ build: ${obj_files}
 ##### test targets
 
 $(test_dir)/%$(exec_extension): $(test_dir)/%.c ${obj_files}
-	$(CC) $(C_TEST_FLAGS) ${obj_files} $< $(LD_FLAGS) -o $@
+	$(CC) $(C_TEST_FLAGS) $(filter $(src_dir)$(subst $(test_dir),,$(dir $(<)))%, ${obj_files}) $< $(LD_FLAGS) -o $@
 
 .PHONY: test
 ifeq ($(OS),Windows_NT)
@@ -61,8 +61,7 @@ clean:
 	del /s *$(exec_extension)
 else
 clean:
-	rm -f $(src_dir)/*.o
-	rm -f $(src_dir)/**/*.o
+	rm -f ${obj_files}
 	rm -f $(test_dir)/*$(exec_extension)
 	rm -f $(test_dir)/**/*$(exec_extension)
 endif

@@ -5,6 +5,7 @@
 #include <cmocka.h>
 #include <stdio.h>
 
+#include "FakeEmailService.c"
 #include "../../src/e/Checkout.h"
 #include "../../src/e/Product.h"
 
