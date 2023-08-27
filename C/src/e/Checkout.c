@@ -18,14 +18,18 @@ E_Checkout* E_Checkout_create(const E_Product* product)
     if (checkout != NULL) {
         checkout->product = product;
         char message[256];
+
         sprintf(message, "%s%s%s", //
                  "Subscribe to our product ", E_Product_name(product),
                 " newsletter?");
         checkout->newsLetterSubscribed = E_UserConfirmation_create(message);
+        E_UserConfirmation_display(checkout->newsLetterSubscribed);
+
         sprintf(message, "%s%s%s", //
                 "Accept our terms and conditions?\n(Mandatory to place order for ",
                 E_Product_name(product), ")");
         checkout->termsAndConditionsAccepted = E_UserConfirmation_create(message);
+        E_UserConfirmation_display(checkout->termsAndConditionsAccepted);
     }
     return checkout;
 }
@@ -41,12 +45,10 @@ void E_Checkout_destroy(E_Checkout* self)
 
 enum E_OrderConfirmation E_Checkout_confirmOrder(E_Checkout* self)
 {
-    E_UserConfirmation_display(self->termsAndConditionsAccepted);
     if (!E_UserConfirmation_isAccepted(self->termsAndConditionsAccepted)) {
         return OrderCancelled;
     }
 
-    E_UserConfirmation_display(self->newsLetterSubscribed);
     if (E_UserConfirmation_isAccepted(self->newsLetterSubscribed)) {
         E_EmailService_subscribeUserFor(self->product);
     }

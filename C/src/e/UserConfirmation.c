@@ -26,15 +26,18 @@ void E_UserConfirmation_destroy(E_UserConfirmation* self)
 
 void E_UserConfirmation_display(E_UserConfirmation* self)
 {
-    printf("###############################\n");
-    printf("#         CONFIRMATION        #\n");
-    printf("###############################\n");
-    printf("\n");
-    printf("%s\n", self->message);
-    printf("\n");
-    printf("Do you want to continue? (Y/N): ");
+    printf("##############################################################\n");
+    printf("#                        CONFIRMATION                        #\n");
+    printf("##############################################################\n");
+    printf("#                                                            #\n");
+    printf("%s %s\n", self->message, "(Y/N)");
+    printf("#                                                            #\n");
+    printf("##############################################################\n");
 
     int answer = getchar();
+    int c;
+    while ((c = getchar()) != '\n') {
+    }
 
     if (answer == 'Y' || answer == 'y') {
         self->accepted = 1;
