@@ -93,17 +93,6 @@ namespace Org.Codecop.Dependencies.D
                 throw new RestCountriesAPIException("Could not read country information from " + CountryInformationServiceUrl, e);
             }
         }
-
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("US: " + new Country("US"));
-            Console.WriteLine("true: " + GetInstance().IsInAmericas(new Country("US")));
-            Console.WriteLine("false: " + GetInstance().IsInCommonMarket(new Country("US")));
-            Console.WriteLine("8284768: " + GetInstance().DistanceTo(new Country("US")));
-            Console.WriteLine("AT: " + new Country("AT"));
-            Console.WriteLine("false: " + GetInstance().IsInAmericas(new Country("AT")));
-            Console.WriteLine("true: " + GetInstance().IsInCommonMarket(new Country("AT")));
-            Console.WriteLine("0:" + GetInstance().DistanceTo(new Country("AT")));
-        }
+        
     }
 }

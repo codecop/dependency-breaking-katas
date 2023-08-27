@@ -91,15 +91,4 @@ public class RestCountriesAPI {
         return countryDescriptions;
     }
 
-    public static void main(String[] args) {
-        System.out.println("US: " + new Country("US"));
-        System.out.println("true: " + getInstance().isInAmericas(new Country("US")));
-        System.out.println("false: " + getInstance().isInCommonMarket(new Country("US")));
-        System.out.println("8284768: " + getInstance().distanceTo(new Country("US")));
-        System.out.println("AT: " + new Country("AT"));
-        System.out.println("false: " + getInstance().isInAmericas(new Country("AT")));
-        System.out.println("true: " + getInstance().isInCommonMarket(new Country("AT")));
-        System.out.println("0:" + getInstance().distanceTo(new Country("AT")));
-    }
-
 }

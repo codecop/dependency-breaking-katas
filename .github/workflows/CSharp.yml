@@ -46,4 +46,4 @@ jobs:
       run: |
         dotnet restore
         dotnet build
-        dotnet test -v n --filter "ShouldGreet|Test1|Test2|Test3|Test4"
+        dotnet test -v n --filter "ShouldGreet|Test1|Test2|Test3|Test4|GetDistance"
