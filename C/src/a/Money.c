@@ -35,7 +35,7 @@ void A_Money_destroy(const A_Money* self)
 
 const A_Money* A_Money_reduceBy(const A_Money* self, int p)
 {
-    return A_Money_createFromLongDouble(self->value * ((long double)(100 - p) / 100));
+    return A_Money_createFromLongDouble(self->value * (100 - p) / 100);
 }
 
 bool A_Money_moreThan(const A_Money* self, const A_Money* other)
