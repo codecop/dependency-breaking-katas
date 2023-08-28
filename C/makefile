@@ -27,7 +27,7 @@ C_COMPILE_FLAGS := $(C_BASE_FLAGS) -c ${CFLAGS}
 
 C_TEST_FLAGS := $(C_BASE_FLAGS) ${CFLAGS}
 
-LD_FLAGS := -lcmocka
+LD_FLAGS := -lcmocka -lmysqlclient
 
 ##### compile targets
 

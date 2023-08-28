@@ -37,6 +37,11 @@ const C_Money* C_Money_percentage(const C_Money* self, int p)
     return C_Money_createFromInternal(self->value * p / 100);
 }
 
+double C_Money_asDouble(const C_Money* self)
+{
+    return (double)self->value;
+}
+
 void C_Money_format(const C_Money* self, char* buffer)
 {
     sprintf(buffer, "%.2Lf", self->value);

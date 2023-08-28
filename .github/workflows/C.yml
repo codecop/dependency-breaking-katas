@@ -34,6 +34,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install libcmocka-dev
+        sudo apt-get install libmysqlclient-dev
 
     - name: Build
       working-directory: C
@@ -44,3 +45,4 @@ jobs:
       run: |
         rm tests/e/CheckoutTest.c
         make test
+        mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} -e "select * from myShop.RECEIPT"

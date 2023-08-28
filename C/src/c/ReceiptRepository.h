@@ -3,6 +3,6 @@
 
 #include "Receipt.h"
 
-void C_ReceiptRepository_store(const C_Receipt* receipt);
+int C_ReceiptRepository_store(const C_Receipt* receipt);
 
 #endif // C_RECEIPT_REPOSITORY_H

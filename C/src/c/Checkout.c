@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 
 #include "Checkout.h"
@@ -15,12 +16,13 @@ C_Receipt* C_Checkout_createReceipt(const C_Money* amount)
     if (receipt == NULL) {
         return NULL;
     }
-    
+
     C_Receipt_setAmount(receipt, amount);
     C_Receipt_setTax(receipt, vat);
     C_Receipt_setTotal(receipt, C_Money_add(amount, vat));
 
-    C_ReceiptRepository_store(receipt);
+    int result = C_ReceiptRepository_store(receipt);
+    assert(result == EXIT_SUCCESS);
 
     return receipt;
 }
