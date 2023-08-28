@@ -5,16 +5,15 @@
 #include <cmocka.h>
 
 #include "../../src/a/Discount.h"
-#include "../../src/a/Money.h"
 
 static void test1(void** state)
 {
     (void)state; /* unused */
-    const A_Money* net = A_Money_createFromInt(1002);
+    const A_Money* net = A_Money_create(1002);
 
     const A_Money* total = A_Discount_discountFor(net);
 
-    const A_Money* expected = A_Money_createFromLongDouble(901.8);
+    const A_Money* expected = A_Money_createFromInternal(901.8);
     assert_true(A_Money_equals(expected, total));
 
     A_Money_destroy(net);

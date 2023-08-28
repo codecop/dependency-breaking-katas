@@ -1,5 +1,5 @@
 #include <stdlib.h> /* alloc */
-#include <string.h> /* dup */
+#include <string.h> /* strdup */
 
 #include "Product.h"
 

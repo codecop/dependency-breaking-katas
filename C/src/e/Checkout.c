@@ -20,8 +20,7 @@ E_Checkout* E_Checkout_create(const E_Product* product)
         char message[256];
 
         sprintf(message, "%s%s%s", //
-                 "Subscribe to our product ", E_Product_name(product),
-                " newsletter?");
+                "Subscribe to our product ", E_Product_name(product), " newsletter?");
         checkout->newsLetterSubscribed = E_UserConfirmation_create(message);
         E_UserConfirmation_display(checkout->newsLetterSubscribed);
 

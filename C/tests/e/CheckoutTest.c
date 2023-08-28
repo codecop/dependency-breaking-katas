@@ -5,14 +5,13 @@
 #include <cmocka.h>
 #include <stdio.h>
 
-#include "FakeEmailService.c"
 #include "../../src/e/Checkout.h"
 #include "../../src/e/Product.h"
+#include "FakeEmailService.c"
 
 static void test5(void** state)
 {
     (void)state; /* unused */
-
     printf("note for tester:\n");
     printf("* Accept Newsletter\n");
     printf("* Do not Accept Terms\n");
@@ -20,8 +19,8 @@ static void test5(void** state)
     const E_Product* polkaDotSocks = E_Product_create("Polka-dot Socks");
 
     E_Checkout* checkout = E_Checkout_create(polkaDotSocks);
-
     enum E_OrderConfirmation result = E_Checkout_confirmOrder(checkout);
+
     assert_int_equal(OrderCancelled, result);
 
     E_Checkout_destroy(checkout);

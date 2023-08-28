@@ -44,7 +44,7 @@ void E_UserConfirmation_display(E_UserConfirmation* self)
     }
 }
 
-int E_UserConfirmation_isAccepted(const E_UserConfirmation* self)
+bool E_UserConfirmation_isAccepted(const E_UserConfirmation* self)
 {
-    return self->accepted;
+    return self->accepted == 1;
 }
