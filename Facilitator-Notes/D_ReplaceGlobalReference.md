@@ -35,7 +35,8 @@ Which option did you use?
   * slow, fragile, no detailed feedback
   * full integration test, more confidence that REST code works as well
 
-* use PowerMock/JMockit/TypeMock Isolator to stub `RestCountriesAPI`'s methods in tests.
+* use PowerMock/JMockit/TypeMock Isolator to stub `RestCountriesAPI`'s
+  methods in tests.
   * "tool of last resort"
   * magic
   * tests run slow, fragile, verbose
@@ -49,8 +50,8 @@ Typical Mistakes
 Solution: Replace Global Reference with Getter
 ----------------------------------------------
 
-Extract a getter method for `RestCountriesAPI.getInstance()` and widen access to `protected`
-or package visibility. Comment or annotate as `visible for test`.
+Extract a getter method for `RestCountriesAPI.getInstance()` and widen access to
+`protected` or package visibility. Comment or annotate as `visible for test`.
 Override the getter in the test.
 
 IDE support: Extract method, include all duplicates.
@@ -63,4 +64,5 @@ The `RestCountriesAPI` Singleton violates DIP (and also OCP).
 Further Steps
 -------------
 
-* Extract a `RestCountriesAPI` wrapper and inject into `ShippingCost` while leaning on tests.
+* Extract a `RestCountriesAPI` wrapper and inject into `ShippingCost` while 
+  leaning on tests.

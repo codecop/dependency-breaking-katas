@@ -14,10 +14,12 @@ Which option did you use?
   * minimal code change, fully automated refactoring, no magic
   * subclass of `Checkout` needed in test
 
-* use lightweight UI testing tool like `java.awt.Robot` or Windows Input Simulator to operate the UI
+* use lightweight UI testing tool like `java.awt.Robot` or Windows Input Simulator
+  to operate the UI
   * fragile, depends on mouse position
 
-* use PowerMock/JMockit/TypeMock Isolator to stub `JOptionPane`/`MessageBox`'s methods in tests.
+* use PowerMock/JMockit/TypeMock Isolator to stub `JOptionPane`/`MessageBox`'s
+  methods in tests.
   * "tool of last resort"
   * magic
   * tests run slow, fragile, verbose
@@ -33,8 +35,8 @@ Typical Mistakes
 Solution: Extract and Override Factory Method
 ---------------------------------------------
 
-Extract a factory method for `new UserConfirmation()` and widen access to `protected`
-or package visibility. Comment or annotate as `visible for test`.
+Extract a factory method for `new UserConfirmation()` and widen access to
+`protected` or package visibility. Comment or annotate as `visible for test`.
 Override the factory method in the test.
 
 IDE support: Extract method, include all duplicates.

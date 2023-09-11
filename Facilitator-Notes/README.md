@@ -5,7 +5,8 @@ Understand the goal for participants:
 
 * I want to bring the given class under unit test.
 * How do I do that? Probably I have to change some code.
-* See the difference between (risky) refactoring without tests vs. a minimal risk refactor and write tests first.
+* See the difference between (risky) refactoring without tests vs. a minimal risk
+  refactor and write tests first.
 * See how simple it is to reach the solution.
 
 Each Exercise (around 1 hour)

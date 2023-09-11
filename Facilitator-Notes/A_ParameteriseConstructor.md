@@ -23,16 +23,20 @@ Which option did you use?
   * no subclass of `Discount` needed in test
   * might want to change all call sites
 
-* extract factory method for `new MarketingCampaign()`, override `Discount` and stub in tests.
+* extract factory method for `new MarketingCampaign()`, 
+  override `Discount` and stub in tests.
   * need to subclass and stub `Discount` in addition to `MarketingCampaign`
 
-* extract calls to both `MarketingCampaign` methods, override `Discount` and stub in tests.
+* extract calls to both `MarketingCampaign` methods, 
+  override `Discount` and stub in tests.
   * needs two Seams
 
-* encapsulate field of `MarketingCampaign` with getter, override `Discount` and stub in tests.
+* encapsulate field of `MarketingCampaign` with getter, 
+  override `Discount` and stub in tests.
   * no guarantee the getter is used for all field access
 
-* use PowerMock/JMockit/TypeMock Isolator to stub `MarketingCampaign`'s methods in tests.
+* use PowerMock/JMockit/TypeMock Isolator to stub `MarketingCampaign`'s 
+  methods in tests.
   * "tool of last resort"
   * magic
   * tests run slow, fragile, verbose
@@ -42,7 +46,8 @@ Which option did you use?
   * magic
   * fragile, verbose
 
-* introduce a global debug class or System Property `unit-test` or similar in `MarketingCampaign`
+* introduce a global debug class or System Property `unit-test` or similar
+  in `MarketingCampaign`
   * pollute production code with test code
   * increase complexity (another if, in potentially many places)
   * implicit dependency/surprise in code (violate POLS)

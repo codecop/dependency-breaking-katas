@@ -39,7 +39,8 @@ Which option did you use?
   * implicit dependency/surprise in code (violate POLS)
   * extra set up for environment variable needed
 
-* use PowerMock/JMockit/TypeMock Isolator to stub `ReceiptRepository`'s method in tests.
+* use PowerMock/JMockit/TypeMock Isolator to stub `ReceiptRepository`'s 
+  method in tests.
   * "tool of last resort"
   * magic
   * tests run slow, fragile, verbose
@@ -67,4 +68,5 @@ The `ReceiptRepository` Singleton violates DIP (and also OCP).
 Further Steps
 -------------
 
-* Extract a `ReceiptRepository` wrapper and inject into `Checkout` while leaning on tests.
+* Extract a `ReceiptRepository` wrapper and inject into `Checkout` while 
+  leaning on tests.
