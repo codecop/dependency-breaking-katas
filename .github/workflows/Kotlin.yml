@@ -1,0 +1,48 @@
+name: Test Kotlin
+
+on:
+  push:
+    paths:
+      - 'Kotlin/**'
+      - '.github/workflows/Kotlin.yml'
+  pull_request:
+    paths:
+      - 'Kotlin/**'
+      - '.github/workflows/Kotlin.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      DB_USER: root
+      DB_OLD_PASSWORD: root
+      DB_PASSWORD: mysql
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+
+    - name: Start MYSQL and import DB
+      run: |
+        sudo systemctl start mysql
+        mysqladmin --user=${{ env.DB_USER }} --password=${{ env.DB_OLD_PASSWORD }} password ${{ env.DB_PASSWORD }}
+        mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} < ${GITHUB_WORKSPACE}/build/Database/initDatabase.sql
+
+    - name: Set up Kotlin
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'adopt'
+        java-version: 8
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: ${{ runner.os }}-gradle
+
+    - name: Build and test
+      working-directory: Kotlin
+      run: ./gradlew --console=plain --info --stacktrace build test

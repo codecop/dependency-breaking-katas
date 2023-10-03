@@ -44,4 +44,16 @@ cd ..\..
 
 
 
+cd Kotlin
+@call "%~p0\_copy.bat" .. README.md .
+cd src
+@call "%~p0\_copy.bat" ..\..\Java\src\main\java\org\codecop\dependencies\a Assignment.md main\kotlin\org\codecop\dependencies\a
+@call "%~p0\_copy.bat" ..\..\Java\src\main\java\org\codecop\dependencies\b Assignment.md main\kotlin\org\codecop\dependencies\b
+@call "%~p0\_copy.bat" ..\..\Java\src\main\java\org\codecop\dependencies\c Assignment.md main\kotlin\org\codecop\dependencies\c
+@call "%~p0\_copy.bat" ..\..\Java\src\main\java\org\codecop\dependencies\d Assignment.md main\kotlin\org\codecop\dependencies\d
+@call "%~p0\_copy.bat" ..\..\Java\src\main\java\org\codecop\dependencies\e Assignment.md main\kotlin\org\codecop\dependencies\e
+cd ..\..
+
+
+
 pause

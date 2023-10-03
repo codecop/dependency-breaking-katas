@@ -35,4 +35,10 @@ cd ..
 
 
 
+cd Kotlin
+call gradlew clean
+cd ..
+
+
+
 pause
