@@ -1,5 +1,10 @@
-build
-out
-.gradle
-.idea
+build/
+out/
+.gradle/
+
+.idea/
 *.iml
+
+.classpath
+.project
+.settings/
