@@ -32,8 +32,4 @@ class Money {
     public function moreThan(Money $other): bool {
         return $this->value->compareTo($other->value) > 0;
     }
-
-    public function __equals($other): bool {
-        return $this->value->isEqualTo($other->value);
-    }
 }

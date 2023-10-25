@@ -22,16 +22,10 @@ class Money {
     }
 
     public function format(): String {
-        return number_format($value->toFloat(), 2, '.', '');
-    }
-
-    public function __equals($other): bool {
-        return $this->value->isEqualTo($other->value);
+        return number_format($this->value->toFloat(), 2, '.', '');
     }
 
     public function asBigDecimal(): BigDecimal {
         return $this->value;
     }
-
 }
-
