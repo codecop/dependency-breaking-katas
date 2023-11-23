@@ -1,0 +1,13 @@
+node_modules/
+npm-debug.log
+typings
+.idea
+.iml
+src/*.js
+test/*.js
+*.js.map
+tsconfig.tsbuildinfo
+
+dist/
+coverage/
+.nyc_output/
