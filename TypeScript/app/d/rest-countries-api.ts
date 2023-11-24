@@ -82,7 +82,7 @@ export class RestCountriesAPI {
         const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
         try {
-            await sleep(5000);
+            await sleep(4000);
             let res = await fetch(this.apiURL);
             return await res.text();
         } catch (error) {

@@ -18,7 +18,7 @@ describe('ShippingCost Test', () => {
             .then(val => console.log(val));
     });
 
-    it('test ShippingCOst', () => {
+    it('test ShippingCost', () => {
         let shippingCost = new ShippingCost();
 
         return shippingCost.calculate({name: 'US'}, DeliveryOptions.Express)
