@@ -11,34 +11,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RestCountriesAPI {
+public class ExplorationGuild {
 
-    private static final Country HOME_BASE = new Country("AT");
+    private static final Kingdom HOME_BASE = new Kingdom("AT");
     private static final String COUNTRY_INFORMATION_SERVICE_URL = "https://restcountries.com/v3.1/all";
 
-    private static final RestCountriesAPI instance = new RestCountriesAPI();
+    private static final ExplorationGuild instance = new ExplorationGuild();
 
     private final ObjectMapper objectMapper;
 
-    private RestCountriesAPI() {
+    private ExplorationGuild() {
         this.objectMapper = new ObjectMapper();
     }
 
-    public static RestCountriesAPI getInstance() {
+    public static ExplorationGuild ask() {
         return instance;
     }
 
-    public boolean isInCommonMarket(Country country) {
+    public boolean isInAdventurousLands(Kingdom country) {
         final Optional<CountryDescription> countryDescription = getCountryDescriptionViaRestCall(country);
         return countryDescription.map(description -> description.getRegion().equals("Europe")).orElse(false);
     }
 
-    public boolean isInAmericas(Country country) {
+    public boolean isInMagicRealm(Kingdom country) {
         final Optional<CountryDescription> countryDescription = getCountryDescriptionViaRestCall(country);
         return countryDescription.map(description -> description.getRegion().equals("Americas")).orElse(false);
     }
 
-    public int distanceTo(Country country) {
+    public int distanceTo(Kingdom country) {
         final Optional<CountryDescription> austria = getCountryDescriptionViaRestCall(HOME_BASE);
         final Optional<CountryDescription> other = getCountryDescriptionViaRestCall(country);
 
@@ -66,7 +66,7 @@ public class RestCountriesAPI {
         return (int) dist;
     }
 
-    private Optional<CountryDescription> getCountryDescriptionViaRestCall(Country country) {
+    private Optional<CountryDescription> getCountryDescriptionViaRestCall(Kingdom country) {
         return slowHttpCall().stream().filter(c -> c.getCca2().equals(country.toString())).findFirst();
     }
 

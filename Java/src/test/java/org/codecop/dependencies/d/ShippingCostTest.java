@@ -8,7 +8,7 @@ public class ShippingCostTest {
 
     @Test
     public void test4() {
-        ShippingCost shippingCost = new ShippingCost();
+        HiringAHiroForAQuest_ shippingCost = new HiringAHiroForAQuest_();
         
         assertNotNull(shippingCost);
     }

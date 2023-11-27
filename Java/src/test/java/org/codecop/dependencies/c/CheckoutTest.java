@@ -8,9 +8,9 @@ public class CheckoutTest {
 
     @Test
     public void test3() {
-        Checkout checkout = new Checkout();
+        Оплата_ checkout = new Оплата_();
         
-        checkout.createReceipt(new Money(12));
+        checkout.coldWarOperation(new Деньги(12));
         
         assertNotNull(checkout);
     }

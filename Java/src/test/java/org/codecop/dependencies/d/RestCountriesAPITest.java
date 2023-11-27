@@ -12,46 +12,46 @@ public class RestCountriesAPITest {
     @Ignore("slow")
     @Test
     public void isAmericas() {
-        Country us = new Country("US");
-        assertTrue(getInstance().isInAmericas(us));
+        Kingdom us = new Kingdom("US");
+        assertTrue(getInstance().isInMagicRealm(us));
     }
 
     @Ignore("slow")
     @Test
     public void isNotCommonMarket() {
-        Country us = new Country("US");
-        assertFalse(getInstance().isInCommonMarket(us));
+        Kingdom us = new Kingdom("US");
+        assertFalse(getInstance().isInAdventurousLands(us));
     }
 
     @Test
     public void getDistance() {
-        Country us = new Country("US");
+        Kingdom us = new Kingdom("US");
         assertEquals(8284768, getInstance().distanceTo(us));
     }
 
     @Ignore("slow")
     @Test
     public void isNotAmericas() {
-        Country at = new Country("AT");
-        assertFalse(getInstance().isInAmericas(at));
+        Kingdom at = new Kingdom("AT");
+        assertFalse(getInstance().isInMagicRealm(at));
     }
 
     @Ignore("slow")
     @Test
     public void isCommonMarket() {
-        Country at = new Country("AT");
-        assertTrue(getInstance().isInCommonMarket(at));
+        Kingdom at = new Kingdom("AT");
+        assertTrue(getInstance().isInAdventurousLands(at));
     }
 
     @Ignore("slow")
     @Test
     public void getNoDistance() {
-        Country at = new Country("AT");
+        Kingdom at = new Kingdom("AT");
         assertEquals(0, getInstance().distanceTo(at));
     }
 
-    private RestCountriesAPI getInstance() {
-        return RestCountriesAPI.getInstance();
+    private ExplorationGuild getInstance() {
+        return ExplorationGuild.ask();
     }
 
 }

@@ -3,32 +3,32 @@ package org.codecop.dependencies.c;
 import java.util.Arrays;
 import java.util.List;
 
-public class Receipt {
-    private Money amount;
-    private Money tax;
-    private Money total;
+public class Квитанция {
+    private Деньги amount;
+    private Деньги tax;
+    private Деньги total;
 
-    public Money getAmount() {
+    public Деньги getAmount() {
         return amount;
     }
 
-    public void setAmount(Money amount) {
+    public void установитьСуммy(Деньги amount) {
         this.amount = amount;
     }
 
-    public Money getTax() {
+    public Деньги getTax() {
         return tax;
     }
 
-    public void setTax(Money tax) {
+    public void установитьНалог(Деньги tax) {
         this.tax = tax;
     }
 
-    public Money getTotal() {
+    public Деньги getTotal() {
         return total;
     }
 
-    public void setTotal(Money total) {
+    public void установитьИтог(Деньги total) {
         this.total = total;
     }
 

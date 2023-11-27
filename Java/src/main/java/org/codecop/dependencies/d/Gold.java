@@ -3,20 +3,20 @@ package org.codecop.dependencies.d;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Money {
+public class Gold {
 
     private final BigDecimal value;
 
-    public Money(int value) {
+    public Gold(int value) {
         this(new BigDecimal(value));
     }
 
-    public Money(BigDecimal value) {
+    public Gold(BigDecimal value) {
         this.value = value;
     }
 
-    public Money percentage(int p) {
-        return new Money(value.multiply(new BigDecimal(p)).divide(new BigDecimal(100)));
+    public Gold times(int p) {
+        return new Gold(value.multiply(new BigDecimal(p)).divide(new BigDecimal(100)));
     }
 
     public String format() {
@@ -28,7 +28,7 @@ public class Money {
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        Money money = (Money) other;
+        Gold money = (Gold) other;
         return Objects.equals(value, money.value);
     }
 

@@ -8,9 +8,9 @@ public class MarketingCampaignTest {
 
     @Test
     public void test2() {
-        MarketingCampaign campaign = new MarketingCampaign();
+        Astrologer_ campaign = new Astrologer_();
 
-        boolean isCrazySalesDay = campaign.isCrazySalesDay();
+        boolean isCrazySalesDay = campaign.isMyLuckyDay();
 
         assertFalse(isCrazySalesDay);
     }

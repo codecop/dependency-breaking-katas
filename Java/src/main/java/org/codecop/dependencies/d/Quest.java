@@ -1,6 +1,6 @@
 package org.codecop.dependencies.d;
 
-public enum DeliveryOptions {
+public enum Quest {
     STANDARD, 
-    EXPRESS
+    DANGEROUS
 }

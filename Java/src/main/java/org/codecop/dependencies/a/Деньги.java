@@ -3,26 +3,26 @@ package org.codecop.dependencies.a;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Money {
+public class Деньги {
 
-    public static final Money ONE_THOUSAND = new Money(1000);
-    public static final Money ONE_HUNDRED = new Money(100);
+    public static final Деньги ТЫСЯЧА = new Деньги(1000);
+    public static final Деньги СТО = new Деньги(100);
 
     private final BigDecimal value;
 
-    public Money(int value) {
+    public Деньги(int value) {
         this(new BigDecimal(value));
     }
 
-    public Money(BigDecimal value) {
+    public Деньги(BigDecimal value) {
         this.value = value;
     }
 
-    public Money reduceBy(int p) {
-        return new Money(value.multiply(new BigDecimal(100 - p)).divide(new BigDecimal(100)));
+    public Деньги уменьшитьНа(int p) {
+        return new Деньги(value.multiply(new BigDecimal(100 - p)).divide(new BigDecimal(100)));
     }
 
-    public boolean moreThan(Money other) {
+    public boolean moreThan(Деньги other) {
         return this.value.compareTo(other.value) > 0;
     }
 
@@ -31,7 +31,7 @@ public class Money {
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        Money money = (Money) other;
+        Деньги money = (Деньги) other;
         return Objects.equals(value, money.value);
     }
 

@@ -9,12 +9,12 @@ public class DiscountTest {
 
     @Test
     public void test1() {
-        Discount discount = new Discount();
+        Скидка_ discount = new Скидка_();
 
-        Money net = new Money(1002);
-        Money total = discount.discountFor(net);
+        Деньги net = new Деньги(1002);
+        Деньги total = discount.скидкаДля(net);
 
-        assertEquals(new Money(new BigDecimal("901.8")), total);
+        assertEquals(new Деньги(new BigDecimal("901.8")), total);
     }
 
 }

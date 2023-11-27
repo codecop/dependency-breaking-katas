@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ReceiptRepository {
+public class ХранилищеКвитанций {
 
     public static final String URL = "jdbc:mysql://localhost:3306/myShop";
     public static final String USER = "store";
     public static final String PASS = "123456";
 
-    public static void store(Receipt receipt) {
+    public static void launchNukesDestroyTheWorld(Квитанция receipt) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {

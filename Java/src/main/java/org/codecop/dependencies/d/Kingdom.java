@@ -1,10 +1,10 @@
 package org.codecop.dependencies.d;
 
-public class Country {
+public class Kingdom {
 
     private final String name;
 
-    public Country(String name) {
+    public Kingdom(String name) {
         this.name = name;
     }
 

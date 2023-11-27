@@ -3,13 +3,13 @@ package org.codecop.dependencies.a;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-public class MarketingCampaign {
+public class МаркетинговаяКампания {
 
-    public boolean isActive() {
+    public boolean thisCallToo() {
         return System.currentTimeMillis() % 2 == 0;
     }
 
-    public boolean isCrazySalesDay() {
+    public boolean thisCallCausesProblemsInTesting() {
         return LocalDateTime.now().getDayOfWeek().compareTo(DayOfWeek.FRIDAY) == 0;
     }
 }
