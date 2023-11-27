@@ -1,12 +1,18 @@
 package org.codecop.dependencies.telemetrysystem;
 
-public class TelemetryDiagnosticControls {
+public class TelemetryDiagnosticControls_ {
+    
     private final String DiagnosticChannelConnectionString = "*111#";
 
-    private final TelemetryClient telemetryClient;
+    /*
+     * The client connects to real hardware and we cannot control it in testing.
+     * What to do?
+     */
+    private TelemetryClient telemetryClient;
+
     private String diagnosticInfo = "";
 
-    public TelemetryDiagnosticControls() {
+    public TelemetryDiagnosticControls_() {
         telemetryClient = new TelemetryClient();
     }
 

@@ -8,7 +8,7 @@ public class AlarmTest {
 
     @Test
     public void foo() {
-        Alarm alarm = new Alarm();
+        TirePressureMonitoringAlarm_ alarm = new TirePressureMonitoringAlarm_();
         assertFalse(alarm.isAlarmOn());
     }
 }

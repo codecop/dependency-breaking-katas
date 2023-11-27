@@ -8,7 +8,7 @@ public class TicketDispenserTest {
 
     @Test
     public void foo() {
-        TicketDispenser dispenser = new TicketDispenser();
+        TicketDispenser_ dispenser = new TicketDispenser_();
         TurnTicket ticket = dispenser.getTurnTicket();
         assertEquals(-1, ticket.getTurnNumber());
     }
