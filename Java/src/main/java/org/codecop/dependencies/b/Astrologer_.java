@@ -2,15 +2,15 @@ package org.codecop.dependencies.b;
 
 public class Astrologer_ {
 
-    public boolean willIWinTheLotteryToday() {
-        return numberPlanetsInFirstHouse() % 2 == 0;
+    public boolean willWinTheLotteryToday() {
+        return numberPlanetsInFirstHouse() > 5;
     }
 
+    /*
+     * This small private method is not deterministic during test.
+     * What to do?
+     */
     private long numberPlanetsInFirstHouse() {
-        /*
-         * This small private method is not deterministic during test.
-         * What to do?
-         */
         return Planets.planetsFirstTwelfth();
     }
 
@@ -18,11 +18,12 @@ public class Astrologer_ {
         return phaseOfMoon() == Moon.FULL;
     }
 
+    /*
+     * This small private method is not deterministic during test.
+     * What to do?
+     */
     private Moon phaseOfMoon() {
-        /*
-         * This small private method is not deterministic during test.
-         * What to do?
-         */
         return Moon.now().phase();
     }
+
 }
