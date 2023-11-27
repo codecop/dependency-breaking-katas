@@ -1,8 +1,7 @@
 package org.codecop.dependencies.telemetrysystem;
 
-public class TelemetryDiagnosticControls_ {
-    
-    private final String DiagnosticChannelConnectionString = "*111#";
+class TelemetryDiagnosticControls_ {
+    private String DiagnosticChannelConnection = "*111#";
 
     /*
      * The client connects to real hardware and we cannot control it in testing.
@@ -31,7 +30,7 @@ public class TelemetryDiagnosticControls_ {
 
         int retryLeft = 3;
         while (telemetryClient.getOnlineStatus() == false && retryLeft > 0) {
-            telemetryClient.connect(DiagnosticChannelConnectionString);
+            telemetryClient.connect(DiagnosticChannelConnection);
             retryLeft -= 1;
         }
 

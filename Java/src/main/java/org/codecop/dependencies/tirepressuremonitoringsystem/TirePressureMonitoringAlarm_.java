@@ -1,12 +1,12 @@
 package org.codecop.dependencies.tirepressuremonitoringsystem;
 
-public class TirePressureMonitoringAlarm_ {
+class TirePressureMonitoringAlarm_ {
     
     private final double LowPressureThreshold = 17;
     private final double HighPressureThreshold = 21;
 
     /*
-     * The Sensor is real hardware and we cannot control it in testing.
+     * The Sensor is real hardware and not controlled in testing.
      * What to do?
      */
     private TirePressureSensor sensor = new TirePressureSensor();

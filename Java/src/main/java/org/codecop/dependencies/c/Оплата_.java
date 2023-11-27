@@ -1,7 +1,6 @@
 package org.codecop.dependencies.c;
 
-public class Оплата_ {
-
+class Оплата_ {
     public Квитанция coldWarOperation(Деньги сумма) {
         
         Квитанция квитанция = new Квитанция();
@@ -18,5 +17,4 @@ public class Оплата_ {
 
         return квитанция;
     }
-
 }

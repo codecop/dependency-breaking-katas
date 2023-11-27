@@ -1,19 +1,18 @@
 package org.codecop.dependencies.d;
 
-public class HiringAHiroForAQuest_ {
-
-    public Gold costToRunThisQuest(Kingdom toKingdom, Quest quest) {
+class HiringAHiroForAQuest_ {
+    public Gold costToRunThisQuest(Kingdom kingdom, Quest quest) {
         /*
          * It is possible to ask the ExplorationGuild during tests, 
          * but we have to play for each call. What to do?
          */
 
-        if (ExplorationGuild.ask().isInAdventurousLands(toKingdom)) {
+        if (ExplorationGuild.ask().isInAdventurousLands(kingdom)) {
 
             // base price for quest into adventure land, like Eldoria
             return new Gold(5);
 
-        } else if (ExplorationGuild.ask().isInMagicRealm(toKingdom)) {
+        } else if (ExplorationGuild.ask().isInMagicRealm(kingdom)) {
             
             // magic is more expensive of course, like Shadowmere Kingdom
             Gold gold = new Gold(15);
@@ -27,7 +26,7 @@ public class HiringAHiroForAQuest_ {
         } else {
             
             // other kingdoms, e.g. Emberfall
-            int daysByHorse = ExplorationGuild.ask().distanceTo(toKingdom);
+            int daysByHorse = ExplorationGuild.ask().distanceTo(kingdom);
             return new Gold(daysByHorse).times(10);
             
         }

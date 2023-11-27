@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class HtmlTextConverter_ {
-
+class HtmlTextConverter_ {
+    
     private String fullFilenameWithPath;
 
     /*
@@ -33,9 +33,5 @@ public class HtmlTextConverter_ {
             return html;
             
         }
-    }
-
-    public String getFilename() {
-        return this.fullFilenameWithPath;
     }
 }

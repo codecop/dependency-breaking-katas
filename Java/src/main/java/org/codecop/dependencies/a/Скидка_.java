@@ -1,7 +1,6 @@
 package org.codecop.dependencies.a;
 
-public class Скидка_ {
-
+class Скидка_ {
     private final МаркетинговаяКампания маркетинговаяКампания;
 
     public Скидка_() {

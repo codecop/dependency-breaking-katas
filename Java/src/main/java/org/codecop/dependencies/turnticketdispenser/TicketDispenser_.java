@@ -1,6 +1,6 @@
 package org.codecop.dependencies.turnticketdispenser;
 
-public class TicketDispenser_ {
+class TicketDispenser_ {
 
     public TurnTicket getTurnTicket() {
 
@@ -14,5 +14,4 @@ public class TicketDispenser_ {
 
         return newTurnTicket;
     }
-
 }
