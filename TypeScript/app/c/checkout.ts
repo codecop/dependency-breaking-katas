@@ -1,15 +1,19 @@
-import {Money} from "./money";
-import {Receipt} from "./receipt";
-import {ReceiptRepository} from "./receipt-repository";
+import { Money } from "./money";
+import { Receipt } from "./receipt";
+import { ReceiptRepository } from "./receipt-repository";
 
 
 export class Checkout {
 
-    createReceipt(netAmount: Money): Promise<Error | boolean> {
-        let tax = netAmount.percentage(20);
-        let total = netAmount.add(tax);
-        let receipt: Receipt = new Receipt(netAmount, tax, total);
+    createReceipt(amount: Money): Promise<Receipt | Error> {
+        const receipt: Receipt = new Receipt();
+        const vat = amount.percentage(20);
 
-        return ReceiptRepository.store(receipt);
+        receipt.amount = amount;
+        receipt.tax = vat;
+        receipt.total = amount.add(vat);
+
+        return ReceiptRepository.store(receipt).
+            then(_ => receipt);
     }
 }

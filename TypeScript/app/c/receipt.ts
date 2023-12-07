@@ -1,8 +1,20 @@
-import {Money} from "./money";
+import { Money } from "./money";
 
 export class Receipt {
-    constructor(public amount: Money, public tax: Money, public total:Money) {
-        this.amount = Money.ZERO;
-        this.tax = Money.ZERO;
+
+    amount: Money;
+    tax: Money;
+    total: Money
+
+    format(): string[] {
+        return [ //
+            "Receipt", //
+            "=======", //
+            "Item 1 ... " + this.amount.format(), //
+            "Tax    ... " + this.tax.format(), //
+            "----------------", //
+            "Total  ... " + this.total.format() //
+        ];
     }
+
 }

@@ -1,28 +1,28 @@
-import {Receipt} from "./receipt";
-import {Connection, MysqlError} from "mysql";
+import { Receipt } from "./receipt";
+import { Connection, MysqlError } from "mysql";
 
-let mysql = require('mysql');
+const mysql = require('mysql');
 
 const db: Connection = mysql.createConnection({
     host: 'localhost:3306',
+    database: 'myShop',
     user: 'store',
-    password: '12345',
-    database: 'store'
+    password: '12345'
 });
 
 export class ReceiptRepository {
 
-    static store(receipt: Receipt): Promise<Error | boolean> {
+    static store(receipt: Receipt): Promise<boolean | Error> {
         return new Promise((resolve, reject) => {
             db.connect((err: MysqlError) => {
                 if (err) {
                     reject(err);
                 } else {
-
                     db.query(
                         "insert into RECEIPT (AMOUNT, TAX, TOTAL) values(?, ?, ?)",
                         [receipt.amount.value, receipt.tax.value, receipt.total.value],
                         (err, results) => {
+                            db.end();
                             if (err) {
                                 reject(err);
                             }
@@ -31,8 +31,6 @@ export class ReceiptRepository {
                             }
                             resolve(true);
                         });
-
-                    db.end();
                 }
             });
         });
