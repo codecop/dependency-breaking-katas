@@ -1,14 +1,14 @@
-import {Discount} from "../../app/a/discount";
-import {Money} from "../../app/a/money";
-import {expect} from "chai";
+import { Discount } from "../../app/a/discount";
+import { Money } from "../../app/a/money";
+import { expect } from "chai";
 
-describe('Discount Test', () => {
+describe('Discount', () => {
 
-    it('test in a', () => {
-        let discount = new Discount();
+    it('test 1', () => {
+        const discount = new Discount();
 
-        let net = new Money(1002);
-        let total = discount.discountFor(net);
+        const net = new Money(1002);
+        const total = discount.discountFor(net);
 
         expect(total.value).to.be.equal(901.8);
     });

@@ -14,7 +14,6 @@ export class Money {
     }
 
     reduceBy(p: number): Money {
-        // value.multiply(new BigDecimal(100 - p)).divide(new BigDecimal(100))
         return new Money((this.value * (100 - p) / 100).toFixed(2));
     }
 

@@ -31,3 +31,5 @@ our online shop. The main logic is in `Discount`.
 * Bring `Discount` under test. Make sure to cover all paths in the core logic.
 * There is an existing `DiscountTest` with a first test case which might or might not work.
 * You cannot change `MarketingCampaign` because it is used by other teams as well.
+
+(This is a copied document - do not edit!)

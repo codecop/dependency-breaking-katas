@@ -1,9 +1,9 @@
-import {Money} from "./money";
-import {MarketingCampaign} from "./marketing-campaign";
+import { Money } from "./money";
+import { MarketingCampaign } from "./marketing-campaign";
 
 export class Discount {
 
-    marketingCampaign: MarketingCampaign;
+    private marketingCampaign: MarketingCampaign;
 
     constructor() {
         this.marketingCampaign = new MarketingCampaign();
