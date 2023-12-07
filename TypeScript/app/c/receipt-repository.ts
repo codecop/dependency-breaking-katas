@@ -26,9 +26,6 @@ export class ReceiptRepository {
                             if (err) {
                                 reject(err);
                             }
-                            if (!results[0]) {
-                                reject(new Error('Data not inserted?'))
-                            }
                             resolve(true);
                         });
                 }
