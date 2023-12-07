@@ -2,17 +2,11 @@ import { Country } from "./country";
 
 import fetch from 'node-fetch';
 
-interface RestRegionalBlocs {
-    acronym?: string;
-    name: string;
-}
-
 interface RestCountry {
     name: string;
-    alpha2Code: string;
+    cca2: string;
     region: string;
     latlng: number[];
-    regionalBlocs?: RestRegionalBlocs[];
 }
 
 export class RestCountriesAPI {
@@ -30,9 +24,7 @@ export class RestCountriesAPI {
     public isInCommonMarket(country: Country) {
         const countryDescription = this.getCountryDescriptionViaRestCall(country);
 
-        return countryDescription.then((c) =>
-            c?.regionalBlocs?.filter(b => b.acronym === 'EU').length === 1
-        );
+        return countryDescription.then((c) => c?.region === 'Europe');
     }
 
     public isInAmericas(country: Country) {
@@ -41,7 +33,7 @@ export class RestCountriesAPI {
         return countryDescription.then((c) => c?.region === 'Americas');
     }
 
-    public distanceTo(country: Country) {
+    public distanceTo(country: Country): Promise<number> {
         return Promise.all([
             this.getCountryDescriptionViaRestCall(this.HOME_BASE),
             this.getCountryDescriptionViaRestCall(country)
@@ -49,7 +41,7 @@ export class RestCountriesAPI {
             if (!bothCountries || !bothCountries[0] || !bothCountries[1]) {
                 return 0;
             }
-            return (this.distBetween(bothCountries[0].latlng[0], bothCountries[0].latlng[1], bothCountries[1].latlng[0], bothCountries[1].latlng[1]) / 1000).toFixed(0);
+            return this.distBetween(bothCountries[0].latlng[0], bothCountries[0].latlng[1], bothCountries[1].latlng[0], bothCountries[1].latlng[1]);
         });
     }
 
@@ -63,7 +55,7 @@ export class RestCountriesAPI {
             + Math.cos(fLat) * Math.cos(toLat) * Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
         const c: number = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const dist: number = (earthRadius * c);
-        return dist;
+        return Math.floor(dist);
     }
 
     private toRadians(value: number): number {
@@ -74,7 +66,7 @@ export class RestCountriesAPI {
         const countryDescriptions: RestCountry[] = await this.slowHttpCall();
 
         for (let i = 0; i < countryDescriptions.length; i++) {
-            if (countryDescriptions[i].alpha2Code === country.name) {
+            if (countryDescriptions[i].cca2 === country.name) {
                 return countryDescriptions[i];
             }
         }
