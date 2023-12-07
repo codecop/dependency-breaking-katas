@@ -30,3 +30,5 @@ run on our online shop. During campaigns we e.g. offer discounts.
 
 * Bring `MarketingCampaign` under test. Make sure to cover all paths in the core logic.
 * There is an existing `MarketingCampaignTest` with a first test case which might or might not work.
+
+(This is a copied document - do not edit!)
