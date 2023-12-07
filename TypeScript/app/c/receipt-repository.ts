@@ -4,7 +4,7 @@ import { Connection, MysqlError } from "mysql";
 const mysql = require('mysql');
 
 const db: Connection = mysql.createConnection({
-    host: 'localhost:3306',
+    host: 'localhost',
     database: 'myShop',
     user: 'store',
     password: '12345'
