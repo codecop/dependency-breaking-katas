@@ -7,7 +7,7 @@ const db: Connection = mysql.createConnection({
     host: 'localhost',
     database: 'myShop',
     user: 'store',
-    password: '12345'
+    password: '123456'
 });
 
 export class ReceiptRepository {
