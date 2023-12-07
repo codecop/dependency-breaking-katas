@@ -1,4 +1,4 @@
-import {Country} from "./country";
+import { Country } from "./country";
 
 import fetch from 'node-fetch';
 
@@ -16,8 +16,8 @@ interface RestCountry {
 }
 
 export class RestCountriesAPI {
-    readonly HOME_BASE: Country = {name: 'AT'};
-    readonly apiURL: string = 'https://restcountries.com/v3.1/all';
+    private readonly HOME_BASE: Country = { name: 'AT' };
+    private readonly COUNTRY_INFORMATION_SERVICE_URL: string = 'https://restcountries.com/v3.1/all';
 
     static getCurrent(): RestCountriesAPI {
         return new RestCountriesAPI();
@@ -28,7 +28,7 @@ export class RestCountriesAPI {
     }
 
     public isInCommonMarket(country: Country) {
-        let countryDescription = this.getCountry(country);
+        const countryDescription = this.getCountryDescriptionViaRestCall(country);
 
         return countryDescription.then((c) =>
             c?.regionalBlocs?.filter(b => b.acronym === 'EU').length === 1
@@ -36,20 +36,20 @@ export class RestCountriesAPI {
     }
 
     public isInAmericas(country: Country) {
-        let countryDescription = this.getCountry(country);
+        const countryDescription = this.getCountryDescriptionViaRestCall(country);
 
         return countryDescription.then((c) => c?.region === 'Americas');
     }
 
     public distanceTo(country: Country) {
         return Promise.all([
-            this.getCountry(this.HOME_BASE),
-            this.getCountry(country)
+            this.getCountryDescriptionViaRestCall(this.HOME_BASE),
+            this.getCountryDescriptionViaRestCall(country)
         ]).then(bothCountries => {
             if (!bothCountries || !bothCountries[0] || !bothCountries[1]) {
                 return 0;
             }
-            return (this.distBetween(bothCountries[0].latlng[0], bothCountries[0].latlng[1], bothCountries[1].latlng[0], bothCountries[1].latlng[1])/1000).toFixed(0);
+            return (this.distBetween(bothCountries[0].latlng[0], bothCountries[0].latlng[1], bothCountries[1].latlng[0], bothCountries[1].latlng[1]) / 1000).toFixed(0);
         });
     }
 
@@ -70,24 +70,23 @@ export class RestCountriesAPI {
         return value * Math.PI / 180;
     }
 
-    private async getCountry(country: Country): Promise<RestCountry | undefined> {
-        let data = await this.getAllCountries();
+    private async getCountryDescriptionViaRestCall(country: Country): Promise<RestCountry | null> {
+        const countryDescriptions: RestCountry[] = await this.slowHttpCall();
 
-        let countries: RestCountry[] = JSON.parse(data);
+        for (let i = 0; i < countryDescriptions.length; i++) {
+            if (countryDescriptions[i].alpha2Code === country.name) {
+                return countryDescriptions[i];
+            }
+        }
 
-        return countries.filter(c => c.alpha2Code === country.name).at(0);
+        return null;
     }
 
-    private async getAllCountries(): Promise<string> {
+    private async slowHttpCall(): Promise<RestCountry[]> {
         const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-        try {
-            await sleep(4000);
-            let res = await fetch(this.apiURL);
-            return await res.text();
-        } catch (error) {
-            console.log(error);
-        }
-        return "";
+        await sleep(1000); // Sleep for 1 second
+        const response = await fetch(this.COUNTRY_INFORMATION_SERVICE_URL);
+        const countryDescriptions = JSON.parse(await response.text());
+        return countryDescriptions;
     }
 }

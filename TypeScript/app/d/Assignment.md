@@ -33,3 +33,5 @@ logic is in `ShippingCost`.
 * Bring `ShippingCost` under test. Make sure to cover all paths in the core logic.
 * There is an existing `ShippingCostTest` with a first test case which might or might not work.
 * You cannot change `RestCountriesAPI` because it is used by other teams as well.
+
+(This is a copied document - do not edit!)
