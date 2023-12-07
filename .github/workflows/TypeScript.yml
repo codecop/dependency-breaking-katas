@@ -1,0 +1,44 @@
+name: Test TypeScript
+
+on:
+  push:
+    paths:
+      - 'TypeScript/**'
+      - '.github/workflows/TypeScript.yml'
+  pull_request:
+    paths:
+      - 'TypeScript/**'
+      - '.github/workflows/TypeScript.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      DB_USER: root
+      DB_OLD_PASSWORD: root
+      DB_PASSWORD: mysql
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+
+    - name: Start MYSQL and import DB
+      run: |
+        sudo systemctl start mysql
+        mysqladmin --user=${{ env.DB_USER }} --password=${{ env.DB_OLD_PASSWORD }} password ${{ env.DB_PASSWORD }}
+        mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} < ${GITHUB_WORKSPACE}/build/Database/initDatabase.sql
+        mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} -e "ALTER USER 'store'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456'"
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+
+    - name: Set up dependencies
+      working-directory: TypeScript
+      run: npm install
+
+    - name: Test
+      working-directory: TypeScript
+      run: npm test
