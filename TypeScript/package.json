@@ -1,5 +1,5 @@
 {
-  "name": "legacy-code",
+  "name": "dependency-breaking-katas",
   "version": "0.0.1",
   "scripts": {
     "compile": "tsc -w",
