@@ -14,6 +14,10 @@ public class Money {
         this(new BigDecimal(value));
     }
 
+    public Money(String value) {
+        this(new BigDecimal(value));
+    }
+
     public Money(BigDecimal value) {
         this.value = value;
     }
