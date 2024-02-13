@@ -1,5 +1,7 @@
 package org.codecop.dependencies.e;
 
+import static org.mockito.Mockito.when;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -14,14 +16,26 @@ public class CheckoutTest {
     @Mock
     private EmailService emailServiceMock;
 
+    @Mock
+    private UserConfirmation newsletter;
+
+    @Mock
+    private UserConfirmation terms;
+
     @Test(expected = OrderCancelledException.class)
     public void test5() {
-        System.out.println("note for tester:");
-        System.out.println("* Accept Newsletter");
-        System.out.println("* Do not Accept Terms");
+        when(terms.isAccepted()).thenReturn(false);
 
         Product polkaDotSocks = new Product("Polka-dot Socks");
-        Checkout checkout = new Checkout(polkaDotSocks, emailServiceMock);
+        Checkout checkout = new Checkout(polkaDotSocks, emailServiceMock) {
+            @Override
+            protected UserConfirmation createUserConfirmation(String message) {
+                if (message.startsWith("Accept")) {
+                    return terms;
+                }
+                return newsletter;
+            }
+        };
 
         checkout.confirmOrder();
     }
