@@ -1,15 +1,28 @@
 package org.codecop.dependencies.d;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
 public class ShippingCostTest {
 
     @Test
-    public void test4() {
-        ShippingCost shippingCost = new ShippingCost();
-        
-        assertNotNull(shippingCost);
+    public void inEuropeanUnion() {
+        RestCountriesAPI restCountriesAPI = mock(RestCountriesAPI.class);
+        when(restCountriesAPI.isInCommonMarket(any(Country.class))).thenReturn(true);
+        ShippingCost shippingCost = new ShippingCost() {
+            @Override
+            protected RestCountriesAPI getRestApiInstance() {
+                return restCountriesAPI;
+            }
+        };
+
+        Money cost = shippingCost.calculate(new Country("AT"), DeliveryOptions.STANDARD);
+
+        assertEquals(new Money(5), cost);
+        // 0 seconds :-(
     }
 }
