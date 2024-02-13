@@ -9,7 +9,8 @@ public class MarketingCampaign {
         return milliSeconds() % 2 == 0;
     }
 
-    private long milliSeconds() {
+    /** only for testing */
+    protected long milliSeconds() {
         return System.currentTimeMillis();
     }
 
@@ -17,7 +18,8 @@ public class MarketingCampaign {
         return dayOfWeek().compareTo(DayOfWeek.FRIDAY) == 0;
     }
 
-    private DayOfWeek dayOfWeek() {
+    /** only for testing */
+    protected DayOfWeek dayOfWeek() {
         return LocalDateTime.now().getDayOfWeek();
     }
 }
