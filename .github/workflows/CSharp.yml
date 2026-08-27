@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Check out the repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v7
 
     - name: Start MYSQL
       uses: shogo82148/actions-setup-mysql@v1.23.0
