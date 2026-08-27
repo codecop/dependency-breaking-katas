@@ -32,16 +32,8 @@ jobs:
     - name: Set up Kotlin
       uses: actions/setup-java@v6
       with:
-        distribution: 'adopt'
+        distribution: 'temurin'
         java-version: 8
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: ${{ runner.os }}-gradle
 
     - name: Build and test
       working-directory: Kotlin
