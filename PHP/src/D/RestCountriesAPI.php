@@ -7,7 +7,7 @@ use Unirest\Request;
 class RestCountriesAPI {
 
     private const HOME_BASE = 'AT';
-    private const COUNTRY_INFORMATION_SERVICE_URL = 'https://restcountries.com/v3.1/all';
+    private const COUNTRY_INFORMATION_SERVICE_URL = 'https://api.restcountries.com/countries/v5?pretty=1&limit=100';
 
     private static $instance;
 
@@ -36,18 +36,9 @@ class RestCountriesAPI {
             throw new RestCountriesAPIException('Could not find country ' . self::HOME_BASE . ' or ' . $country);
         }
 
-        return $this->distBetweenLatLong(
-            $austria->latlng,
-            $other->latlng
-        );
-    }
-
-    private function distBetweenLatLong(array $fromCoordinates, array $toCoordinates): int {
         return $this->distBetween(
-            $fromCoordinates[0],
-            $fromCoordinates[1],
-            $toCoordinates[0],
-            $toCoordinates[1]
+            $austria->coordinates->lat, $austria->coordinates->lng,
+            $other->coordinates->lat, $other->coordinates->lng,
         );
     }
 
@@ -67,7 +58,7 @@ class RestCountriesAPI {
     private function getCountryDescriptionViaRestCall(Country $country) {
         $countryDescriptions = $this->slowHttpCall();
         foreach ($countryDescriptions as $c) {
-            if ($c->cca2 === $country->__toString()) {
+            if ($c->codes->alpha_2 === $country->__toString()) {
                 return $c;
             }
         }
@@ -78,13 +69,19 @@ class RestCountriesAPI {
         $countryDescriptions = [];
 
         try {
-            usleep(1000000); // Sleep for 1 second (in microseconds)
-            $response = Request::get(self::COUNTRY_INFORMATION_SERVICE_URL, []);
-
-            $countryDescriptions = json_decode($response->raw_body);
+            for ($offset = 0; $offset < 300; $offset += 100) {
+                usleep(300000); // Sleep for 1 second (in microseconds)
+                $headers = [
+                    'accept'  => 'application/json',
+                    'Authorization' => 'Bearer ' . getenv('RESTCOUNTRIES_API_KEY')
+                ];
+                $response = Request::get(self::COUNTRY_INFORMATION_SERVICE_URL . "&offset=" . $offset, $headers);
+                $jsonBody = json_decode($response->raw_body);
+                $countryDescriptions = array_merge($countryDescriptions, $jsonBody->data->objects);
+            }
 
         } catch (\Exception $e) {
-            throw new RestCountriesAPIException('Could not read country information from ' . self::COUNTRY_INFORMATION_SERVICE_URL, $e);
+            throw new RestCountriesAPIException('Could not read country information from ' . self::COUNTRY_INFORMATION_SERVICE_URL, 0, $e);
         }
 
         return $countryDescriptions;
