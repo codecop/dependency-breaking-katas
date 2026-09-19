@@ -3,15 +3,19 @@ import { Country } from "./country";
 import fetch from 'node-fetch';
 
 interface RestCountry {
-    name: string;
-    cca2: string;
+    codes: {
+        alpha_2: string;
+    };
     region: string;
-    latlng: number[];
+    coordinates: {
+        lat: number;
+        lng: number;
+    };
 }
 
 export class RestCountriesAPI {
     private readonly HOME_BASE: Country = { name: 'AT' };
-    private readonly COUNTRY_INFORMATION_SERVICE_URL: string = 'https://restcountries.com/v3.1/all';
+    private readonly COUNTRY_INFORMATION_SERVICE_URL: string = 'https://api.restcountries.com/countries/v5?pretty=1&limit=100';
 
     static getCurrent(): RestCountriesAPI {
         return new RestCountriesAPI();
@@ -41,7 +45,8 @@ export class RestCountriesAPI {
             if (!bothCountries || !bothCountries[0] || !bothCountries[1]) {
                 return 0;
             }
-            return this.distBetween(bothCountries[0].latlng[0], bothCountries[0].latlng[1], bothCountries[1].latlng[0], bothCountries[1].latlng[1]);
+            return this.distBetween(bothCountries[0].coordinates.lat, bothCountries[0].coordinates.lng,
+                bothCountries[1].coordinates.lat, bothCountries[1].coordinates.lng);
         });
     }
 
@@ -66,7 +71,7 @@ export class RestCountriesAPI {
         const countryDescriptions: RestCountry[] = await this.slowHttpCall();
 
         for (let i = 0; i < countryDescriptions.length; i++) {
-            if (countryDescriptions[i].cca2 === country.name) {
+            if (countryDescriptions[i].codes.alpha_2 === country.name) {
                 return countryDescriptions[i];
             }
         }
@@ -76,9 +81,24 @@ export class RestCountriesAPI {
 
     private async slowHttpCall(): Promise<RestCountry[]> {
         const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-        await sleep(1000); // Sleep for 1 second
-        const response = await fetch(this.COUNTRY_INFORMATION_SERVICE_URL);
-        const countryDescriptions = JSON.parse(await response.text());
+
+        let countryDescriptions: RestCountry[] = [];
+
+        for (let offset = 0; offset < 300; offset += 100) {
+            await sleep(300); // Sleep for 1 second
+            const response = await fetch(this.COUNTRY_INFORMATION_SERVICE_URL + '&offset=' + offset,
+                {
+                    method: 'GET',
+                    headers: {
+                        'accept': 'application/json',
+                        'Authorization': 'Bearer ' + process.env.RESTCOUNTRIES_API_KEY
+                    }
+                }
+            );
+            const jsonBody = JSON.parse(await response.text());
+            countryDescriptions = countryDescriptions.concat(jsonBody.data.objects);
+        }
+
         return countryDescriptions;
     }
 }
