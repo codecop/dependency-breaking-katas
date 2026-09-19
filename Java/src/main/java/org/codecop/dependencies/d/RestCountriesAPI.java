@@ -6,6 +6,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import org.codecop.dependencies.d.restcountries.CountryDescription;
+import org.codecop.dependencies.d.restcountries.Root;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class RestCountriesAPI {
 
     private static final Country HOME_BASE = new Country("AT");
-    private static final String COUNTRY_INFORMATION_SERVICE_URL = "https://restcountries.com/v3.1/all";
+    private static final String COUNTRY_INFORMATION_SERVICE_URL = "https://api.restcountries.com/countries/v5?pretty=1&limit=100";
 
     private static final RestCountriesAPI instance = new RestCountriesAPI();
 
@@ -46,11 +47,11 @@ public class RestCountriesAPI {
             throw new RestCountriesAPIException("Could not find country " + HOME_BASE + " or " + country);
         }
 
-        return distBetween(austria.get().getLatlng(), other.get().getLatlng());
+        return distBetween(austria.get().getCoordinates(), other.get().getCoordinates());
     }
 
-    private int distBetween(List<Double> fromCoordinates, List<Double> toCoordinates) {
-        return distBetween(fromCoordinates.get(0), fromCoordinates.get(1), toCoordinates.get(0), toCoordinates.get(1));
+    private int distBetween(CountryDescription.Coordinates fromCoordinates, CountryDescription.Coordinates toCoordinates) {
+        return distBetween(fromCoordinates.lat, fromCoordinates.lng, toCoordinates.lat, toCoordinates.lng);
     }
 
     private int distBetween(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude) {
@@ -59,8 +60,7 @@ public class RestCountriesAPI {
         double toLat = Math.toRadians(toLatitude);
         double diffLat = Math.toRadians(toLatitude - fromLatitude);
         double diffLng = Math.toRadians(toLongitude - fromLongitude);
-        double a = Math.sin(diffLat / 2) * Math.sin(diffLat / 2)
-                + Math.cos(fLat) * Math.cos(toLat) * Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
+        double a = Math.sin(diffLat / 2) * Math.sin(diffLat / 2) + Math.cos(fLat) * Math.cos(toLat) * Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         float dist = (float) (earthRadius * c);
         return (int) dist;
@@ -74,15 +74,20 @@ public class RestCountriesAPI {
         final List<CountryDescription> countryDescriptions = new ArrayList<>();
 
         try {
-            Thread.sleep(1000);
-            HttpResponse<JsonNode> jsonResponse = Unirest. //
-                    get(COUNTRY_INFORMATION_SERVICE_URL). //
-                    header("accept", "application/json"). //
-                    asJson();
+            for (int offset = 0; offset < 300; offset += 100) {
+                Thread.sleep(300);
+                HttpResponse<JsonNode> jsonResponse = Unirest. //
+                        get(COUNTRY_INFORMATION_SERVICE_URL + "&offset=" + offset). //
+                        header("accept", "application/json"). //
+                        header("Authorization", "Bearer " + System.getenv("RESTCOUNTRIES_API_KEY")). //
+                        asJson();
 
-            String body = jsonResponse.getBody().toString();
-            TypeReference<List<CountryDescription>> typeRef = new TypeReference<List<CountryDescription>>() { };
-            countryDescriptions.addAll(objectMapper.readValue(body, typeRef));
+                String body = jsonResponse.getBody().toString();
+                TypeReference<Root> typeRef = new TypeReference<Root>() {
+                };
+                Root root = objectMapper.readValue(body, typeRef);
+                countryDescriptions.addAll(root.data.objects);
+            }
 
         } catch (Exception e) {
             throw new RestCountriesAPIException("Could not read country information from " + COUNTRY_INFORMATION_SERVICE_URL, e);
