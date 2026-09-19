@@ -67,7 +67,7 @@ public class RestCountriesAPI {
     }
 
     private Optional<CountryDescription> getCountryDescriptionViaRestCall(Country country) {
-        return slowHttpCall().stream().filter(c -> c.getCca2().equals(country.toString())).findFirst();
+        return slowHttpCall().stream().filter(c -> c.codes.alpha_2.equals(country.toString())).findFirst();
     }
 
     public List<CountryDescription> slowHttpCall() {

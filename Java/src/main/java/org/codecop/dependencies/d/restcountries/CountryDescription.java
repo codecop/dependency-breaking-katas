@@ -25,11 +25,6 @@ public class CountryDescription {
 
     public Coordinates coordinates;
 
-    // legacy v3 style
-    public String getCca2() {
-        return codes.alpha_2;
-    }
-
     @JsonProperty("region")
     public String getRegion() {
         return region;
