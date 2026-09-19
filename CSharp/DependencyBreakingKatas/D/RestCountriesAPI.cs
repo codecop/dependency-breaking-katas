@@ -11,7 +11,7 @@ namespace Org.Codecop.Dependencies.D
     {
         private static readonly Country HomeBase = new Country("AT");
 
-        private const string CountryInformationServiceUrl = "https://restcountries.com/v3.1/all";
+        private const string CountryInformationServiceUrl = "https://api.restcountries.com/countries/v5?pretty=1&limit=100";
 
         private static readonly RestCountriesAPI instance = new RestCountriesAPI();
 
@@ -44,12 +44,12 @@ namespace Org.Codecop.Dependencies.D
             {
                 throw new RestCountriesAPIException("Could not find country " + HomeBase + " or " + country);
             }
-            return DistBetween(austria.latlng, other.latlng);
+            return DistBetween(austria.coordinates, other.coordinates);
         }
 
-        private int DistBetween(IList<double> fromCoordinates, IList<double> toCoordinates)
+        private int DistBetween(Coordinates fromCoordinates, Coordinates toCoordinates)
         {
-            return DistBetween(fromCoordinates[0], fromCoordinates[1], toCoordinates[0], toCoordinates[1]);
+            return DistBetween(fromCoordinates.lat, fromCoordinates.lng, toCoordinates.lat, toCoordinates.lng);
         }
 
         private int DistBetween(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude)
@@ -73,25 +73,33 @@ namespace Org.Codecop.Dependencies.D
 
         private CountryDescription GetCountryDescriptionViaRestCall(Country country)
         {
-            return SlowHttpCall().Where(c => c.cca2.Equals(country.ToString())).SingleOrDefault();
+            return SlowHttpCall().Where(c => c.codes.alpha_2.Equals(country.ToString())).SingleOrDefault();
         }
 
         public IList<CountryDescription> SlowHttpCall()
         {
+            List<CountryDescription> countryDescriptions = new List<CountryDescription> {};
+
             try
             {
-                System.Threading.Thread.Sleep(1000);
-                var jsonResponse = Unirest //
-                    .get(CountryInformationServiceUrl)
-                    .header("accept", "application/json")
-                    .asString();
-                var body = jsonResponse.Body;
-                return JsonConvert.DeserializeObject<CountryDescription[]>(body);
+                for (int offset = 0; offset < 300; offset += 100) {
+                    System.Threading.Thread.Sleep(300);
+                    var jsonResponse = Unirest //
+                        .get(CountryInformationServiceUrl + "&offset=" + offset)
+                        .header("accept", "application/json")
+                        .header("Authorization", "Bearer " + System.Environment.GetEnvironmentVariable("RESTCOUNTRIES_API_KEY"))
+                        .asString();
+                    var body = jsonResponse.Body;
+                    var jsonBody = JsonConvert.DeserializeObject<Root>(body);
+                    countryDescriptions.AddRange(jsonBody.data.objects);
+                }
             }
             catch (Exception e)
             {
                 throw new RestCountriesAPIException("Could not read country information from " + CountryInformationServiceUrl, e);
             }
+
+            return countryDescriptions;
         }
         
         public static void Main(string[] args)

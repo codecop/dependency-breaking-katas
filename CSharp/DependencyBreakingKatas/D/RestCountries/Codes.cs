@@ -3,15 +3,9 @@ using Newtonsoft.Json;
 
 namespace Org.Codecop.Dependencies.D.Restcountries
 {
-    public class RegionalBlocs
+    public class Codes
     {
-        public string acronym { get; set; }
-
-        public string name { get; set; }
-
-        public IList<string> otherAcronyms { get; set; }
-
-        public IList<string> otherNames { get; set; }
+        public string alpha_2 { get; set; }
 
         [JsonExtensionData]
         private IDictionary<string, object> additionalProperties = new Dictionary<string, object>();
