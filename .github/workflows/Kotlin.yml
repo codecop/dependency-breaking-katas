@@ -18,6 +18,7 @@ jobs:
       DB_USER: root
       DB_OLD_PASSWORD: root
       DB_PASSWORD: mysql
+      RESTCOUNTRIES_API_KEY: ${{ secrets.RESTCOUNTRIES_API_KEY }}
 
     steps:
     - name: Check out the repo
