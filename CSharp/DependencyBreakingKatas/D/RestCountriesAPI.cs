@@ -40,16 +40,14 @@ namespace Org.Codecop.Dependencies.D
         {
             CountryDescription austria = GetCountryDescriptionViaRestCall(HomeBase);
             CountryDescription other = GetCountryDescriptionViaRestCall(country);
+
             if (austria == null || other == null)
             {
                 throw new RestCountriesAPIException("Could not find country " + HomeBase + " or " + country);
             }
-            return DistBetween(austria.coordinates, other.coordinates);
-        }
 
-        private int DistBetween(Coordinates fromCoordinates, Coordinates toCoordinates)
-        {
-            return DistBetween(fromCoordinates.lat, fromCoordinates.lng, toCoordinates.lat, toCoordinates.lng);
+            return DistBetween(austria.coordinates.lat, austria.coordinates.lng, 
+                               other.coordinates.lat, other.coordinates.lng);
         }
 
         private int DistBetween(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude)
@@ -73,7 +71,9 @@ namespace Org.Codecop.Dependencies.D
 
         private CountryDescription GetCountryDescriptionViaRestCall(Country country)
         {
-            return SlowHttpCall().Where(c => c.codes.alpha_2.Equals(country.ToString())).SingleOrDefault();
+            return SlowHttpCall().
+                Where(c => c.codes.alpha_2.Equals(country.ToString())).
+                SingleOrDefault();
         }
 
         public IList<CountryDescription> SlowHttpCall()
@@ -89,10 +89,12 @@ namespace Org.Codecop.Dependencies.D
                         .header("accept", "application/json")
                         .header("Authorization", "Bearer " + System.Environment.GetEnvironmentVariable("RESTCOUNTRIES_API_KEY"))
                         .asString();
+
                     var body = jsonResponse.Body;
                     var jsonBody = JsonConvert.DeserializeObject<Root>(body);
                     countryDescriptions.AddRange(jsonBody.data.objects);
                 }
+
             }
             catch (Exception e)
             {

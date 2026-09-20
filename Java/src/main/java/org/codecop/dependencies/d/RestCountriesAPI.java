@@ -47,11 +47,8 @@ public class RestCountriesAPI {
             throw new RestCountriesAPIException("Could not find country " + HOME_BASE + " or " + country);
         }
 
-        return distBetween(austria.get().getCoordinates(), other.get().getCoordinates());
-    }
-
-    private int distBetween(CountryDescription.Coordinates fromCoordinates, CountryDescription.Coordinates toCoordinates) {
-        return distBetween(fromCoordinates.lat, fromCoordinates.lng, toCoordinates.lat, toCoordinates.lng);
+        return distBetween(austria.get().getCoordinates().lat, austria.get().getCoordinates().lng, 
+                           other.get().getCoordinates().lat, other.get().getCoordinates().lng);
     }
 
     private int distBetween(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude) {
@@ -60,14 +57,18 @@ public class RestCountriesAPI {
         double toLat = Math.toRadians(toLatitude);
         double diffLat = Math.toRadians(toLatitude - fromLatitude);
         double diffLng = Math.toRadians(toLongitude - fromLongitude);
-        double a = Math.sin(diffLat / 2) * Math.sin(diffLat / 2) + Math.cos(fLat) * Math.cos(toLat) * Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
+        double a = Math.sin(diffLat / 2) * Math.sin(diffLat / 2) 
+            + Math.cos(fLat) * Math.cos(toLat) * Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         float dist = (float) (earthRadius * c);
         return (int) dist;
     }
 
     private Optional<CountryDescription> getCountryDescriptionViaRestCall(Country country) {
-        return slowHttpCall().stream().filter(c -> c.codes.alpha_2.equals(country.toString())).findFirst();
+        return slowHttpCall().
+            stream().
+            filter(c -> c.codes.alpha_2.equals(country.toString())).
+            findFirst();
     }
 
     public List<CountryDescription> slowHttpCall() {
@@ -83,8 +84,7 @@ public class RestCountriesAPI {
                         asJson();
 
                 String body = jsonResponse.getBody().toString();
-                TypeReference<Root> typeRef = new TypeReference<Root>() {
-                };
+                TypeReference<Root> typeRef = new TypeReference<Root>() {};
                 Root root = objectMapper.readValue(body, typeRef);
                 countryDescriptions.addAll(root.data.objects);
             }

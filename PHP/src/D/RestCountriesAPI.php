@@ -38,7 +38,7 @@ class RestCountriesAPI {
 
         return $this->distBetween(
             $austria->coordinates->lat, $austria->coordinates->lng,
-            $other->coordinates->lat, $other->coordinates->lng,
+            $other->coordinates->lat, $other->coordinates->lng
         );
     }
 
@@ -57,11 +57,13 @@ class RestCountriesAPI {
 
     private function getCountryDescriptionViaRestCall(Country $country) {
         $countryDescriptions = $this->slowHttpCall();
+
         foreach ($countryDescriptions as $c) {
             if ($c->codes->alpha_2 === $country->__toString()) {
                 return $c;
             }
         }
+
         return null;
     }
 

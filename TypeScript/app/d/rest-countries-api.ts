@@ -27,13 +27,11 @@ export class RestCountriesAPI {
 
     public isInCommonMarket(country: Country) {
         const countryDescription = this.getCountryDescriptionViaRestCall(country);
-
         return countryDescription.then((c) => c?.region === 'Europe');
     }
 
     public isInAmericas(country: Country) {
         const countryDescription = this.getCountryDescriptionViaRestCall(country);
-
         return countryDescription.then((c) => c?.region === 'Americas');
     }
 
@@ -86,13 +84,14 @@ export class RestCountriesAPI {
 
         for (let offset = 0; offset < 300; offset += 100) {
             await sleep(300); // Sleep for 1 second
+            const headers = {
+                'accept': 'application/json',
+                'Authorization': 'Bearer ' + process.env.RESTCOUNTRIES_API_KEY
+            };
             const response = await fetch(this.COUNTRY_INFORMATION_SERVICE_URL + '&offset=' + offset,
                 {
                     method: 'GET',
-                    headers: {
-                        'accept': 'application/json',
-                        'Authorization': 'Bearer ' + process.env.RESTCOUNTRIES_API_KEY
-                    }
+                    headers
                 }
             );
             const jsonBody = JSON.parse(await response.text());
@@ -101,4 +100,5 @@ export class RestCountriesAPI {
 
         return countryDescriptions;
     }
+
 }
